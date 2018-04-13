@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+    webserver:
+        build: .
+        image: my_camagru
+        ports:
+            - "8080:80"
+            - "443:443"
+        volumes:
+            - ${HOME}/Documents/camagru:/var/www/html
+        links:
+            - db
+
+    db:
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        volumes:
+            - camagru_db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=superpassword
+            - MYSQL_DATABASE=db_mycamagru
+volumes:
+    camagru_db:
