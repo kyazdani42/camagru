@@ -11,6 +11,14 @@ services:
             - ${HOME}/Documents/camagru:/var/www/html
         links:
             - db
+        restart: "on-failure"
+
+    admin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "8100:80"
+        links:
+            - db
 
     db:
         image: mysql:5.7
@@ -21,5 +29,7 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=superpassword
             - MYSQL_DATABASE=db_mycamagru
+        restart: "on-failure"
+
 volumes:
     camagru_db:
