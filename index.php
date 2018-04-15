@@ -8,30 +8,35 @@ require_once('config/setup.php');
         <meta charset="utf-8">
         <title>Camagru</title>
         <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="style/side.css">
+        <link rel="stylesheet" href="style/header.css">
 	</head>
 	<body>
 		<header>
-            <div class="headerBox">
-                <li class="headList">
-                    <ul>1</ul>
-                    <ul>2</ul>
-                    <ul>3</ul>
-                </li>
-                <h1>Camagru</h1>
-                <?php if ($_SESSION['log_user'] !== "") { ?>
-                    <span class="logBox">Account</span>
-                <?php } else { ?>
-                    <span class="logBox"><a href="login.php">Connexion</a></span>
-                <?php } ?>
+            <div class="top-navbar">
+                <nav class="navbar">
+                    <a href="index.php">Home</a>
+                    <?php if ($_SESSION['log_user'] !== "") { ?>
+                        <a href="">Account</a>
+                    <?php } else { ?>
+                        <a href="login.html">Connexion</a>
+                    <?php } ?>
+                </nav>
             </div>
-		</header>
-		<div class="main">
-			<div class="main_main">
-			</div>
-			<div class="nav">
-			</div>
-		</div>
-		<footer>
-		</footer>
-	</body>
+        </header>
+        <div class="content">
+            <div id="intro">
+                <h1> Welcome to Camagru !</h1>
+            </div>
+        </div>
+        <footer>
+            <div class="footer">
+                <div id="author">
+                    © dchiche 2018
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
