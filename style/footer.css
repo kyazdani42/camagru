@@ -1,0 +1,18 @@
+div.footer {
+    border-top: 2px solid #555859;
+    font-family: Georgia;
+    background-color: white;
+    width: 100%;
+    margin: auto 0;
+    min-height: 52px;
+    position: fixed;
+    bottom: 0;
+}
+
+div#author {
+    margin-top: 15px;
+    margin-right: 18px;
+    font-size: 130%;
+    text-align: right;
+    color: #555859;
+}

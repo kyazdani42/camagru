@@ -1,0 +1,48 @@
+html, body {
+    position: relative;
+    height: 100%;
+    background-color: white;
+}
+
+h1{
+	text-align: center;
+	font-size: 26px;
+	padding: 15px;
+}
+
+div.content {
+    font-family: Georgia;
+    margin: auto;
+	overflow: auto;
+}
+
+div#intro {
+    background-color:white;
+    color: black;
+    margin: 0 auto;
+    text-align: center;
+    padding: 15px;
+    font-size: 26px;
+    text-decoration: none;
+    font-family: Georgia;
+}
+
+div#intro a {
+    color: #e5e5e5;
+}
+
+div#intro p {
+    padding: 50px;
+}
+
+div.form {
+    background-color: white;
+    color: white;
+    min-width: 560px;
+    min-height: 800px;
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
