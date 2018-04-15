@@ -17,10 +17,7 @@ require_once('config/setup.php');
                     <ul>2</ul>
                     <ul>3</ul>
                 </li>
-                <div>
-                    <h1>Camagru</h1>
-                    <h3>Take a pic, pimp it, and get the fame you deserve</h3>
-                </div>
+                <h1>Camagru</h1>
 			    <span class="logBox"><?php if (isset($_SESSION['log_user']) && $_SESSION['log_user'] !== "") { echo "Account"; } else { echo "Connexion"; } ?></span>
             </div>
 		</header>
