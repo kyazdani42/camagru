@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once('config/setup.php');
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -20,8 +20,11 @@ require_once('config/setup.php');
                     <a href="index.php">Home</a>
                     <?php if ($_SESSION['log_user'] !== "") { ?>
                         <a href="">Account</a>
+                        <a href="">Parameters</a>
+                        <a href="scripts/logout.php">Logout</a>
                     <?php } else { ?>
-                        <a href="login.html">Connexion</a>
+                        <a href="login.php">Login</a>
+                        <a href="register.php">Register</a>
                     <?php } ?>
                 </nav>
             </div>

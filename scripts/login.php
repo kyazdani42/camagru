@@ -1,12 +1,26 @@
 <?php
 session_start();
-if ($_POST && isset($_POST['login']) && isset($_POST['']) && isset($POST[''])) {
+require_once('../config/database.php');
+if ($_POST && isset($_POST['login']) && isset($_POST['passwd'])) {
 
+    $password = hash('whirlpool', $_POST['passwd']);
+    $login = htmlspecialchars($_POST['login']);
 
-
+    if (($query = $data->query("SELECT password FROM `user` WHERE login = '" . $login . "'"))->rowCount() !== 0) {
+        if ($query->fetch()["password"] === $password) {
+            $_SESSION['log_user'] = $login;
+            header('location: ../index.php');
+        } else {
+            $_SESSION['error_log'] = 'wrong password';
+            header('location: ../login.php');
+        }
+    } else {
+        $_SESSION['error_log'] = 'wrong login';
+        header('location: ../login.php');
+    }
 }
 else {
-    header('location: ../login.html');
+    header('location: ../index.php');
 }
 
 
