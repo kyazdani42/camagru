@@ -18,7 +18,11 @@ require_once('config/setup.php');
                     <ul>3</ul>
                 </li>
                 <h1>Camagru</h1>
-			    <span class="logBox"><?php if (isset($_SESSION['log_user']) && $_SESSION['log_user'] !== "") { echo "Account"; } else { echo "Connexion"; } ?></span>
+                <?php if ($_SESSION['log_user'] !== "") { ?>
+                    <span class="logBox">Account</span>
+                <?php } else { ?>
+                    <span class="logBox"><a href="login.php">Connexion</a></span>
+                <?php } ?>
             </div>
 		</header>
 		<div class="main">
