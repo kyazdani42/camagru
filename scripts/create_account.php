@@ -10,21 +10,21 @@ if ($_POST && isset($_POST['login']) && isset($_POST['email']) && isset($_POST['
 
     if ($data->query("SELECT login FROM `user` WHERE login = '". $login . "'")->rowCount() !== 0) {
         $_SESSION['error_reg'] = 'Login already taken';
-        header('location: ../register.php');
+        header('location: ../index.php');
     } else if ($data->query("SELECT email FROM `user` WHERE email = '". $email . "'")->rowCount() !== 0) {
         $_SESSION['error_reg'] = 'email already taken';
-        header('location: ../register.php');
+        header('location: ../index.php');
     } else {
         $sql = "INSERT INTO `user` (login, email, password) VALUES ('". $login . "', '" . $email . "', '" . $password . "');";
         $data->beginTransaction();
         $data->exec($sql);
         $data->commit();
         $_SESSION['log_user'] = $login;
-        header('location: ../index.php');
+        header('location: ../loggued.php');
     }
 } else {
     $_SESSION['error_reg'] = 'Enter something please';
-    header('location: ../register.php');
+    header('location: ../login.php');
 }
 
 ?>
