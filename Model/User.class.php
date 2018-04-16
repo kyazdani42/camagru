@@ -44,4 +44,40 @@ class User extends Model {
         }
     }
 
+    public function modLogin($newLogin) {
+        $new = htmlspecialchars($newLogin);
+        $sql = "SELECT login FROM `user` WHERE login = '" . $new . "'";
+        if (($query = self::request($sql))->rowCount() !== 0) {
+            throw new Exception("login " . $new . " is already taken");
+        } else {
+            $query = "UPDATE `user` SET login='" . $new . "' WHERE login='" . $this->_login . "'";
+            $this->_login = $new;
+            self::request($query, 1);
+        }
+    }
+
+    public function modEmail($newEmail) {
+        $new = htmlspecialchars($newEmail);
+        $sql = "SELECT email FROM `user` WHERE email = '" . $new . "'";
+        if (($query = self::request($sql))->rowCount() !== 0) {
+            throw new Exception("email " . $new . " is already taken");
+        } else {
+            $query = "UPDATE `user` SET email='" . $new . "' WHERE email='" . $this->_email . "'";
+            $this->_email = $new;
+            self::request($query, 1);
+        }
+    }
+
+    public function modPassword($newPassword) {
+        $new = hash('whirlpool', $newPassword);
+        $sql = "SELECT password FROM `user` WHERE login = '" . $this->_login . "'";
+        if (($query = self::request($sql))->fetch()['password'] === $new) {
+            throw new Exception("Please enter a new password");
+        } else {
+            $query = "UPDATE `user` SET password='" . $new . "' WHERE login='" . $this->_login . "'";
+            $this->_password = $new;
+            self::request($query, 1);
+        }
+    }
+
 }
