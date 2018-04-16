@@ -1,14 +1,8 @@
-<?php
-require_once('config/setup.php');
-session_start();
-if ($_SESSION['log_user'] === "")
-    header('location: index.php');
-?>
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Camagru</title>
+    <title>Camagru - <!--<?= $title ?>--></title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/footer.css">
     <link rel="stylesheet" href="style/main.css">
@@ -19,10 +13,9 @@ if ($_SESSION['log_user'] === "")
 <header>
     <div class="top-navbar">
         <nav class="navbar">
-            <a href="index.php">Home</a>
-            <a href="">Account</a>
-            <a href="">Parameters</a>
-            <a href="scripts/logout.php">Logout</a>
+            <a href="template.php">Home</a>
+            <a href="">Login</a>
+            <a href="">Register</a>
         </nav>
     </div>
 </header>
@@ -38,5 +31,6 @@ if ($_SESSION['log_user'] === "")
         </div>
     </div>
 </footer>
+<script src="js/modal.js"></script>
 </body>
 </html>
