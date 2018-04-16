@@ -15,7 +15,7 @@ class Config {
 
     private static function _getParams() {
         if (self::$_parameters == null) {
-            include '../config/database.php';
+            include '../database.php';
             self::$_parameters['dsn'] = $DB_DSN;
             self::$_parameters['user'] = $DB_USER;
             self::$_parameters['pass'] = $DB_PASSWORD;
