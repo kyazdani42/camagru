@@ -8,10 +8,10 @@ $url = explode('/', rtrim($_GET['url'], '/'));
 $file = "config/controllers/" . $url[0] . '.class.php';
 
 if (file_exists($file)) {
-    require_once "config/controllers/" . $url[0] . ".class.php";
+    require_once "controllers/" . $url[0] . ".class.php";
     $controller = new $url[0];
 } else {
-    require_once "config/controllers/Home.class.php";
+    require_once "controllers/Home.class.php";
     $controller = new Home;
 }
 
@@ -22,7 +22,7 @@ if (isset($url[1]) && method_exists($controller, $url[1])) {
         $controller->{$url[1]}();
     }
 } else {
-    $controller->default();
+    $controller->error();
 }
 
 ?>

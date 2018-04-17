@@ -1,5 +1,5 @@
 <?php
-require_once '../Model/User.class.php';
+require_once '../Model/Profile.class.php';
 
 if ($_POST['submit'] === 'OK') {
     try {

@@ -3,7 +3,7 @@
 class Controller {
 
     public function construct() {
-        echo 'this is control';
+        echo 'this is control station ! </br>';
     }
 
 }
