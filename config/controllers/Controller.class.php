@@ -2,8 +2,8 @@
 
 class Controller {
 
-    public function construct() {
-        echo 'this is control station ! </br>';
+    public function error() {
+        View::render_error('<h2>404 not found</h2>');
     }
 
 }

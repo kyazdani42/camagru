@@ -11,8 +11,7 @@ if (file_exists($file)) {
     require_once "controllers/" . $url[0] . ".class.php";
     $controller = new $url[0];
 } else {
-    require_once "controllers/Home.class.php";
-    $controller = new Home;
+    $controller = new Controller();
 }
 
 if (isset($url[1]) && method_exists($controller, $url[1])) {
@@ -24,5 +23,3 @@ if (isset($url[1]) && method_exists($controller, $url[1])) {
 } else {
     $controller->error();
 }
-
-?>

@@ -8,7 +8,7 @@ class User extends Model {
     private $_password;
     private $_email;
 
-    public function __construct( array $kwargs ) {
+    public function register( array $kwargs ) {
         if (strlen($kwargs['password']) < 8)
             throw new Exception("password must contain at least 8 characters");
         $tmpLogin = htmlspecialchars($kwargs['login']);
