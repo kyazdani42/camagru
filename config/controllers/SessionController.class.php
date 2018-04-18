@@ -28,11 +28,10 @@ class SessionController extends Controller {
 
     public static function logout() {
         session_start();
-        unset($_SESSION['log_user']);
+        $_SESSION['log_user'] = "";
+        self::$_logged = "";
     }
 
-    public function error() {
-
-    }
+    public function error() {}
 
 }

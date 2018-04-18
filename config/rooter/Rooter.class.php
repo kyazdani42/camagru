@@ -6,7 +6,6 @@ class Rooter {
 
     public function __construct()
     {
-
         $url = explode('/', rtrim($_GET['url'], '/'));
 
         $file = "config/controllers/" . $url[0] . 'Controller.class.php';
@@ -18,8 +17,9 @@ class Rooter {
         } else {
             require_once "config/controllers/HomeController.class.php";
             $this->_controller = new HomeController();
-        }
 
+            return ;
+        }
         $this->_sendMethod($url);
     }
 
@@ -32,9 +32,11 @@ class Rooter {
                 $this->_controller->{$url[1]}();
             }
         } else if (isset($url[1])) {
+            echo "ALERT WRONG METHOD";
             $this->_controller->error($url[1]);
         } else {
-            $this->_controller->display();
+            echo "NO METHOD";
+            return ;
         }
     }
 

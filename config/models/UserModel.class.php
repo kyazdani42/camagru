@@ -9,9 +9,7 @@ class UserModel extends Model {
     private $_email;
 
     public function register( array $kwargs ) {
-        if (strlen($kwargs['password']) < 8) {
-            throw new Exception("password must contain at least 8 characters");
-        }
+
         $tmpLogin = $kwargs['login'];
         $tmpEmail = $kwargs['email'];
         $sql_user = "SELECT login FROM `user` WHERE login = '" . $tmpLogin . "'";
@@ -22,11 +20,17 @@ class UserModel extends Model {
         } else if ($this->request($sql_email)->rowCount() !== 0) {
             throw new Exception("e-mail " . $tmpEmail . " is already used");
         } else {
-            $this->_login = $tmpLogin;
-            $this->_email = $tmpEmail;
-            $this->_password = hash('whirlpool', $kwargs['password']);
-            $query = "INSERT INTO `user` (login, email, password) VALUES ('" . $this->_login . "', '" . $this->_email . "', '" . $this->_password . "')";
-            $this->request($query, 1);
+            if (strlen($kwargs['password']) < 8) {
+                throw new Exception("password must contain at least 8 characters");
+            } else {
+                $this->_login = $tmpLogin;
+                $this->_email = $tmpEmail;
+                $this->_password = hash('whirlpool', $kwargs['password']);
+                $hash = md5( rand(0,1000) );
+                $query = "INSERT INTO `user` (login, email, password, hash) VALUES ('" . $this->_login . "', '" . $this->_email . "', '" . $this->_password . "', '" . $hash . "')";
+                $this->request($query, 1);
+                return ( array('hash' => $hash, 'email' => $this->_email) );
+            }
         }
     }
 
@@ -35,8 +39,9 @@ class UserModel extends Model {
         $tmpPass = hash('whirlpool', $password);
         $sql = "SELECT password, `active` FROM `user` WHERE login = '" . $tmpLogin . "'";
         if (($query = self::request($sql))->rowCount() === 1) {
-            if ($query->fetch()['password'] === $tmpPass) {
-                if ($query->fetch()['active'] === 0) {
+            $tab = $query->fetchAll();
+            if ($tab[0]['password'] === $tmpPass) {
+                if ($tab[0]['active'] === '0') {
                     throw new Exception("Please validate your email");
                 } else {
                     return ($tmpLogin);
@@ -87,6 +92,14 @@ class UserModel extends Model {
             $query = "UPDATE `user` SET password='" . $new . "' WHERE login='" . $this->_login . "'";
             $this->_password = $new;
             self::request($query, 1);
+        }
+    }
+
+    public function verifyAccount($hash) {
+        $sql = "SELECT `active` FROM `user` WHERE hash = '" . $hash . "'";
+        if (($query = self::request($sql))->rowCount() === 1) {
+            $sql = "UPDATE `user` SET active='1' WHERE hash='" . $hash . "'";
+            $this::request($sql, 1);
         }
     }
 

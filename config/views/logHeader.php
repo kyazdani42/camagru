@@ -13,9 +13,9 @@
 <header>
     <div class="top-navbar">
         <nav class="navbar">
-            <a href="Home">Home</a>
-            <a href="Login">Sign in</a>
-            <a href="Login/register">Sign up</a>
+            <a href="<?= URL ?>Home">Home</a>
+            <a id="">Gallery</a>
+            <a id="">Account</a>
         </nav>
     </div>
 </header>

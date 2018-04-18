@@ -5,5 +5,6 @@
         </div>
     </div>
 </footer>
+<script src="/public/js/modal.js"></script>
 </body>
 </html>
