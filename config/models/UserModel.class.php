@@ -9,10 +9,11 @@ class UserModel extends Model {
     private $_email;
 
     public function register( array $kwargs ) {
-        if (strlen($kwargs['password']) < 8)
+        if (strlen($kwargs['password']) < 8) {
             throw new Exception("password must contain at least 8 characters");
-        $tmpLogin = htmlspecialchars($kwargs['login']);
-        $tmpEmail = htmlspecialchars($kwargs['email']);
+        }
+        $tmpLogin = $kwargs['login'];
+        $tmpEmail = $kwargs['email'];
         $sql_user = "SELECT login FROM `user` WHERE login = '" . $tmpLogin . "'";
         $sql_email = "SELECT email FROM `user` WHERE email = '" . $tmpEmail . "'";
 
@@ -32,16 +33,25 @@ class UserModel extends Model {
     public static function connect( $login, $password ) {
         $tmpLogin = htmlspecialchars($login);
         $tmpPass = hash('whirlpool', $password);
-        $sql = "SELECT password FROM `user` WHERE login = '" . $tmpLogin . "'";
+        $sql = "SELECT password, `active` FROM `user` WHERE login = '" . $tmpLogin . "'";
         if (($query = self::request($sql))->rowCount() === 1) {
             if ($query->fetch()['password'] === $tmpPass) {
-                return ($tmpLogin);
+                if ($query->fetch()['active'] === 0) {
+                    throw new Exception("Please validate your email");
+                } else {
+                    return ($tmpLogin);
+                }
             } else {
                 throw new Exception("Wrong password");
             }
         } else {
             throw new Exception("Wrong login");
         }
+    }
+
+    public function setActive($login) {
+        $sql = "UPDATE `user` SET active='1' WHERE login = '" . $login . "'";
+        self::request($sql, 1);
     }
 
     public function modLogin($newLogin) {

@@ -14,8 +14,8 @@
     <div class="top-navbar">
         <nav class="navbar">
             <a href="Home">Home</a>
-            <a href="Login/SignIn">Sign in</a>
-            <a href="Login/SignUp">Sign up</a>
+            <a href="Login">Sign in</a>
+            <a href="Login/register">Sign up</a>
         </nav>
     </div>
 </header>
