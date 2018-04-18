@@ -2,7 +2,7 @@
 
 require_once 'Model.class.php';
 
-class User extends Model {
+class UserModel extends Model {
 
     private $_login;
     private $_password;

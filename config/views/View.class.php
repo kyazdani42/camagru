@@ -2,15 +2,10 @@
 
 class View {
 
-    public function render_error($str) {
-        $title = "404 Not found";
+    public function render($filename, $str) {
+        $title = $str;
         require 'header.php';
-        echo $str;
-        require 'footer.php';
-    }
-
-    public function render() {
-        require 'header.php';
+        require $filename . "View.php";
         require 'footer.php';
     }
 

@@ -1,9 +1,13 @@
 <?php
 
-class Controller {
+abstract class Controller {
 
-    public function error() {
-        View::render_error('<h2>404 not found</h2>');
+    protected $_view;
+
+    public function __construct() {
+        $this->_view = new View();
     }
+
+    abstract function error();
 
 }
