@@ -20,7 +20,7 @@
             audio: false
         },
         function(stream) {
-            if (navigator.mozGetUserMedia) {
+            if (navigator.mediaDevices.getUserMedia) {
                 video.mozSrcObject = stream;
             } else {
                 var vendorURL = window.URL || window.webkitURL;
@@ -48,7 +48,7 @@
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        var data = canvas.toDataURL('image/png');
+        var data = canvas.toDataURL('image/jpeg');
         photo.setAttribute('src', data);
     }
 

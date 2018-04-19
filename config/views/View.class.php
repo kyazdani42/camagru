@@ -2,9 +2,10 @@
 
 class View {
 
-    public function render($filename, $str, $heads = 0) {
+    public function render($filename, $str, $heads = 0, $array = null) {
 
         $title = $str;
+        $photos = $array;
         require "htmlHeads.php";
         if ($heads === 1) {
             require $filename . "View.php";

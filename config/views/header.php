@@ -9,8 +9,8 @@
             <a href="<?= URL ?>Login">Sign in</a>
             <a href="<?= URL ?>Register">Sign up</a>
             <?php } else { ?>
-            <a href="">Gallery</a>
-            <a href="">Account</a>
+            <a href="<?= URL ?>Gallery">Gallery</a>
+            <a href="<?= URL ?>Account">Account</a>
             <a href="<?= URL ?>Camera">Camera</a>
             <a href="<?= URL ?>Logout">Logout</a>
             <?php } ?>
