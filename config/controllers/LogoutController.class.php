@@ -3,8 +3,7 @@
 class LogoutController extends Controller {
 
     public function __construct() {
-        $session = new SessionController();
-        $session::logout();
+        SessionController::logout();
         header("Location: " . URL . 'Home');
     }
 

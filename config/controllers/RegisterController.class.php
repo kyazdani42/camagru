@@ -14,11 +14,12 @@ class RegisterController extends Controller {
         try {
             $array = $user->register(array("login" => htmlspecialchars($_POST['login']), 'password' => $_POST['password'], 'email' => htmlspecialchars($_POST['email'])));
             $this->_send_mail($array);
+            SessionController::setSession("valid", 'A confirmation mail has been sent to your mailbox, please validate before log in');
             header('location:' . URL . 'Home');
-            return ('A confirmation mail has been sent to your mailbox, please validate before log in');
+
         } catch (Exception $e) {
+            SessionController::setSession("error", $e->getMessage());
             header('location:' . URL . "Register");
-            return $e->getMessage();
         }
     }
 
@@ -27,12 +28,11 @@ class RegisterController extends Controller {
         parent::__construct();
         try {
             $user->verifyAccount($hash);
-            $this->_view->render('logged', 'Home');
-            return "Your account has been verified";
+            SessionController::setSession("valid", "Your account has been verified");
+            header('location' . URL . 'Home');
         } catch (Exception $e) {
-            $this->_view->render('index', 'Home');
-            echo $e->getMessage(); //DELETE AFTER AJAX
-            return $e->getMessage();
+            SessionController::setSession("error", $e->getMessage());
+            header('location:' . URL . "Home");
         }
     }
 

@@ -1,4 +1,4 @@
-
+<body>
 <div>
     <h1>Login</h1>
     <form action="<?= URL ?>Login/signIn" method="POST">
@@ -8,3 +8,4 @@
     </form>
     <a href="<?= URL ?>Home">Back to Home page</a>
 </div>
+</body>
