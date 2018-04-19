@@ -14,8 +14,17 @@
     <div class="top-navbar">
         <nav class="navbar">
             <a href="<?= URL ?>Home">Home</a>
-            <a id="">Gallery</a>
-            <a id="">Account</a>
+            <?php
+                $session = new SessionController();
+                if ($session->getLogin() === "") { ?>
+            <a href="<?= URL ?>Login">Sign in</a>
+            <a href="<?= URL ?>Register">Sign up</a>
+            <?php } else { ?>
+            <a href="">Gallery</a>
+            <a href="">Account</a>
+            <a href="<?= URL ?>Camera">Camera</a>
+            <a href="<?= URL ?>Logout">Logout</a>
+            <?php } ?>
         </nav>
     </div>
 </header>

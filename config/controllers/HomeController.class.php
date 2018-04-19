@@ -5,12 +5,11 @@ class HomeController extends Controller {
     public function __construct() {
 
             parent::__construct();
-            require_once "SessionController.class.php";
             $session = new SessionController();
             if ($session->getLogin() === "") {
-                $this->_view->render('baseHome', 'Home', 1);
+                $this->_view->render('index', 'Home');
             } else {
-                $this->_view->render('logHome', 'Home');
+                $this->_view->render('logged', 'Home');
             }
     }
 

@@ -7,7 +7,6 @@ class SessionController extends Controller {
     public function __construct() {
 
         if (self::$_logged == null) {
-            session_start();
             if (isset($_SESSION['log_user'])) {
                 self::$_logged = $_SESSION['log_user'];
             } else {
@@ -17,7 +16,6 @@ class SessionController extends Controller {
     }
 
     public function setLogin( $login ) {
-        session_start();
         $_SESSION['log_user'] = htmlspecialchars($login);
         self::$_logged = $_SESSION['log_user'];
     }
@@ -27,7 +25,6 @@ class SessionController extends Controller {
     }
 
     public static function logout() {
-        session_start();
         $_SESSION['log_user'] = "";
         self::$_logged = "";
     }

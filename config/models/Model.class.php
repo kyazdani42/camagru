@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Config.class.php';
-
 Abstract class Model {
 
     private static $_db;

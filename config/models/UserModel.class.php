@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Model.class.php';
-
 class UserModel extends Model {
 
     private $_login;

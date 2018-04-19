@@ -2,16 +2,13 @@
 
 class View {
 
-    public function render($filename, $str, $isBase = 0) {
+    public function render($filename, $str, $heads = 0) {
+
         $title = $str;
-        if ($isBase === 1) {
-            require 'baseHeader.php';
+        if ($heads === 1) {
             require $filename . "View.php";
-            require 'footer.php';
         } else {
-            require_once "../controllers/SessionController.class.php";
-            $session = new SessionController();
-            require 'logHeader.php';
+            require 'header.php';
             require $filename . "View.php";
             require 'footer.php';
         }
