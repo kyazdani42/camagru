@@ -15,8 +15,7 @@ class Rooter {
             $name = $url[0] . "Controller";
             $this->_controller = new $name;
         } else {
-            $this->_controller = new HomeController;
-            return ;
+            header('location: ' . URL . 'Home');
         }
         $this->_sendMethod($url);
     }

@@ -8,6 +8,4 @@ abstract class Controller {
         $this->_view = new View();
     }
 
-    abstract function error();
-
 }

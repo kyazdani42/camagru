@@ -54,6 +54,4 @@ http://192.168.99.100:8080/Login/verify/'. $array['hash'] . '
         mail($to, $subject, $message, $headers);
     }
 
-    public function error() {}
-
 }

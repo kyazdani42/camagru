@@ -14,3 +14,4 @@ if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
 
     </script>
 <?php unset($_SESSION['error']); } ?>
+</html>

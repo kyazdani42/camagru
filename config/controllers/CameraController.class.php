@@ -8,6 +8,10 @@ class CameraController extends Controller {
     }
 
     public function sendPicture() {
+        if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined") {
+            header("location: " . URL);
+            die();
+        }
         $data = $_POST['myData'];
         $login = SessionController::getLogin();
         $image = new ContentModel;
@@ -15,5 +19,4 @@ class CameraController extends Controller {
         header("location: " . URL . "Camera");
     }
 
-    public function error() {}
 }

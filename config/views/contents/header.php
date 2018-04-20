@@ -4,8 +4,7 @@
         <nav class="navbar">
             <a href="<?= URL ?>Home">Home</a>
             <?php
-                $session = new SessionController();
-                if ($session->getLogin() === "") { ?>
+                if (SessionController::getLogin() === "" || SessionController::getLogin() === null) { ?>
             <a href="<?= URL ?>Login">Sign in</a>
             <a href="<?= URL ?>Register">Sign up</a>
             <?php } else { ?>

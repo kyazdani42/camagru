@@ -7,5 +7,4 @@ class LogoutController extends Controller {
         header("Location: " . URL . 'Home');
     }
 
-    public function error () {}
 }

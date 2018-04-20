@@ -1,16 +1,16 @@
 <div class="contentAccount">
 
-    <form action="<?= URL ?>Account/modLog">
+    <form action="<?= URL ?>Account/modLog" method="post">
         <input type="text" name="newLogin" value="">
         <input type="submit" value="Change your login">
     </form>
 
-    <form action="<?= URL ?>Account/modPass">
+    <form action="<?= URL ?>Account/modPass" method="post">
         <input type="text" name="newPass" value="">
         <input type="submit" value="Change your password">
     </form>
 
-    <form action="<?= URL ?>Account/modEmail">
+    <form action="<?= URL ?>Account/modEmail" method="post">
         <input type="text" name="newEmail" value="">
         <input type="submit" value="Change your email">
     </form>

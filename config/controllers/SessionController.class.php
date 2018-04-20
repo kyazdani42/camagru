@@ -18,6 +18,4 @@ class SessionController extends Controller {
         $_SESSION[$type] = $error;
     }
 
-    public function error() {}
-
 }
