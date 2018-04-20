@@ -20,8 +20,8 @@ class UserModel extends Model {
                 $password = hash('whirlpool', $kwargs['password']);
                 $hash = md5( rand(0,1000) );
                 $query = "INSERT INTO `user` (login, email, password, hash) VALUES ('" . $tmpLogin . "', '" . $tmpEmail . "', '" . $password . "', '" . $hash . "')";
-               self::request($query, 1);
-                return ( array('hash' => $hash, 'email' => $this->_email) );
+                self::request($query, 1);
+                return ( array('hash' => $hash, 'email' => $tmpEmail) );
             }
         }
     }

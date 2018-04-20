@@ -29,7 +29,7 @@ class Rooter {
                 $this->_controller->{$url[1]}();
             }
         } else if (isset($url[1])) {
-            $this->_controller->error($url[1]);
+            header('location: ' . URL . $url[0]);
         } else if (method_exists($this->_controller, "display")) {
             $this->_controller->display();
         }

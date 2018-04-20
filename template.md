@@ -7,6 +7,7 @@
                 
     Photos:
         - get all photos from 1 user ( personnal account view )
+        - delete photo
                         
     Camera:
         - Add pictures for mixture

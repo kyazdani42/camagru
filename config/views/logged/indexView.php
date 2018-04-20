@@ -1,5 +1,3 @@
-<div><h3>Hello <?= SessionController::getLogin(); ?></h3></div>
-
 <?php if ($ret === 1) { foreach ($array as $e => $key) { ?>
     <div class="container">
         <div class="containerPhoto">

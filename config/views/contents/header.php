@@ -1,5 +1,10 @@
 <body>
 <header>
+    <div class="content">
+        <div id="intro">
+            <h1> Welcome to Camagru <?php if (($login = SessionController::getLogin()) !== null && $login !== "") { echo "<span>" . $login . "<span>"; } ?> !</h1>
+        </div>
+    </div>
     <div class="top-navbar">
         <nav class="navbar">
             <a href="<?= URL ?>Home">Home</a>
@@ -16,8 +21,3 @@
         </nav>
     </div>
 </header>
-<div class="content">
-    <div id="intro">
-        <h1> Welcome to Camagru !</h1>
-    </div>
-</div>
