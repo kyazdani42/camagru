@@ -1,3 +1,30 @@
+<style>
+    .heart {
+        width: 3%;
+        fill:white;
+        stroke: red;
+        stroke-width:2px;
+        strike-linejoin: round;
+    }
+
+    .clickHeart{
+        width: 3%;
+        fill: red;
+    }
+
+    .heart:hover {
+        opacity:0.7;
+    }
+
+    .clickHeart:hover {
+        opacity:0.8;
+    }
+</style>
+
+
+<!-- gotta remove this css later !-->
+
+
 <?php if ($ret === 1) { foreach ($array as $e => $key) { ?>
     <div class="container">
         <div class="containerPhoto">
@@ -6,7 +33,7 @@
         <div class="containerAttributes">
             <div class="containerComments">
                 <form action="<?= URL ?>Home/sendComment/<?= $key['id_photo']?>" method="post">
-                    <input type="text" name="comment" placeholder="Write a comment">
+                    <textarea name="comment" placeholder="Write a comment" maxlength="255"></textarea>
                     <input type="submit" value="send">
                 </form>
                 <div class="comBox">
@@ -19,9 +46,20 @@
             </div>
             <div class="likeBox">
                 <?php if ($key['flag'] === 1) { ?>
-                <a href="<?= URL ?>Home/sendLike/<?= $key['id_photo'] ?>"><img src="<?= URL ?>public/images/redLike.png"></a>
+                <a href="<?= URL ?>Home/sendLike/<?= $key['id_photo'] ?>">
+                    <svg class="clickHeart" viewBox="0 0 32 29.6">
+                        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+	c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                    </svg>
+                </a>
                 <?php } else { ?>
-                <a href="<?= URL ?>Home/sendLike/<?= $key['id_photo'] ?>"><img src="<?= URL ?>public/images/whiteLike.png"></a>
+                <a href="<?= URL ?>Home/sendLike/<?= $key['id_photo'] ?>">
+                    <svg class="heart" viewBox="0 0 32 29.6">
+                        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+	c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                    </svg>
+                </a>
+
                 <?php } ?>
                 <span class="countLike"><?= $key['likes'] ?> Likes</span>
             </div>

@@ -57,4 +57,9 @@
         ev.preventDefault();
     }, false);
 
+    document.getElementById("myData").addEventListener("click", function () {
+        const data = document.getElementById("photo").getAttribute("src").split("base64,")[1];
+        document.getElementById("myData").setAttribute("value", data);
+    });
+
 })();
