@@ -6,19 +6,17 @@ services:
         image: my_camagru
         ports:
             - "8080:8080"
-            - "443:443"
         volumes:
             - ${HOME}/Documents/camagru:/var/www/html
         links:
             - db
-        restart: "on-failure"
 
     admin:
-        image: phpmyadmin/phpmyadmin
-        ports:
-            - "8100:80"
-        links:
-            - db
+       image: phpmyadmin/phpmyadmin
+       ports:
+           - "8100:8100"
+       links:
+           - db
 
     db:
         image: mysql:5.7
