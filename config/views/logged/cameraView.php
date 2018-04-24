@@ -1,4 +1,4 @@
-<div class="main">
+<div class="mainCam">
     <div class="pictures">
         <video id="video"></video>
         <canvas id="canvas" style="display:none"></canvas>

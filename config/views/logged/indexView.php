@@ -1,30 +1,4 @@
-<style>
-    .heart {
-        width: 3%;
-        fill:white;
-        stroke: red;
-        stroke-width:2px;
-        strike-linejoin: round;
-    }
-
-    .clickHeart{
-        width: 3%;
-        fill: red;
-    }
-
-    .heart:hover {
-        opacity:0.7;
-    }
-
-    .clickHeart:hover {
-        opacity:0.8;
-    }
-</style>
-
-
-<!-- gotta remove this css later !-->
-
-
+<div class="main">
 <?php if ($ret === 1) { foreach ($array as $e => $key) { ?>
     <div class="container">
         <div class="containerPhoto">
@@ -66,3 +40,4 @@
         </div>
     </div>
 <?php } } ?>
+</div>

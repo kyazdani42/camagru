@@ -1,0 +1,37 @@
+body {
+    display: grid;
+    grid-template: 120px auto 80px / repeat(12, 1fr);
+}
+
+header {
+    grid-column: 1 / -1;
+}
+
+footer {
+    grid-column: 1 / -1;
+}
+
+body > * {
+    border: 1px solid black;
+}
+
+    .heart {
+        width: 5%;
+        fill:white;
+        stroke: red;
+        stroke-width:2px;
+        strike-linejoin: round;
+    }
+
+    .clickHeart{
+        width: 5%;
+        fill: red;
+    }
+
+    .heart:hover {
+        opacity:0.7;
+    }
+
+    .clickHeart:hover {
+        opacity:0.8;
+    }
