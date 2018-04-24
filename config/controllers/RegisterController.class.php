@@ -9,6 +9,11 @@ class RegisterController extends Controller {
 
     public function SignUp()
     {
+		if (empty($_POST['login']) || empty($_POST['email'])) {
+			SessionController::setSession('error', "Incorrect informations");
+			header('location:' . URL . "Register");
+			die ();
+		}
         $user = new UserModel();
         try {
             $array = $user->register(array("login" => htmlspecialchars($_POST['login']), 'password' => $_POST['password'], 'email' => htmlspecialchars($_POST['email'])));
@@ -22,12 +27,16 @@ class RegisterController extends Controller {
         }
     }
 
-    public function verify($hash) {
+    public function verify($hash = null) {
         $user = new UserModel();
+		if ($hash === null) {
+			header('location:' . URL . 'Home');
+			die();
+		}
         try {
             $user->verifyAccount($hash);
             SessionController::setSession("valid", "Your account has been verified, you can now log in");
-            header('location' . URL . 'Home');
+            header('location:' . URL . 'Home');
         } catch (Exception $e) {
             SessionController::setSession("error", $e->getMessage());
             header('location:' . URL . "Home");
