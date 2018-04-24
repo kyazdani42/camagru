@@ -23,7 +23,7 @@
         - Adding profile picture + uploading personnal profile pic
             
     mail:
-        - need to setup mail server properly to test hashing method
+        - setup ssmtp to send mail correctly
         - send mail when comment is received
         - account modification for the last option
             
