@@ -1,13 +1,6 @@
 <?php
 
-class ContentModel extends Model {
-
-    public function setPhoto($data, $login) {
-        $sql = "SELECT id FROM `user` WHERE login='" . $login . "'";
-        $loginId = $this->request($sql)->fetch()['id'];
-        $query = "INSERT INTO images (`data`, `id_user`) VALUES ('" . $data . "', '" . $loginId . "')";
-        $this->request($query, 1);
-    }
+class InfoModel extends Model {
 
     public function setComment($id_photo, $data) {
 
@@ -36,15 +29,6 @@ class ContentModel extends Model {
         }
         self::request($query, 1);
 
-    }
-
-    public function getAllPhotos() {
-        $sql = "SELECT `data`, `id` FROM `images` ORDER BY `id` desc";
-        $content = $this->request($sql, 1);
-        if ($content->rowCount() === 0) {
-            throw new Exception("No photos in database");
-        }
-        return ($content);
     }
 
     public function getComment($photoId) {

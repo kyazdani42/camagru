@@ -8,15 +8,36 @@ class CameraController extends Controller {
     }
 
     public function sendPicture() {
-        if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined") {
+        if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData'])) {
             header("location: " . URL);
             die;
         }
-        $data = $_POST['myData'];
+        $data = base64_decode($_POST['myData']);
+        $data2 = base64_decode($_POST['staticData']);
+        $path = $this->_createPic($data, $data2);
         $login = SessionController::getLogin();
-        $image = new ContentModel;
-        $image->setPhoto($data, $login);
+        $image = new PhotoModel;
+        $image->setPhoto($path, $login);
         header("location: " . URL . "Camera");
+    }
+
+    private function _createPic($img1, $img2) {
+
+        $img1 = imagecreatefromstring($img1);
+        $img2 = imagecreatefromstring($img2);
+        $wsrc = imagesx($img2);
+        $hsrc = imagesy($img2);
+        $wdst = imagesx($img1);
+        $hdst = imagesy($img1);
+        $destx = $wdst - $wsrc;
+        $desty = $hdst - $hsrc;
+        $path = "/tmp/" . md5(rand(0, 1000)) . ".jpeg";
+
+        imagecopymerge($img1, $img2, $destx, $desty, 0, 0, $wsrc, $hsrc, 60);
+        imagejpeg($img1, $path);
+        imagedestroy($img1);
+        imagedestroy($img2);
+        return ($path);
     }
 
     public function handleFile()

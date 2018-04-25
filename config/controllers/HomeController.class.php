@@ -2,7 +2,8 @@
 
 class HomeController extends Controller {
 
-    private $_obj;
+    private $_objPhoto;
+    private $_objInfo;
 
     public function display() {
 
@@ -12,9 +13,10 @@ class HomeController extends Controller {
     }
 
     private function _getImages() {
-        $this->_obj = new ContentModel();
+        $this->_objPhoto = new PhotoModel();
+        $this->_objInfo = new InfoModel();
         try {
-            $photos = $this->_obj->getAllPhotos()->fetchAll();
+            $photos = $this->_objPhoto->getAllPhotos()->fetchAll();
         } catch (Exception $e) {
             return null;
         }
@@ -31,18 +33,18 @@ class HomeController extends Controller {
     }
 
     private function _getFlagLike($id_photo) {
-        return ($this->_obj->getFlagLike($id_photo));
+        return ($this->_objInfo->getFlagLike($id_photo));
     }
 
     private function _getLikes($id_photo) {
 
-        return ($this->_obj->getLike($id_photo));
+        return ($this->_objInfo->getLike($id_photo));
 
     }
 
     private function _getComments($id_photo) {
 
-        $obj = $this->_obj->getComment($id_photo);
+        $obj = $this->_objInfo->getComment($id_photo);
         foreach ($obj as $e => $key) {
             $array[] = htmlspecialchars(base64_decode($key['content']));
         }
@@ -52,9 +54,9 @@ class HomeController extends Controller {
     public function sendComment($id_photo) {
 
         if (isset($_POST) && isset($_POST['comment']) && !empty($_POST['comment'] && strlen($_POST['comment']) < 255)) {
-            $this->_obj = new ContentModel();
+            $this->_objInfo = new InfoModel();
             $data = base64_encode($_POST['comment']);
-            $this->_obj->setComment($id_photo, $data);
+            $this->_objInfo->setComment($id_photo, $data);
         }
         header('location: ' . URL . 'Home');
 
@@ -62,8 +64,8 @@ class HomeController extends Controller {
 
     public function sendLike($id_photo) {
 
-        $this->_obj = new ContentModel();
-        $this->_obj->setLike($id_photo);
+        $this->_objInfo = new InfoModel();
+        $this->_objInfo->setLike($id_photo);
         header('location: ' . URL . 'Home');
     }
 

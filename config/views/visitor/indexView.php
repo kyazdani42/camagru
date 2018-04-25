@@ -1,7 +1,7 @@
 <?php if ($ret === 1) { foreach ($array as $e => $key) { ?>
     <div class="container">
         <div class="containerPhoto">
-            <img class="photos" src="data:image/jpeg;base64,<?= $key['data'] ?>">
+            <img class="photos" src="data:image/jpeg;base64,<?= base64_encode(file_get_contents($key['data'])); ?>">
         </div>
         <div class="containerAttributes">
             <div class="containerComments">

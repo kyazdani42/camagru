@@ -4,7 +4,8 @@ session_start();
 require_once 'models/Model.class.php';
 require_once 'models/UserModel.class.php';
 require_once 'models/Config.class.php';
-require_once 'models/ContentModel.class.php';
+require_once 'models/InfoModel.class.php';
+require_once 'models/PhotoModel.class.php';
 
 //Controllers
 require_once "controllers/Controller.class.php";

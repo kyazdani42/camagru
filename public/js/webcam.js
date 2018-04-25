@@ -47,7 +47,10 @@
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        var data = canvas.toDataURL('image/jpeg');
+        let data = canvas.toDataURL('image/jpeg');
+        if (data === "data:,") {
+            return null;
+        }
         photo.setAttribute('src', data);
     }
 
@@ -60,10 +63,5 @@
             console.log('Please select an item before taking a pic')
         }
     }, false);
-
-    document.getElementById("myData").addEventListener("click", function () {
-        const data = document.getElementById("photo").getAttribute("src").split("base64,")[1];
-        document.getElementById("myData").setAttribute("value", data);
-    });
 
 })();

@@ -3,8 +3,8 @@
         <video id="video"></video>
         <canvas id="canvas" style="display:none"></canvas>
         <div class="output">
-            <img id=staticPhoto src="">
-            <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/jpeg;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>" />
+            <img id=staticPhoto>
+            <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/jpeg;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         </div>
         <button id="startbutton">Prendre une photo</button>
     </div>
@@ -25,6 +25,7 @@
             <input type="submit" value="upload">
         </form>
         <form action="<?= URL ?>Camera/sendPicture" method="POST" id="cameraForm">
+            <input type="text" name="staticData" id="staticData" style="display:none">
             <input type="submit" name="myData" id="myData" value="send">
         </form>
     </div>
@@ -49,5 +50,19 @@
 
         });
     }
+
+    document.getElementById("myData").addEventListener("click", function () {
+        let canvas = document.createElement("canvas");
+        let img = document.getElementById("staticPhoto");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        let data2 = canvas.toDataURL("image/png");
+        data2 = data2.replace(/^data:image\/(png|jpg);base64,/, "");
+        let data = document.getElementById("photo").getAttribute("src");
+        document.getElementById("staticData").setAttribute("value", data2);
+        document.getElementById("myData").setAttribute("value", data.replace(/^data:image\/(png|jpg|jpeg|gif);base64,/, ""));
+    });
 
 </script>
