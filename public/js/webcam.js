@@ -2,11 +2,10 @@
 
     var streaming = false,
         video        = document.querySelector('#video'),
-        cover        = document.querySelector('#cover'),
         canvas       = document.querySelector('#canvas'),
         photo        = document.querySelector('#photo'),
         startbutton  = document.querySelector('#startbutton'),
-        width = 120,
+        width = 300,
         height = 0;
 
     navigator.getMedia = ( navigator.getUserMedia ||
@@ -53,8 +52,13 @@
     }
 
     startbutton.addEventListener('click', function(ev){
-        takepicture();
-        ev.preventDefault();
+        let static = document.querySelector("#staticPhoto");
+        if (static.getAttribute("src") !== "") {
+            takepicture();
+            ev.preventDefault();
+        } else {
+            console.log('Please select an item before taking a pic')
+        }
     }, false);
 
     document.getElementById("myData").addEventListener("click", function () {

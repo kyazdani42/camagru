@@ -3,7 +3,7 @@ RUN a2enmod rewrite
 RUN apt-get update && apt-get install -y libpng-dev curl libcurl4-openssl-dev sendmail
 RUN docker-php-ext-install pdo pdo_mysql
 RUN echo "sendmail_path=/usr/sbin/sendmail -i -t" >> /usr/local/etc/php/conf.d/php-sendmail.ini
-RUN echo "127.0.0.1 noreply.camagru.com $(hostname)" >> /etc/hosts
+RUN echo "192.168.99.100 noreply.camagru.com $(hostname)" >> /etc/hosts
 RUN /etc/init.d/sendmail start
 COPY 000-default.conf /etc/apache2/sites-available
 #docker-compose up -d --build

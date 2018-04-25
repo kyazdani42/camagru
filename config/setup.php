@@ -15,6 +15,7 @@ require_once "controllers/LogoutController.class.php";
 require_once "controllers/RegisterController.class.php";
 require_once "controllers/CameraController.class.php";
 require_once "controllers/AccountController.class.php";
+require_once "controllers/GalleryController.class.php";
 
 //Viewclass
 require_once 'views/View.class.php';
