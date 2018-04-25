@@ -39,30 +39,45 @@
 
     let photo = document.querySelector("#staticPhoto");
     let elem = document.getElementsByClassName("staticImg");
-    let i = 0;
+    let i;
 
     for (i = 0; i < elem.length; i++) {
         elem[i].addEventListener("click", function (e) {
 
             if (e.target.getAttribute("src") !== null) {
-                photo.setAttribute("src", e.target.getAttribute("src"));
+                let data = getImg(e.target, "png");
+
+                console.log(data);
+                photo.setAttribute("src", data);
             }
 
         });
     }
 
     document.getElementById("myData").addEventListener("click", function () {
-        let canvas = document.createElement("canvas");
         let img = document.getElementById("staticPhoto");
+        let data2 = getImg(img, "png").replace(/^data:image\/(png|jpg);base64,/, "");
+        let data = document.getElementById("photo").getAttribute("src");
+
+        document.getElementById("staticData").setAttribute("value", data2);
+        document.getElementById("myData").setAttribute("value", data.replace(/^data:image\/(png|jpg|jpeg|gif);base64,/, ""));
+    });
+
+    function getImg(img, check) {
+        let canvas = document.createElement("canvas");
+        let data2 = "";
+
         canvas.width = img.width;
         canvas.height = img.height;
         let ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        let data2 = canvas.toDataURL("image/png");
-        data2 = data2.replace(/^data:image\/(png|jpg);base64,/, "");
-        let data = document.getElementById("photo").getAttribute("src");
-        document.getElementById("staticData").setAttribute("value", data2);
-        document.getElementById("myData").setAttribute("value", data.replace(/^data:image\/(png|jpg|jpeg|gif);base64,/, ""));
-    });
+        if (check === "png")
+            data2 = canvas.toDataURL("image/png");
+        else if (check === "jpeg")
+            data2 = canvas.toDataURL("image/jpeg");
+        else
+            data2 = canvas.toDataURL("image/gif");
+        return (data2);
+    }
 
 </script>

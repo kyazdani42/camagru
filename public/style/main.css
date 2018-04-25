@@ -54,14 +54,6 @@ body > * {
 .list li ul {
     border:1px black outset;
     padding-left:0px;
-    weidth:5.3em;
-    height:5.3em;
-}
-
-.list img {
-    border: 1px black solid;
-    width: 5em;
-    height: 5.2em;
 }
 
 #photo {
@@ -70,8 +62,6 @@ body > * {
 }
 
 #staticPhoto {
-    width:7em;
-    height:7.2em;
     position:absolute;
     left:0;
     bottom:2px;

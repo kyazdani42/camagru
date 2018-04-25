@@ -25,16 +25,16 @@ class CameraController extends Controller {
 
         $img1 = imagecreatefromstring($img1);
         $img2 = imagecreatefromstring($img2);
-        $wsrc = imagesx($img2);
-        $hsrc = imagesy($img2);
-        $wdst = imagesx($img1);
-        $hdst = imagesy($img1);
-        $destx = $wdst - $wsrc;
-        $desty = $hdst - $hsrc;
-        $path = "/tmp/" . md5(rand(0, 1000)) . ".jpeg";
-
-        imagecopymerge($img1, $img2, $destx, $desty, 0, 0, $wsrc, $hsrc, 60);
-        imagejpeg($img1, $path);
+        $defheight = 225;
+        $defwidth = 305;
+        $img = imagecreatetruecolor($defwidth, $defheight);
+        imagecopyresampled($img, $img1, 0, 0, 0, 0, $defwidth, $defheight, imagesx($img1), imagesy($img1));
+        $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".jpeg";
+        while (file_exists($path))
+            $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".jpeg";
+        imagecopy($img, $img2, 0, $defheight - imagesy($img2), 0, 0, imagesx($img2), imagesy($img2));
+        imagejpeg($img, $path);
+        imagedestroy($img);
         imagedestroy($img1);
         imagedestroy($img2);
         return ($path);
