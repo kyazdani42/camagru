@@ -4,7 +4,7 @@
         <canvas id="canvas" style="display:none"></canvas>
         <div class="output">
             <img id=staticPhoto>
-            <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/jpeg;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
+            <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/png;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         </div>
         <button id="startbutton">Prendre une photo</button>
     </div>

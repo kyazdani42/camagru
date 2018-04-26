@@ -9,8 +9,8 @@ class CameraController extends Controller {
 
     public function sendPicture() {
         if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData'])) {
-            header("location: " . URL);
-            die;
+            header("location: " . URL . "Camera");
+            die();
         }
         $data = base64_decode($_POST['myData']);
         $data2 = base64_decode($_POST['staticData']);
@@ -19,6 +19,7 @@ class CameraController extends Controller {
         $image = new PhotoModel;
         $image->setPhoto($path, $login);
         header("location: " . URL . "Camera");
+        die();
     }
 
     private function _createPic($img1, $img2) {
@@ -29,11 +30,11 @@ class CameraController extends Controller {
         $defwidth = 305;
         $img = imagecreatetruecolor($defwidth, $defheight);
         imagecopyresampled($img, $img1, 0, 0, 0, 0, $defwidth, $defheight, imagesx($img1), imagesy($img1));
-        $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".jpeg";
+        $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".png";
         while (file_exists($path))
-            $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".jpeg";
+            $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".png";
         imagecopy($img, $img2, 0, $defheight - imagesy($img2), 0, 0, imagesx($img2), imagesy($img2));
-        imagejpeg($img, $path);
+        imagepng($img, $path);
         imagedestroy($img);
         imagedestroy($img1);
         imagedestroy($img2);
@@ -50,6 +51,7 @@ class CameraController extends Controller {
                 SessionController::setSession("error", $e->getMessage());
             }
             header('location: ' . URL . "Camera");
+            die();
         }
     }
 

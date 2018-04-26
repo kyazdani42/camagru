@@ -47,7 +47,7 @@
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        let data = canvas.toDataURL('image/jpeg');
+        let data = canvas.toDataURL('image/png');
         if (data === "data:,") {
             return null;
         }
@@ -56,7 +56,7 @@
 
     startbutton.addEventListener('click', function(ev){
         let static = document.querySelector("#staticPhoto");
-        if (static.getAttribute("src") !== "") {
+        if (static.getAttribute("src") !== null && static.getAttribute("src") !== "") {
             takepicture();
             ev.preventDefault();
         } else {
