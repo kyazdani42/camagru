@@ -1,3 +1,4 @@
+<div class="main">
 <?php if ($ret === 1) { foreach ($array as $e => $key) { ?>
     <div class="container">
         <div class="containerPhoto">
@@ -19,3 +20,4 @@
         </div>
     </div>
 <?php } } ?>
+</div>
