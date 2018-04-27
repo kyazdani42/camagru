@@ -10,7 +10,7 @@ class AccountController extends Controller {
     public function modLog() {
         if (isset($_POST) && isset($_POST['newLogin']) && !empty($_POST['newLogin'])) {
             $db = new UserModel();
-            $log = htmlspecialchars($_POST['newLogin']);
+            $log = $_POST['newLogin'];
             try {
                 $db->modLogin($log);
                 SessionController::setLogin($log);

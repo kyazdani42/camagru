@@ -46,7 +46,7 @@ class HomeController extends Controller {
 
         $obj = $this->_objInfo->getComment($id_photo);
         foreach ($obj as $e => $key) {
-            $array[] = htmlspecialchars(base64_decode($key['content']));
+            $array[] = base64_decode($key['content']);
         }
         return ($array);
     }

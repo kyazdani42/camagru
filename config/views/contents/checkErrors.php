@@ -1,7 +1,7 @@
 <?php
 if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
     <script language="Javascript">
-        alert("<?= $_SESSION['error'] ?>");
+        alert("<?= htmlspecialchars($_SESSION['error']) ?>");
 
 //        const obj = document.createElement("div");
 //        const doc = document.getElementsByTagName("body")[0];

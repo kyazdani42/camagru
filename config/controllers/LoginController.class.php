@@ -10,8 +10,8 @@ class LoginController extends Controller {
     public function SignIn() {
         $user = new UserModel();
         try {
-            $user::connect(htmlspecialchars($_POST['login']), $_POST['password']);
-            SessionController::setLogin(htmlspecialchars($_POST['login']));
+            $user::connect($_POST['login'], $_POST['password']);
+            SessionController::setLogin($_POST['login']);
             header('Location: ' . URL . 'Home');
         } catch (Exception $e) {
             SessionController::setSession("error", $e->getMessage());

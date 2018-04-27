@@ -18,7 +18,7 @@ class UserModel extends Model {
                 throw new Exception("password must contain at least 8 characters");
             } else {
                 $password = hash('whirlpool', $kwargs['password']);
-                $hash = md5( rand(0,1000) );
+                $hash = $tmpLogin . md5( rand(0,1000) );
                 $query = "INSERT INTO `user` (login, email, password, hash) VALUES ('" . $tmpLogin . "', '" . $tmpEmail . "', '" . $password . "', '" . $hash . "')";
                 self::request($query, 1);
                 return ( array('hash' => $hash, 'email' => $tmpEmail) );
@@ -27,7 +27,7 @@ class UserModel extends Model {
     }
 
     public static function connect( $login, $password ) {
-        $tmpLogin = htmlspecialchars($login);
+        $tmpLogin = $login;
         $tmpPass = hash('whirlpool', $password);
         $sql = "SELECT password, `active` FROM `user` WHERE login = '" . $tmpLogin . "'";
         if (($query = self::request($sql))->rowCount() === 1) {
@@ -52,7 +52,7 @@ class UserModel extends Model {
     }
 
     public function modLogin($newLogin) {
-        $new = htmlspecialchars($newLogin);
+        $new = $newLogin;
         $sql = "SELECT login FROM `user` WHERE login = '" . $new . "'";
         if (($query = self::request($sql))->rowCount() !== 0) {
             throw new Exception("login " . $new . " is already taken");
@@ -64,7 +64,7 @@ class UserModel extends Model {
     }
 
     public function modEmail($newEmail) {
-        $new = htmlspecialchars($newEmail);
+        $new = $newEmail;
         $sql = "SELECT email FROM `user` WHERE email = '" . $new . "'";
         if (($query = self::request($sql))->rowCount() !== 0) {
             throw new Exception("email " . $new . " is already taken");

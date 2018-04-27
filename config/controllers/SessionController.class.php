@@ -3,11 +3,11 @@
 class SessionController extends Controller {
 
     public static function setLogin( $login ) {
-        $_SESSION['log_user'] = htmlspecialchars($login);
+        $_SESSION['log_user'] = $login;
     }
 
     public static function getLogin() {
-        return ($_SESSION['log_user']);
+        return (htmlspecialchars($_SESSION['log_user']));
     }
 
     public static function logout() {

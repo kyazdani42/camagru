@@ -16,7 +16,7 @@ class RegisterController extends Controller {
 		}
         $user = new UserModel();
         try {
-            $array = $user->register(array("login" => htmlspecialchars($_POST['login']), 'password' => $_POST['password'], 'email' => htmlspecialchars($_POST['email'])));
+            $array = $user->register(array("login" => $_POST['login'], 'password' => $_POST['password'], 'email' => $_POST['email']));
             $this->_send_mail($array);
             SessionController::setSession("valid", 'A confirmation mail has been sent to your mailbox, please validate before log in');
             header('location:' . URL . 'Home');
