@@ -18,4 +18,10 @@ class PhotoModel extends Model {
         return ($content);
     }
 
+    public function getAllUsrImg() {
+        $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
+        $query = "SELECT `data`, `id` FROM `images` WHERE id_user='" . $login . "' ORDER BY `id` desc";
+        return ($this->request($query, 1)->fetchAll());
+    }
+
 }

@@ -7,4 +7,9 @@ class GalleryController extends Controller {
         $this->_view->render("gallery", "Gallery");
     }
 
+    public function photos() {
+        $model = new PhotoModel();
+        return ($model->getAllUsrImg());
+    }
+
 }

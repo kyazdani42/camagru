@@ -19,16 +19,29 @@ class InfoModel extends Model {
         $id_user = self::request($queryId, 1)->fetchAll()[0]['id'];
         $queryCheck = "SELECT id FROM `infos` WHERE id_photo='" . $id_photo . "' AND id_user='" . $id_user .
             "' AND type='like'";
-
         if (self::request($queryCheck)->rowCount() === 1) {
             $query = "DELETE FROM `infos` WHERE id_user='" . $id_user . "' AND id_photo='" . $id_photo . "' AND type='like'";
+            $ret = 0;
         } else {
-            $type = 'like';
             $query = "INSERT INTO `infos` (`id_photo`, `id_user`, `type`) VALUE ('" . $id_photo . "', '" .
-                $id_user . "', '" . $type . "')";
+                $id_user . "', 'like')";
+            $ret = 1;
         }
         self::request($query, 1);
+        return ($ret);
 
+    }
+
+    public function getAllComs() {
+        $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
+        $query = "SELECT `content`, `id_photo` from `images` WHERE id_user='" . $login . "' AND type='comment'";
+        return (self::request($query, 1)->fetchAll());
+    }
+
+    public function getAllLikes() {
+        $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
+        $query = "SELECT `id` from `images` WHERE id_user='" . $login . "' AND type='like'";
+        return (self::request($query, 1)->fetchAll());
     }
 
     public function getComment($photoId) {

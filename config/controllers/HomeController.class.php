@@ -59,14 +59,15 @@ class HomeController extends Controller {
             $this->_objInfo->setComment($id_photo, $data);
         }
         header('location: ' . URL . 'Home');
-
     }
 
     public function sendLike($id_photo) {
 
         $this->_objInfo = new InfoModel();
-        $this->_objInfo->setLike($id_photo);
-        header('location: ' . URL . 'Home');
+        $array = array($this->_objInfo->setLike($id_photo), $this->_objInfo->getLike($id_photo));
+        echo json_encode($array);
+        unset($array);
+        exit();
     }
 
 }
