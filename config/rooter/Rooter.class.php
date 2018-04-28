@@ -9,11 +9,10 @@ class Rooter {
 
         $url = explode('/', rtrim($_GET['url'], '/'));
 
-        $file = "config/controllers/" . $url[0] . 'Controller.class.php';
+        $class = $url[0] . 'Controller';
 
-        if (file_exists($file) && $url[0]) {
-            $name = $url[0] . "Controller";
-            $this->_controller = new $name;
+        if (class_exists($class) && $url[0]) {
+            $this->_controller = new $class;
         } else {
             header('location: ' . URL . 'Home');
         }

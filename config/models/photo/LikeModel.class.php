@@ -40,7 +40,7 @@ class LikeModel extends Model {
     public function getFlagLike($photoId) {
 
 		$login = SessionController::getLogin();
-        $query = "SELECT `id` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE id_photo='" . $photoId . "' AND user.login='" . $login . "' AND `type`='like'";
+        $query = "SELECT infos.id FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE id_photo='" . $photoId . "' AND user.login='" . $login . "' AND `type`='like'";
         return (self::request($query, 1)->rowCount());
 
     }

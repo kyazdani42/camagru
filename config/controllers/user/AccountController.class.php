@@ -8,8 +8,9 @@ class AccountController extends Controller {
     }
 
     public function modLog() {
+
         if (isset($_POST) && isset($_POST['newLogin']) && !empty($_POST['newLogin'])) {
-            $db = new UserModel();
+            $db = new ModifModel();
             $log = $_POST['newLogin'];
             try {
                 $db->modLogin($log);
@@ -20,9 +21,11 @@ class AccountController extends Controller {
             }
         }
         header('location: ' . URL . 'Account');
+
     }
 
     public function modPass() {
+
         if (isset($_POST) && isset($_POST['newPass']) && !empty($_POST['newPass'])) {
             $db = new UserModel();
             try {
@@ -33,9 +36,11 @@ class AccountController extends Controller {
             }
         }
         header('location: ' . URL . 'Account');
+
     }
 
     public function modEmail() {
+
         if (isset($_POST) && isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
             $db = new UserModel();
             try {
@@ -46,18 +51,21 @@ class AccountController extends Controller {
             }
         }
         header('location: ' . URL . 'Account');
+
     }
 
     /*
      * Must delete also all photos, comments and likes associated with the account !
      */
     public function delete() {
+
         if (SessionController::getLogin() !== null && SessionController::getLogin() !== "") {
             $db = new UserModel();
             $db->deleteAccount();
             SessionController::logout();
         }
         header("location: " . URL . "Home");
+
     }
 
 }

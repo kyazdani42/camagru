@@ -8,7 +8,6 @@ class ModifModel extends Model {
             throw new Exception("login " . $newLogin . " is already taken");
         } else {
             $query = "UPDATE `user` SET login='" . $newLogin . "' WHERE login='" . SessionController::getLogin() . "'";
-            SessionController::setLogin($newLogin);
             self::request($query, 1);
         }
     }
