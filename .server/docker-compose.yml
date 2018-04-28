@@ -5,9 +5,9 @@ services:
         build: .
         image: my_camagru
         ports:
-            - "8080:80"
+            - "80:80"
         volumes:
-            - ${HOME}/Documents/camagru:/var/www/html
+            - ${HOME}/http/camagru:/var/www/html
         links:
             - db
 
