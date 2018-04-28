@@ -7,7 +7,7 @@ class SessionController extends Controller {
     }
 
     public static function getLogin() {
-        return (htmlspecialchars($_SESSION['log_user']));
+        return ($_SESSION['log_user']);
     }
 
     public static function logout() {

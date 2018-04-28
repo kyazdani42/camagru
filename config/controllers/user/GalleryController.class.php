@@ -9,7 +9,7 @@ class GalleryController extends Controller {
 
     public function photos() {
         $model = new PhotoModel();
-        return ($model->getAllUsrImg());
+        echo $model->getAllUsrImg();
     }
 
 }

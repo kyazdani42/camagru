@@ -1,22 +1,30 @@
 <?php
 session_start();
 //Models
-require_once 'models/Model.class.php';
-require_once 'models/UserModel.class.php';
 require_once 'models/Config.class.php';
-require_once 'models/InfoModel.class.php';
-require_once 'models/PhotoModel.class.php';
+require_once 'models/Model.class.php';
+
+require_once 'models/photo/CommentModel.class.php';
+require_once 'models/photo/LikeModel.class.php';
+require_once 'models/photo/PhotoModel.class.php';
+
+require_once 'models/user/UserModel.class.php';
+require_once 'models/user/RegisterModel.class.php';
+require_once 'models/user/ModifModel.class.php';
 
 //Controllers
 require_once "controllers/Controller.class.php";
 require_once "controllers/SessionController.class.php";
+
 require_once "controllers/HomeController.class.php";
-require_once "controllers/LoginController.class.php";
-require_once "controllers/LogoutController.class.php";
-require_once "controllers/RegisterController.class.php";
-require_once "controllers/CameraController.class.php";
-require_once "controllers/AccountController.class.php";
-require_once "controllers/GalleryController.class.php";
+
+require_once "controllers/vistor/LoginController.class.php";
+require_once "controllers/visitor/RegisterController.class.php";
+
+require_once "controllers/user/CameraController.class.php";
+require_once "controllers/user/AccountController.class.php";
+require_once "controllers/user/GalleryController.class.php";
+require_once "controllers/user/LogoutController.class.php";
 
 //Viewclass
 require_once 'views/View.class.php';
