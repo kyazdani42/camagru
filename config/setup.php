@@ -18,7 +18,7 @@ require_once "controllers/SessionController.class.php";
 
 require_once "controllers/HomeController.class.php";
 
-require_once "controllers/vistor/LoginController.class.php";
+require_once "controllers/visitor/LoginController.class.php";
 require_once "controllers/visitor/RegisterController.class.php";
 
 require_once "controllers/user/CameraController.class.php";
