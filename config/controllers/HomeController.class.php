@@ -9,11 +9,11 @@ class HomeController extends Controller {
     public function display() {
 
             parent::__construct();
-            $photos = $this->_getImages();
+            $photos = $this->getImages();
             $this->_view->render('index', 'Home', 0, $photos);
     }
 
-    private function _getImages() {
+    public function getImages() {
 
         $this->_objPhoto = new PhotoModel();
         $this->_objLike = new LikeModel();
@@ -23,29 +23,29 @@ class HomeController extends Controller {
         } catch (Exception $e) {
             return null;
         }
-        return ($this->_getContent($photos));
-
-    }
-
-    private function _getContent( $array ) {
-
-        foreach ($array as $e => $i) {
+		foreach ($photos as $e => $i) {
 			$like = $this->_objLike->getLikesPhoto($i['id']);
 			$flag = $this->_objLike->getFlagLike($i['id']);
-			$comm = $this->_getComments($i['id']);
+			$comm = $this->getComments($i['id']);
             $new[] = array('data' => $i['data'], 'likes' => $like, 'comments' => $comm, 'id_photo' => $i['id'], 'flag' => $flag);
-        }
+		}
         return ($new);
 
     }
 
-    private function _getComments($id_photo) {
+    public function getComments($id_photo) {
 
         $obj = $this->_objCom->getCommentPhoto($id_photo);
+		var_dump($obj);
+		die();
         foreach ($obj as $e => $key) {
             $array[] = $key['content'];
         }
-        return ($array);
+		if (self::_isAjax())
+			echo json_encode($array);
+		else
+        	return ($array);
+		
     }
 
     public function sendComment($id_photo) {

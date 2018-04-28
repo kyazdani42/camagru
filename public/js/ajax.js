@@ -1,7 +1,7 @@
 function ajax_post(url, callback, elem = null) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("X-Requested_With", "xmlhttprequest");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             callback(JSON.parse(xhr.responseText));
