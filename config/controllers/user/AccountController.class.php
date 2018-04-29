@@ -52,11 +52,23 @@ class AccountController extends Controller {
         }
         header('location: ' . URL . 'Account');
 
-    }
+	}
 
-    /*
-     * Must delete also all photos, comments and likes associated with the account !
-     */
+	/*
+	 * delete one photo and all comments/likes associated with it
+	 */
+
+    public function deletePhoto($id) {
+
+		$this->_objPhoto = new PhotoModel();
+		$this->_objPhoto->deleteImg($id);	
+
+	}
+
+	/*
+	 * delete whole account, with all photos, comments, likes associated
+	 */
+
     public function delete() {
 
         if (SessionController::getLogin() !== null && SessionController::getLogin() !== "") {

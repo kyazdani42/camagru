@@ -24,10 +24,22 @@ class UserModel extends Model {
 
     }
 
+	/*
+	 * delete user, all comments/likes associated, all photos and comment/likes associated to photos
+	 */
+
     public function deleteAccount() {
 
-        $query = "DELETE FROM `user` WHERE login='" . SessionController::getLogin() . "'";
+		$login = SessionController::getLogin();
+		/*
+        $query = "DELETE FROM `user` WHERE user.login='" . $login . "'";
+
+		$query2 = "DELETE FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login='" . $login . "'";
+		$query3 = "DELETE FROM `images` INNER JOIN `user` ON images.id_user=user.id WHERE user.login='" . $login . "'";
         self::request($query, 1);
+		self::request($query2, 1);
+		self::request($query3, 1);
+		 */
     }
 
 }

@@ -28,4 +28,13 @@ class PhotoModel extends Model {
         return ($this->request($query, 1)->fetchAll());
     }
 
+	public function deleteImg($id) {
+
+		$query = "DELETE FROM `images` WHERE id='" . $id . "'";
+		$query2 = "DELETE FROM `infos` WHERE id_photo='" . $id . "'";
+		$this->request($query, 1);
+		$this->request($query2, 1);
+
+	}
+
 }
