@@ -7,28 +7,28 @@ class RegisterController extends Controller {
         $this->_view->render('register', 'Sign Up', 1);
     }
 
-    public function SignUp()
-    {
+    public function SignUp() {
+
 		if (empty($_POST['login']) || empty($_POST['email'])) {
 			SessionController::setSession('error', "Incorrect informations");
 			header('location:' . URL . "Register");
 			die ();
 		}
-        $user = new UserModel();
+        $user = new RegisterModel();
         try {
             $array = $user->register(array("login" => $_POST['login'], 'password' => $_POST['password'], 'email' => $_POST['email']));
             $this->_send_mail($array);
             SessionController::setSession("valid", 'A confirmation mail has been sent to your mailbox, please validate before log in');
             header('location:' . URL . 'Home');
-
         } catch (Exception $e) {
             SessionController::setSession("error", $e->getMessage());
             header('location:' . URL . "Register");
         }
+
     }
 
     public function verify($hash = null) {
-        $user = new UserModel();
+        $user = new RegisterModel();
 		if ($hash === null) {
 			header('location:' . URL . 'Home');
 			die();

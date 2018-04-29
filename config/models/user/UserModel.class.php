@@ -3,6 +3,7 @@
 class UserModel extends Model {
 
     public static function connect( $login, $password ) {
+
         $tmpLogin = $login;
         $tmpPass = hash('whirlpool', $password);
         $sql = "SELECT password, `active` FROM `user` WHERE login = '" . $tmpLogin . "'";
@@ -20,9 +21,11 @@ class UserModel extends Model {
         } else {
             throw new Exception("Wrong login");
         }
+
     }
 
     public function deleteAccount() {
+
         $query = "DELETE FROM `user` WHERE login='" . SessionController::getLogin() . "'";
         self::request($query, 1);
     }

@@ -21,7 +21,7 @@ class Rooter {
 
     private function _sendMethod($url) {
 
-        if (isset($url[1]) && method_exists($this->_controller, $url[1])) {
+        if (isset($url[1]) && method_exists($this->_controller, $url[1]) && is_callable(array( $this->_controller, $url[1] )) ) {
             if (isset($url[2])) {
                 $this->_controller->{$url[1]}($url[2]);
             } else {

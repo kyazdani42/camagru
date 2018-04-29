@@ -3,11 +3,14 @@
 class CameraController extends Controller {
 
     public function display() {
+
         parent::__construct();
         $this->_view->render('camera', 'Take a pic');
+
     }
 
     public function sendPicture() {
+
         if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData'])) {
             header("location: " . URL . "Camera");
             die();
@@ -19,7 +22,7 @@ class CameraController extends Controller {
         $image = new PhotoModel;
         $image->setPhoto($path, $login);
         header("location: " . URL . "Camera");
-        die();
+
     }
 
     private function _createPic($img1, $img2) {
@@ -39,10 +42,11 @@ class CameraController extends Controller {
         imagedestroy($img1);
         imagedestroy($img2);
         return ($path);
+
     }
 
-    public function handleFile()
-    {
+    public function handleFile() {
+
         if (isset($_POST)) {
             try {
                 $data = $this->_getFileData();
@@ -53,6 +57,7 @@ class CameraController extends Controller {
             header('location: ' . URL . "Camera");
             die();
         }
+
     }
 
     private function _getFileData() {
@@ -72,6 +77,7 @@ class CameraController extends Controller {
                 return $data;
             }
         }
+
     }
 
 }

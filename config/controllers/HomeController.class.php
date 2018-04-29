@@ -36,8 +36,6 @@ class HomeController extends Controller {
     public function getComments($id_photo) {
 
         $obj = $this->_objCom->getCommentPhoto($id_photo);
-		var_dump($obj);
-		die();
         foreach ($obj as $e => $key) {
             $array[] = $key['content'];
         }

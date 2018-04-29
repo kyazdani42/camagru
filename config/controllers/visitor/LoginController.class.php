@@ -7,7 +7,8 @@ class LoginController extends Controller {
             $this->_view->render('login', 'Sign In', 1);
     }
 
-    public function SignIn() {
+    public function signIn() {
+		
         $user = new UserModel();
         try {
             $user::connect($_POST['login'], $_POST['password']);
@@ -17,7 +18,7 @@ class LoginController extends Controller {
             SessionController::setSession("error", $e->getMessage());
             header('location: ' . URL . "Login");
         }
-    }
 
+    }
 
 }
