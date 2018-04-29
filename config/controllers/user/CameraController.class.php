@@ -11,7 +11,7 @@ class CameraController extends Controller {
 
     public function sendPicture() {
 
-        if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData'])) {
+        if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData']) || empty($_POST['myData'])) {
             header("location: " . URL . "Camera");
             die();
         }

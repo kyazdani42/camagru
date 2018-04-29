@@ -31,7 +31,6 @@ class UserModel extends Model {
     public function deleteAccount() {
 
 		$login = SessionController::getLogin();
-		/*
         $query = "DELETE FROM `user` WHERE user.login='" . $login . "'";
 
 		$query2 = "DELETE FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login='" . $login . "'";
@@ -39,7 +38,6 @@ class UserModel extends Model {
         self::request($query, 1);
 		self::request($query2, 1);
 		self::request($query3, 1);
-		 */
     }
 
 }
