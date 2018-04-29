@@ -19,7 +19,7 @@ class HomeController extends Controller {
         $this->_objLike = new LikeModel();
 		$this->_objCom = new CommentModel();
         try {
-            $photos = $this->_objPhoto->getAllPhotos()->fetchAll();
+            $photos = $this->_objPhoto->getAllPhotos();
         } catch (Exception $e) {
             return null;
         }

@@ -18,7 +18,7 @@ class CommentModel extends Model {
     public function getCommentUser() {
 
 		$login = SessionController::getLogin();
-        $query = "SELECT `content`, `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login='" . $login . "' type='comment'";
+        $query = "SELECT `content`, `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login='" . $login . "' AND type='comment'";
         return (self::request($query, 1)->fetchAll());
 
     }
