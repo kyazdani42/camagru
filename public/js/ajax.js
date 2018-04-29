@@ -15,7 +15,6 @@ function ajax_get(url, callback) {
     xhr.open("GET", url, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            console.log(xhr.response);
             callback(JSON.parse(xhr.response));
         }
     }
