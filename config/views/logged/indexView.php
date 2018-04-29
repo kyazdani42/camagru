@@ -6,15 +6,13 @@
         </div>
         <div class="containerAttributes">
             <div class="containerComments">
-                <form action="<?= URL ?>Home/sendComment/<?= $key['id_photo']?>" method="post">
-                    <textarea name="comment" placeholder="Write a comment" maxlength="255"></textarea>
-                    <input type="submit" value="send">
+				<form action="<?= URL ?>Home/sendComment/<?= $key['id_photo'] ?>" class="formSend" id="form<?= $key['id_photo']?>" method="post">
+					<textarea name="comment" placeholder="Write a comment" maxlength="255"></textarea>
+					<input type="submit" value="send">
                 </form>
                 <div class="comBox">
                     <?php if ($key['comments'] !== null) { foreach ($key['comments'] as $e) { ?>
-                    <span>
-                        <?= $e ?>
-                    </span>
+                    <span><?= $e ?></span>
                     <?php } } ?>
                 </div>
             </div>
@@ -29,3 +27,4 @@
 <?php } } ?>
 </div>
 <script src="/public/js/likeBox.js"></script>
+<script src="/public/js/commentBox.js"></script>

@@ -48,11 +48,27 @@ class HomeController extends Controller {
 
     public function sendComment($id_photo) {
 
-        if (isset($_POST) && isset($_POST['comment']) && !empty($_POST['comment'] && strlen($_POST['comment']) < 255)) {
-            $this->_objComm = new CommentModel();
-            $data = $_POST['comment'];
-            $this->_objComm->setComment($id_photo, $data);
-        }
+        if (isset($_POST) && isset($_POST['comment']) && !empty($_POST['comment'])) {
+			if (strlen($_POST['comment']) > 255) {
+				if (self::_isAjax()) {
+					echo json_encode(array("error", "comment is too long"));
+					die();
+				}
+				SessionController::setSession("error", "comment is too long");
+			} else {
+            	$this->_objComm = new CommentModel();
+           		$data = $_POST['comment'];
+            	$this->_objComm->setComment($id_photo, $data);
+				if (self::_isAjax()) {
+					echo json_encode(array($data));
+					die();
+				}
+			}
+		}
+		if (self::_isAjax()) {
+			echo json_encode(array("error", "please say something"));
+			die();
+		}
         header('location: ' . URL . 'Home');
 
     }
@@ -61,9 +77,11 @@ class HomeController extends Controller {
 
         $this->_objLike = new LikeModel();
         $array = array($this->_objLike->setLike($id_photo), $this->_objLike->getLikesPhoto($id_photo));
-        echo json_encode($array);
-        unset($array);
-        exit();
+		if (self::_isAjax()) {
+        	echo json_encode($array);
+			die();
+		}
+		header("location: " . URL . "Home");
     }
 
 }
