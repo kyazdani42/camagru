@@ -7,7 +7,7 @@ class UserModel extends Model {
         $tmpLogin = $login;
         $tmpPass = hash('whirlpool', $password);
         $sql = "SELECT password, `active` FROM `user` WHERE login = '" . $tmpLogin . "'";
-        if (($query = self::request($sql))->rowCount() === 1) {
+        if (($query = self::request($sql, 1))->rowCount() === 1) {
             $tab = $query->fetchAll();
             if ($tab[0]['password'] === $tmpPass) {
                 if ($tab[0]['active'] === '0') {

@@ -1,6 +1,6 @@
 (function() {
 
-    var streaming = false,
+    let streaming = false,
         video        = document.querySelector('#video'),
         canvas       = document.querySelector('#canvas'),
         photo        = document.querySelector('#photo'),
@@ -22,7 +22,7 @@
             if (navigator.mediaDevices.getUserMedia) {
                 video.mozSrcObject = stream;
             } else {
-                var vendorURL = window.URL || window.webkitURL;
+                let vendorURL = window.URL || window.webkitURL;
                 video.src = vendorURL.createObjectURL(stream);
             }
             video.play();
@@ -55,8 +55,8 @@
     }
 
     startbutton.addEventListener('click', function(ev){
-        let static = document.querySelector("#staticPhoto");
-        if (static.getAttribute("src") !== null && static.getAttribute("src") !== "") {
+        let stat = document.querySelector("#staticPhoto");
+        if (stat.getAttribute("src") !== null && stat.getAttribute("src") !== "") {
             takepicture();
             ev.preventDefault();
         } else {

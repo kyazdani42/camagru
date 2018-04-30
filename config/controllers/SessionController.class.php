@@ -10,6 +10,10 @@ class SessionController extends Controller {
         return ($_SESSION['log_user']);
     }
 
+    public static function printLogin() {
+        echo htmlspecialchars($_SESSION['log_user']);
+    }
+
     public static function logout() {
         $_SESSION['log_user'] = "";
     }

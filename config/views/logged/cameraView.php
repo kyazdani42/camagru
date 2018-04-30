@@ -46,8 +46,6 @@
 
             if (e.target.getAttribute("src") !== null) {
                 let data = getImg(e.target, "png");
-
-                console.log(data);
                 photo.setAttribute("src", data);
             }
 

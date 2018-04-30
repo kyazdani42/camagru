@@ -18,6 +18,7 @@ class HomeController extends Controller {
         $this->_objPhoto = new PhotoModel();
         $this->_objLike = new LikeModel();
 		$this->_objCom = new CommentModel();
+		$new = array();
         try {
             $photos = $this->_objPhoto->getAllPhotos();
         } catch (Exception $e) {
@@ -35,7 +36,10 @@ class HomeController extends Controller {
 
     public function getComments($id_photo) {
 
+        if ($this->_objCom === null)
+            $this->_objCom = new CommentModel();
         $obj = $this->_objCom->getCommentPhoto($id_photo);
+        $array = array();
         foreach ($obj as $e => $key) {
             $array[] = $key['content'];
         }
@@ -56,9 +60,9 @@ class HomeController extends Controller {
 				}
 				SessionController::setSession("error", "comment is too long");
 			} else {
-            	$this->_objComm = new CommentModel();
+            	$this->_objCom = new CommentModel();
            		$data = $_POST['comment'];
-            	$this->_objComm->setComment($id_photo, $data);
+            	$this->_objCom->setComment($id_photo, $data);
 				if (self::_isAjax()) {
 					echo json_encode(array($data));
 					die();

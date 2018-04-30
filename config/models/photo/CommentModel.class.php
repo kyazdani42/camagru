@@ -15,6 +15,9 @@ class CommentModel extends Model {
 
     }
 
+    /*
+     * this function gets all the comments from one user
+     */
     public function getCommentUser() {
 
 		$login = SessionController::getLogin();
@@ -23,6 +26,9 @@ class CommentModel extends Model {
 
     }
 
+    /*
+     * this function gets all the comments from one image
+     */
     public function getCommentPhoto($photoId) {
 
         $query = "SELECT `content` FROM `infos` WHERE id_photo='" . $photoId . "' ORDER BY id DESC";

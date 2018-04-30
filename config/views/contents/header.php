@@ -2,7 +2,7 @@
 <header>
     <div class="content">
         <div id="intro">
-            <h1> Welcome to Camagru <?php if (($login = SessionController::getLogin()) !== null && $login !== "") { echo "<span>" . $login . "<span>"; } ?> !</h1>
+            <h1> Welcome to Camagru <?php if (($login = SessionController::getLogin()) !== null && $login !== "") { echo "<span>" . SessionController::printLogin() . "<span>"; } ?> !</h1>
         </div>
     </div>
     <div class="top-navbar">

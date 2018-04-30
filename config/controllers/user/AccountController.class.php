@@ -27,7 +27,7 @@ class AccountController extends Controller {
     public function modPass() {
 
         if (isset($_POST) && isset($_POST['newPass']) && !empty($_POST['newPass'])) {
-            $db = new UserModel();
+            $db = new ModifModel();
             try {
                 $db->modPassword($_POST['newPass']);
             } catch (Exception $e) {
@@ -42,7 +42,7 @@ class AccountController extends Controller {
     public function modEmail() {
 
         if (isset($_POST) && isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
-            $db = new UserModel();
+            $db = new ModifModel();
             try {
                 $db->modEmail($_POST['newEmail']);
             } catch (Exception $e) {
@@ -60,8 +60,8 @@ class AccountController extends Controller {
 
     public function deletePhoto($id) {
 
-		$this->_objPhoto = new PhotoModel();
-		$this->_objPhoto->deleteImg($id);	
+		$photo = new PhotoModel();
+		$photo->deleteImg($id);
 
 	}
 
