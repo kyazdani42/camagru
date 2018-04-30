@@ -12,6 +12,8 @@ class CommentModel extends Model {
 		$id = self::request("SELECT `id` FROM `user` WHERE login='" . $login  . "'", 1)->fetchAll()[0]['id'];
         $query = "INSERT INTO `infos` (`content`, `id_photo`, `id_user`, `type`) VALUE ('" . $data. "', '" . $id_photo . "', '" . $id . "', 'comment')";
         self::request($query, 1);
+        $query = "SELECT MAX(`id`) AS id FROM `infos`";
+        return (self::request($query)->fetchAll()[0]['id']);
 
     }
 

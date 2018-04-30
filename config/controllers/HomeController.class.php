@@ -63,9 +63,10 @@ class HomeController extends Controller {
 			} else {
             	$this->_objCom = new CommentModel();
            		$data = $_POST['comment'];
-            	$this->_objCom->setComment($id_photo, $data);
+            	$id = $this->_objCom->setComment($id_photo, $data);
+            	$array = array("data" => $data, "id" => $id);
 				if (self::_isAjax()) {
-					echo json_encode(array($data));
+					echo json_encode(array($array));
 					die();
 				}
 			}
