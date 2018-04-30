@@ -18,7 +18,12 @@
                 </form>
                 <div class="comBox">
                     <?php if ($key['comments'] !== null) { foreach ($key['comments'] as $e) { ?>
-                    <span><?= $e ?></span>
+                    <div class="comRow">
+                        <span><?= $e['com'] ?></span>
+                        <?php if ($e['check'] === 1): ?>
+                        <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img src="/public/images/crossbox.png" style="width:15px"></a>
+                        <?php endif; ?>
+                    </div>
                     <?php } } ?>
                 </div>
             </div>

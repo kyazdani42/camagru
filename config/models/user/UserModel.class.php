@@ -38,6 +38,7 @@ class UserModel extends Model {
         self::request($query, 1);
 		self::request($query2, 1);
 		self::request($query3, 1);
+
     }
 
 }

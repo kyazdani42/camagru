@@ -11,8 +11,8 @@
             <div class="containerComments">
                 <div class="comBox">
                     <?php if ($key['comments'] !== null) { foreach ($key['comments'] as $e) { ?>
-                        <span>
-                        <?= $e ?>
+                    <span>
+                        <?= $e['com'] ?>
                     </span>
                     <?php } } ?>
                 </div>

@@ -41,7 +41,8 @@ class HomeController extends Controller {
         $obj = $this->_objCom->getCommentPhoto($id_photo);
         $array = array();
         foreach ($obj as $e => $key) {
-            $array[] = $key['content'];
+            $check = $this->_objCom->checkComment($key['id']);
+            $array[] = array('com' => $key['content'], 'id' => $key['id'], "check" => $check);
         }
 		if (self::_isAjax())
 			echo json_encode($array);
@@ -86,6 +87,43 @@ class HomeController extends Controller {
 			die();
 		}
 		header("location: " . URL . "Home");
+    }
+
+    public function checkComment($id_com) {
+
+        $this->_objCom = new CommentModel();
+        if ($this->_objCom->checkComment($id_com) === 1) {
+            if ($this->_isAjax()) {
+                echo json_encode(["key" => "1"]);
+                die();
+            }
+            return (1);
+        }
+        else {
+            if ($this->_isAjax()) {
+                echo json_encode(["key" => "0"]);
+                die();
+            }
+            return (0);
+        }
+    }
+
+    public function delComment($id_com) {
+
+        $this->_objCom = new CommentModel();
+        if ($this->_objCom->checkComment($id_com) === 1) {
+            $this->_objCom->delComment($id_com);
+            if ($this->_isAjax()) {
+                echo json_encode($id_com);
+                die();
+            }
+        } else {
+            if ($this->_isAjax()) {
+                echo json_encode(0);
+                die();
+            }
+        }
+        header('location: ' . URL . "Home");
     }
 
 }

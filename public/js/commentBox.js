@@ -19,3 +19,33 @@ if (form !== undefined) {
 		});
 	}
 }
+
+let comments = document.getElementsByClassName("comRow");
+
+if (comments !== undefined) {
+
+	for (j = 0; comments[j]; j++) {
+
+        comments[j].addEventListener("click", function (e) {
+
+        	let link = e.target.parentNode;
+        	if (link.getAttribute("id") !== null) {
+                let id = link.getAttribute("id").replace("com", "");
+                let url = link.getAttribute("href").replace("Home/delComment/" + id, "");
+                ajax_get(url + "Home/checkComment/" + id, function (ret) {
+                    if (ret.key === "1") {
+                        if (confirm("Do you want to delete this comment ?") === true) {
+                            ajax_get(url + "Home/delComment/" + id, function (toDel) {
+                                if (toDel !== 0) {
+                                    let el = document.getElementById("com" + toDel).parentNode;
+                                    el.parentNode.removeChild(el);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+            e.preventDefault();
+        });
+    }
+}

@@ -115,6 +115,11 @@ body > * {
 	flex-direction: column;
 }
 
+.comRow {
+	display: flex;
+	flex-direction: row;
+}
+
 .likeBox {
 	width: 20%;
 	display: flex;

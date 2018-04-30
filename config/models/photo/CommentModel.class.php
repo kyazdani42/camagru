@@ -31,8 +31,23 @@ class CommentModel extends Model {
      */
     public function getCommentPhoto($photoId) {
 
-        $query = "SELECT `content` FROM `infos` WHERE id_photo='" . $photoId . "' ORDER BY id DESC";
+        $query = "SELECT `content`, `id` FROM `infos` WHERE id_photo='" . $photoId . "' ORDER BY id DESC";
         return (self::request($query, 1)->fetchAll());
+
+    }
+
+    public function checkComment($id_com) {
+
+        $login = SessionController::getLogin();
+        $query = "SELECT `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE infos.id='" . $id_com . "' AND user.login='" . $login . "'";
+        return (self::request($query, 1)->rowCount());
+
+    }
+
+    public function delComment($id_com) {
+
+        $query = "DELETE FROM `infos` WHERE id='" . $id_com . "'";
+        self::request($query, 1);
 
     }
 
