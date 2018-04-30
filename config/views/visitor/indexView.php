@@ -4,6 +4,9 @@
         <div class="containerPhoto">
             <img class="photos" src="data:image/jpeg;base64,<?= base64_encode(file_get_contents($key['data'])); ?>">
         </div>
+        <div class="likeBox">
+            <span class="countLike"><?= $key['likes'] ?> Likes</span>
+        </div>
         <div class="containerAttributes">
             <div class="containerComments">
                 <div class="comBox">
@@ -13,9 +16,6 @@
                     </span>
                     <?php } } ?>
                 </div>
-            </div>
-            <div class="likeBox">
-                <span class="countLike"><?= $key['likes'] ?> Likes</span>
             </div>
         </div>
     </div>

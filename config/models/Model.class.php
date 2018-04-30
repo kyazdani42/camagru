@@ -4,6 +4,9 @@ Abstract class Model {
 
     private static $_db;
 
+    /*
+     * this function handles request for the database
+     */
     protected function request($sql, $params = null) {
         if ($params === null) {
             $result = self::_getDb()->query($sql);
@@ -14,6 +17,9 @@ Abstract class Model {
         return $result;
     }
 
+    /*
+     * This function creates a new instance of a connexion to the db
+     */
     private function _getDb() {
 
         if (self::$_db === null) {

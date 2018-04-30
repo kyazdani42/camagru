@@ -11,7 +11,7 @@ if (form !== undefined) {
 			ajax_post(url, data, function(check) {
 				let span = document.createElement("span");
 				span.innerHTML = check[0];
-				let daddy = e.target.nextSibling.nextSibling;
+				let daddy = e.target.nextElementSibling;
 				daddy.insertBefore(span, daddy.firstChild);
 				e.target.firstElementChild.value = "";
 			});

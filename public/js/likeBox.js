@@ -12,7 +12,7 @@ if (heart !== undefined) {
                     }
                     else
                         svg.firstElementChild.setAttribute("class", "heart");
-                    svg.childNodes[3].innerHTML = cheese[1] + " Likes";
+                    svg.nextElementSibling.innerHTML = cheese[1] + " Likes";
                 }
             });
         });
