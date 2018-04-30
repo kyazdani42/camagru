@@ -30,11 +30,24 @@ class PhotoModel extends Model {
 
 	public function deleteImg($id) {
 
+        $getData = "SELECT `data` FROM `images` WHERE id='" . $id . "'";
+        $img = $this->request($getData)->fetchAll()[0]['data'];
 		$query = "DELETE FROM `images` WHERE id='" . $id . "'";
 		$query2 = "DELETE FROM `infos` WHERE id_photo='" . $id . "'";
 		$this->request($query, 1);
 		$this->request($query2, 1);
+		unlink($img);
 
 	}
+
+	public function deleteAllImg($id_user) {
+
+        $query = "SELECT `id` FROM `images` WHERE id_user='" . $id_user . "'";
+        $data = $this->request($query)->fetchAll();
+        foreach ($data as $e => $key) {
+            $this->deleteImg($key);
+        }
+
+    }
 
 }

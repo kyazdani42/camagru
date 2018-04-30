@@ -31,13 +31,14 @@ class UserModel extends Model {
     public function deleteAccount() {
 
 		$login = SessionController::getLogin();
-        $query = "DELETE FROM `user` WHERE user.login='" . $login . "'";
-
-		$query2 = "DELETE FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login='" . $login . "'";
-		$query3 = "DELETE FROM `images` INNER JOIN `user` ON images.id_user=user.id WHERE user.login='" . $login . "'";
-        self::request($query, 1);
-		self::request($query2, 1);
-		self::request($query3, 1);
+		$query = "SELECT `id` FROM `user` WHERE login='" . $login . "'";
+		$id_user = $this->request($query)->fetchAll()[0]['id'];
+		$queryInfo = "DELETE FROM `infos` WHERE id_user='" . $id_user . "'";
+		$this->request($queryInfo);
+		$photo = new PhotoModel();
+		$photo->deleteAllImg($id_user);
+		$query = "DELETE FROM `user` WHERE login='" . $login . "'";
+		$this->request($query, 1);
 
     }
 
