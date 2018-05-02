@@ -5,7 +5,12 @@ class CameraController extends Controller {
     public function display() {
 
         parent::__construct();
-        $this->_view->render('camera', 'Take a pic');
+        if (isset($_SESSION['imageSession']) && !empty($_SESSION['imageSession'])) {
+            $obj = new PhotoModel();
+            $array = $obj->getSessionImg();
+        } else
+            $array = null;
+        $this->_view->render('camera', 'Take a pic', 0, $array);
 
     }
 
@@ -13,7 +18,7 @@ class CameraController extends Controller {
 
         if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData']) || empty($_POST['myData'])) {
             if ($this->_isAjax()) {
-                echo json_encode(array("err", "Invalid form"));
+                echo json_encode(array("err", "Please select a south park character and take or upload a picture"));
                 die();
             }
             header("location: " . URL . "Camera");
@@ -24,7 +29,8 @@ class CameraController extends Controller {
         $path = $this->_createPic($data, $data2);
         $login = SessionController::getLogin();
         $image = new PhotoModel;
-        $image->setPhoto($path, $login);
+        $ret = $image->setPhoto($path, $login);
+        $_SESSION['imageSession'][] = $ret;
         if ($this->_isAjax()) {
             echo json_encode(array("data", base64_encode(file_get_contents($path))));
             die();
@@ -86,7 +92,6 @@ class CameraController extends Controller {
         } else if ($_FILES['myData']['size'] > 65535) {
             throw new Exception("File is too big");
         } else {
-
             $extensions = array('jpeg', 'jpg', 'gif', 'png');
             $ext_upload = strtolower(end(explode('.', $_FILES['myData']['name'])));
             if (!in_array($ext_upload, $extensions)) {

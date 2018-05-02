@@ -63,7 +63,13 @@ sendForm.addEventListener("submit", (e) => {
         else if (dataGet[0] === "data") {
             document.querySelector("#staticPhoto").removeAttribute("src");
             document.querySelector("#photo").setAttribute("src", "");
-            // HERE NEED TO ADD RIGHT NAV PUSHER
+            let div = document.createElement("div");
+            let img = document.createElement("img");
+            div.setAttribute("class", "navBox");
+            img.setAttribute("src", "data:image/png;base64," + dataGet[1]);
+            div.appendChild(img);
+            let nav = document.getElementsByClassName("rightNav")[0];
+            nav.insertBefore(div, nav.firstElementChild);
         }
 
     });

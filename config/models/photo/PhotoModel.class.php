@@ -8,9 +8,11 @@ class PhotoModel extends Model {
     public function setPhoto($url, $login) {
 
         $sql = "SELECT id FROM `user` WHERE login='" . $login . "'";
-        $loginId = $this->request($sql)->fetch()['id'];
+        $loginId = $this->request($sql, 1)->fetch()['id'];
         $query = "INSERT INTO images (`data`, `id_user`) VALUES ('" . $url . "', '" . $loginId . "')";
-        $this->request($query, 1);
+        $this->request($query);
+        $query = "SELECT MAX(`id`) AS `id` FROM images";
+        return ($this->request($query)->fetchAll()[0]['id']);
 
     }
 
@@ -37,6 +39,21 @@ class PhotoModel extends Model {
         $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
         $query = "SELECT `data`, `id` FROM `images` WHERE id_user='" . $login . "' ORDER BY `id` desc";
         return ($this->request($query, 1)->fetchAll());
+    }
+
+    /*
+     * get session images
+     */
+    public function getSessionImg() {
+
+        $array = $_SESSION['imageSession'];
+        foreach ($array as $e) {
+            $query = "SELECT `data`, `id` FROM `images` WHERE id='" . $e . "'";
+            $data = $this->request($query, 1)->fetchAll()[0]['data'];
+            $elem[] = $data;
+        }
+        return (array_reverse($elem));
+
     }
 
     /*

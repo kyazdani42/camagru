@@ -31,7 +31,13 @@
     </div>
 </div>
 <div class="rightNav">
-<!-- MIGHT BE A A FOREACH HERE OR AJAX HANDLER FOR CURRENT PHOTO LIST -->
+    <?php if ($array !== null) {
+        foreach($array as $e) { ?>
+            <div class="navBox">
+                <img src="data:image/png;base64,<?= base64_encode(file_get_contents($e)) ?>"/>
+            </div>
+        <?php } ?>
+    <?php } ?>
 </div>
 <script src="/public/js/webcam.js"></script>
 <script src="/public/js/image.js"></script>
