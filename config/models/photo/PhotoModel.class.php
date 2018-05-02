@@ -45,7 +45,7 @@ class PhotoModel extends Model {
         $query = "SELECT `id` FROM `images` WHERE id_user='" . $id_user . "'";
         $data = $this->request($query)->fetchAll();
         foreach ($data as $e => $key) {
-            $this->deleteImg($key);
+            $this->deleteImg($key[0]);
         }
 
     }
