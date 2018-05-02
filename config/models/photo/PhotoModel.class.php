@@ -1,4 +1,7 @@
 <?php
+/*
+ * this class handles image requests
+ */
 
 class PhotoModel extends Model {
 
@@ -11,6 +14,10 @@ class PhotoModel extends Model {
 
     }
 
+    /*
+     * gets all the images
+     */
+
     public function getAllPhotos() {
 
         $sql = "SELECT `data`, `id` FROM `images` ORDER BY `id` desc";
@@ -22,11 +29,19 @@ class PhotoModel extends Model {
 
     }
 
+    /*
+     * gets all images for one user
+     */
+
     public function getAllUsrImg() {
         $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
         $query = "SELECT `data`, `id` FROM `images` WHERE id_user='" . $login . "' ORDER BY `id` desc";
         return ($this->request($query, 1)->fetchAll());
     }
+
+    /*
+     * delete one image and all likes and comments associated
+     */
 
 	public function deleteImg($id) {
 
@@ -39,6 +54,10 @@ class PhotoModel extends Model {
 		unlink($img);
 
 	}
+
+	/*
+	 * deletes all the images for one user, and all comments and likes associated
+	 */
 
 	public function deleteAllImg($id_user) {
 

@@ -22,6 +22,10 @@ class LikeModel extends Model {
 
     }
 
+    /*
+     * gets all the likes for one user
+     */
+
     public function getLikesUser() {
 
         $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
@@ -30,12 +34,20 @@ class LikeModel extends Model {
 
     }
 
+    /*
+     * get all the likes for one image
+     */
+
     public function getLikesPhoto($photoId) {
 
         $query = "SELECT `id` FROM `infos` WHERE id_photo='" . $photoId . "' AND type='like'";
         return (self::request($query, 1)->rowCount());
 
     }
+
+    /*
+     * check if image is already liked by user, returns 0 or 1
+     */
 
     public function getFlagLike($photoId) {
 

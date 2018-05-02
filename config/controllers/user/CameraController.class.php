@@ -12,6 +12,10 @@ class CameraController extends Controller {
     public function sendPicture() {
 
         if (!$_POST || !isset($_POST['myData']) || $_POST['myData'] === "undefined" || !isset($_POST['staticData']) || empty($_POST['staticData']) || empty($_POST['myData'])) {
+            if ($this->_isAjax()) {
+                echo json_encode(array("err", "Invalid form"));
+                die();
+            }
             header("location: " . URL . "Camera");
             die();
         }
@@ -21,6 +25,10 @@ class CameraController extends Controller {
         $login = SessionController::getLogin();
         $image = new PhotoModel;
         $image->setPhoto($path, $login);
+        if ($this->_isAjax()) {
+            echo json_encode(array("data", base64_encode(file_get_contents($path))));
+            die();
+        }
         header("location: " . URL . "Camera");
 
     }
@@ -45,17 +53,28 @@ class CameraController extends Controller {
 
     }
 
+    /*
+     * gets the image from the upload
+     */
+
     public function handleFile() {
 
         if (isset($_POST)) {
             try {
                 $data = $this->_getFileData();
+                if ($this->_isAjax()) {
+                    echo json_encode(array("data", $data));
+                    die();
+                }
                 SessionController::setSession("imgContent", $data);
             } catch (Exception $e) {
+                if ($this->_isAjax()) {
+                    echo json_encode(array("err", $e->getMessage()));
+                    die();
+                }
                 SessionController::setSession("error", $e->getMessage());
             }
             header('location: ' . URL . "Camera");
-            die();
         }
 
     }
