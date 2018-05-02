@@ -19,7 +19,7 @@ if (form !== undefined) {
 	}
 }
 
-function add_comment(check, daddy) {
+let add_comment = function (check, daddy) {
 
     let lk = document.createElement("a");
     let img = document.createElement("img");
@@ -39,7 +39,7 @@ function add_comment(check, daddy) {
     div.appendChild(lk);
     daddy.insertBefore(div, daddy.firstChild);
 
-}
+};
 
 let comments = document.getElementsByClassName("comRow");
 
