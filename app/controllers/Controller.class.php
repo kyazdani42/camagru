@@ -14,5 +14,4 @@ abstract class Controller {
 		else
 			return (0);
 	}
-
 }

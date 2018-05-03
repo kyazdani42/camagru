@@ -11,7 +11,7 @@ class Rooter {
         $class = $url[0] . 'Controller';
 
         if ($url[0] === "setup.php") {
-            require BASE . "config/setup.php";
+            require_once "config/setup.php";
             header('location: ' . URL . "Home");
             die();
         }

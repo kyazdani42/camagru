@@ -21,12 +21,12 @@
     </div>
     <div class="list">
         <li>
-            <ul class="staticImg"><img src="/public/images/cartman.png" /></ul>
-            <ul class="staticImg"><img src="/public/images/Kenny.png" /></ul>
-            <ul class="staticImg"><img src="/public/images/kyle.png" /></ul>
-            <ul class="staticImg"><img src="/public/images/Butters.png" /></ul>
-            <ul class="staticImg"><img src="/public/images/stan.png" /></ul>
-            <ul class="staticImg"><img src="/public/images/Timmy.png" /></ul>
+            <ul class="staticImg"><img src="public/images/cartman.png" /></ul>
+            <ul class="staticImg"><img src="public/images/Kenny.png" /></ul>
+            <ul class="staticImg"><img src="public/images/kyle.png" /></ul>
+            <ul class="staticImg"><img src="public/images/Butters.png" /></ul>
+            <ul class="staticImg"><img src="public/images/stan.png" /></ul>
+            <ul class="staticImg"><img src="public/images/Timmy.png" /></ul>
         </li>
     </div>
 </div>
@@ -39,5 +39,5 @@
         <?php } ?>
     <?php } ?>
 </div>
-<script src="/public/js/webcam.js"></script>
-<script src="/public/js/image.js"></script>
+<script src="public/js/webcam.js"></script>
+<script src="public/js/image.js"></script>

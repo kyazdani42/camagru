@@ -21,9 +21,9 @@
                     <div class="comRow">
                         <span><?= $e['com'] ?></span>
                         <?php if ($e['check'] === 1): ?>
-                        <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img src="/public/images/crossbox.png" style="width:15px"></a>
+                        <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img src="public/images/crossbox.png" style="width:15px"></a>
                         <?php endif; ?>
-                    </div>
+                    </div>open
                     <?php } } ?>
                 </div>
             </div>
@@ -31,5 +31,4 @@
     </div>
 <?php } } ?>
 </div>
-<script src="/public/js/likeBox.js"></script>
-<script src="/public/js/commentBox.js"></script>
+<script src="public/js/homeBox.js"></script>

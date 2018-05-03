@@ -1,12 +1,11 @@
-let j;
+let i;
 let form = document.getElementsByClassName("formSend");
 const url = document.getElementsByClassName("formSend")[0].getAttribute("action").replace(/Home\/.+/, "");
-
 if (form !== undefined) {
 
-	for (j = 0; form[j]; j++) {
+	for (i = 0; form[i]; i++) {
 	
-		form[j].addEventListener("submit", (e) => {
+		form[i].addEventListener("submit", (e) => {
 			let data = new FormData(e.target);
 			let url = e.target.getAttribute("action");
 			ajax_post(url, data, function(check) {
@@ -47,7 +46,7 @@ let add_comment = function (check, daddy) {
     let span = document.createElement("span");
 
     div.setAttribute("class", "comRow");
-    img.setAttribute("src", "/public/images/crossbox.png");
+    img.setAttribute("src", "public/images/crossbox.png");
     lk.setAttribute("id", "com" + check[0].id);
     lk.setAttribute("href", url + "Home/delComment/" + check[0].id);
 
@@ -68,8 +67,28 @@ let comments = document.getElementsByClassName("comRow");
 
 if (comments !== undefined) {
 
-    for (j = 0; comments[j]; j++) comments[j].addEventListener("click", (e) => {
+    for (i = 0; comments[i]; i++) comments[i].addEventListener("click", (e) => {
             delCom(e);
         });
 
+}
+
+let heart = document.getElementsByClassName("Boxheart");
+
+if (heart !== undefined) {
+    for (i = 0; heart[i]; i++) {
+        heart[i].firstElementChild.addEventListener("click", function (e) {
+            let svg = e.target.parentNode;
+            ajax_get(url + "Home/sendLike/" + svg.getAttribute("id").split("like")[1], function (cheese) {
+                if (cheese !== undefined) {
+                    if (cheese[0] === 1) {
+                        svg.firstElementChild.setAttribute("class", "clickHeart");
+                    }
+                    else
+                        svg.firstElementChild.setAttribute("class", "heart");
+                    svg.nextElementSibling.innerHTML = cheese[1] + " Likes";
+                }
+            });
+        });
+    }
 }

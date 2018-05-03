@@ -7,4 +7,9 @@
             <ul><a href="<?= URL ?>Gallery/friends">Friends</a></ul>
         </li>
     </div>
+    <?php if ($array !== null): ?>
+    <div class="main">
+        <?php var_dump($array); ?>
+    </div>
+    <?php endif ?>
 </div>

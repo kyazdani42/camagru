@@ -1,11 +1,12 @@
 (function() {
 
-    let streaming = false,
+    var streaming = false,
         video        = document.querySelector('#video'),
+        cover        = document.querySelector('#cover'),
         canvas       = document.querySelector('#canvas'),
         photo        = document.querySelector('#photo'),
         startbutton  = document.querySelector('#startbutton'),
-        width = 300,
+        width = 320,
         height = 0;
 
     navigator.getMedia = ( navigator.getUserMedia ||
@@ -19,10 +20,10 @@
             audio: false
         },
         function(stream) {
-            if (navigator.mediaDevices.getUserMedia) {
+            if (navigator.mozGetUserMedia) {
                 video.mozSrcObject = stream;
             } else {
-                let vendorURL = window.URL || window.webkitURL;
+                var vendorURL = window.URL || window.webkitURL;
                 video.src = vendorURL.createObjectURL(stream);
             }
             video.play();
@@ -47,10 +48,7 @@
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        let data = canvas.toDataURL('image/png');
-        if (data === "data:,") {
-            return null;
-        }
+        var data = canvas.toDataURL('image/png');
         photo.setAttribute('src', data);
     }
 
@@ -60,7 +58,7 @@
             takepicture();
             ev.preventDefault();
         } else {
-            console.log('Please select an item before taking a pic')
+            alert('Please select an item before taking a pic')
         }
     }, false);
 

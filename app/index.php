@@ -33,7 +33,6 @@ require_once 'views/View.class.php';
 //Rooter
 require_once 'rooter/Rooter.class.php';
 
-define("URL", "http://192.168.99.100:8080/");
-define("BASE", "/var/www/html/");
+define("URL", "http://localhost:8080/camagru/");
 
 new Rooter();

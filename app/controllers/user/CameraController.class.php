@@ -47,9 +47,9 @@ class CameraController extends Controller {
         $defwidth = 305;
         $img = imagecreatetruecolor($defwidth, $defheight);
         imagecopyresampled($img, $img1, 0, 0, 0, 0, $defwidth, $defheight, imagesx($img1), imagesy($img1));
-        $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".png";
+        $path = "img/" . md5(rand(0, 1000)) . ".png";
         while (file_exists($path))
-            $path = "/var/www/html/img/" . md5(rand(0, 1000)) . ".png";
+            $path = "img/" . md5(rand(0, 1000)) . ".png";
         imagecopy($img, $img2, 0, $defheight - imagesy($img2), 0, 0, imagesx($img2), imagesy($img2));
         imagepng($img, $path);
         imagedestroy($img);

@@ -47,7 +47,7 @@ class RegisterController extends Controller {
     {
         $to = $array['email'];
         $subject = 'Signup | Verification';
-        $message = 'Thanks for signing up! You can login after you have activated your account by following this link: http://192.168.99.100:8080/Register/verify/'. $array['hash'];
+        $message = 'Thanks for signing up! You can login after you have activated your account by following this link: ' . URL . 'Register/verify/'. $array['hash'];
         mail($to, $subject, $message);
     }
 

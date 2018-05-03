@@ -2,14 +2,19 @@
 
 class GalleryController extends Controller {
 
-    public function display() {
+    public function display($data = null) {
         parent::__construct();
-        $this->_view->render("gallery", "Gallery");
+        $this->_view->render("gallery", "Gallery", 0, $data);
     }
 
     public function photos() {
         $model = new PhotoModel();
-        echo $model->getAllUsrImg();
+        $data = $model->getAllUsrImg();
+        if ($this->_isAjax()) {
+            var_dump(json_encode($data));
+            die();
+        }
+        $this->display($data);
     }
 
 }
