@@ -2,9 +2,9 @@
 
 class AccountController extends Controller {
 
-    public function display () {
+    public function display ($array = null) {
         parent::__construct();
-        $this->_view->render('account', 'Parameters');
+        $this->_view->render('account', 'Parameters', 0, $array);
     }
 
     public function modLog() {
@@ -53,6 +53,19 @@ class AccountController extends Controller {
         header('location: ' . URL . 'Account');
 
 	}
+
+	public function getMailCheck() {
+
+        $db = new UserModel();
+        return ($db->checkMail());
+
+    }
+
+    public function setMailCheck() {
+
+
+
+    }
 
 	/*
 	 * delete one photo and all comments/likes associated with it

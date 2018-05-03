@@ -42,4 +42,16 @@ class UserModel extends Model {
 
     }
 
+    /*
+     * checks if mail must be sent to user when receiving comment on a photo
+     */
+
+    public function checkMail() {
+
+        $login = SessionController::getLogin();
+        $query = "SELECT `check` FROM `user` WHERE login='" . $login . "'";
+        return ($this->request($query, 1)->fetchAll()[0]['check']);
+
+    }
+
 }

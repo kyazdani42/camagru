@@ -1,16 +1,17 @@
 <?php
 if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
-    <script language="Javascript">
-        alert("<?= htmlspecialchars($_SESSION['error']) ?>");
+    <script language="javascript">
 
-//        const obj = document.createElement("div");
-//        const doc = document.getElementsByTagName("body")[0];
-//        obj.className = "errorPopup";
-//        obj.innerHtml = "<span><?//= $_SESSION['error'] ?>//</span>";
-//        doc.appendChild(obj);
-//        setTimeout(function () {
-//            obj.remove();
-//        }, 5000);
+        let ob = document.createElement("div");
+        let span = document.createElement("span");
+        let doc = document.getElementsByTagName("body")[0];
+        ob.className = "errorPopup";
+        span.innerHTML = "<?= $_SESSION['error'] ?>";
+        ob.appendChild(span);
+        doc.insertBefore(ob, doc.firstElementChild);
+        setTimeout(function () {
+            ob.remove();
+        }, 4000);
 
     </script>
 <?php unset($_SESSION['error']); } ?>

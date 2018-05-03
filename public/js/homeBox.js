@@ -11,7 +11,10 @@ if (form !== undefined) {
 			ajax_post(url, data, function(check) {
 				let daddy = e.target.nextElementSibling;
 				e.target.firstElementChild.value = "";
-				add_comment(check, daddy);
+				if (check[0] === 'error') {
+
+                } else
+				    add_comment(check, daddy);
 			});
 		e.preventDefault();
 		});

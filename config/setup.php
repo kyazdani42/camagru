@@ -5,7 +5,8 @@ $query = "CREATE TABLE `user` (id int unsigned AUTO_INCREMENT PRIMARY KEY NOT NU
 login VARCHAR(255) NOT NULL default '', 
 password VARCHAR(255) NOT NULL default '', 
 email VARCHAR(255) NOT NULL default '', 
-`active` binary(1) NOT NULL default '0', 
+`active` binary(1) NOT NULL default '0',
+`check` binary(1) NOT NULL default '1',
 `hash` VARCHAR(128));";
 
 $query2 = "CREATE TABLE `images` (id int unsigned AUTO_INCREMENT PRIMARY KEY NOT NULL,

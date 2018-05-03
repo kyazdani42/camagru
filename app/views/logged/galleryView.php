@@ -1,15 +1,12 @@
 <div class="gallery">
-    <div class="accountNav">
-        <li>
-            <ul><a href="<?= URL ?>Gallery/photos">Photos</a></ul>
-            <ul><a href="<?= URL ?>Gallery/comments">Comments</a></ul>
-            <ul><a href="<?= URL ?>Gallery/likes">Likes</a></ul>
-            <ul><a href="<?= URL ?>Gallery/friends">Friends</a></ul>
-        </li>
-    </div>
     <?php if ($array !== null): ?>
     <div class="main">
-        <?php var_dump($array); ?>
+        <?php foreach($array as $e => $key) { ?>
+        <div class="container">
+            <a href="<?= URL ?>Gallery/delete/" <?= $key['id_photo'] ?>>
+            <img src="data:image/png;base64,<?= base64_encode(file_get_contents($key['data'])) ?>"
+            </a>
+        </div>
     </div>
-    <?php endif ?>
+    <?php } endif ?>
 </div>
