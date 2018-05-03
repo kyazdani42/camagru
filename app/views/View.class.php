@@ -25,12 +25,12 @@ class View {
     private function _fileRights($filename) {
 
         if (SessionController::getLogin() === null || SessionController::getLogin() === "") {
-            if (!file_exists('config/views/visitor/' . $filename . 'View.php')) {
+            if (!file_exists('app/views/visitor/' . $filename . 'View.php')) {
                 header('location: ' . URL . 'Home');
             } else {
                 $filename = 'visitor/' . $filename;
             }
-        } else if (file_exists('config/views/logged/' . $filename . 'View.php')){
+        } else if (file_exists('app/views/logged/' . $filename . 'View.php')){
             $filename = 'logged/' . $filename;
         } else {
             header('location: ' . URL . 'Home');

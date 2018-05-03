@@ -4,12 +4,17 @@ class Rooter {
 
     private $_controller;
 
-    public function __construct()
-    {
+    public function __construct() {
 
         $url = explode('/', rtrim($_GET['url'], '/'));
 
         $class = $url[0] . 'Controller';
+
+        if ($url[0] === "setup.php") {
+            require BASE . "config/setup.php";
+            header('location: ' . URL . "Home");
+            die();
+        }
 
         if (class_exists($class) && $url[0]) {
             $this->_controller = new $class;
