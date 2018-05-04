@@ -4,7 +4,10 @@ class AccountController extends Controller {
 
     public function display ($array = null) {
         parent::__construct();
-        $this->_view->render('account', 'Parameters', 0, $array);
+        if ($array === null) {
+            $array = $this->_getMailCheck();
+        }
+        $this->_view->render('account', 'Settings', 0, $array);
     }
 
     public function modLog() {
@@ -54,16 +57,23 @@ class AccountController extends Controller {
 
 	}
 
-	public function getMailCheck() {
+	protected function _getMailCheck() {
 
         $db = new UserModel();
-        return ($db->checkMail());
+        $value = $db->getMail();
+        return (array('check' => $value));
 
     }
 
     public function setMailCheck() {
 
-
+        $db = new UserModel();
+        $val = $db->setMail();
+        if ($this->_isAjax()) {
+            echo json_encode(array("ok" => $val));
+            die();
+        }
+        header('location: ' . URL . "Account");
 
     }
 

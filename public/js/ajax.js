@@ -1,3 +1,5 @@
+'use strict';
+
 function ajax_post(url, elem = null, callback) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);

@@ -11,7 +11,7 @@ class LoginController extends Controller {
 		
         $user = new UserModel();
         try {
-            $user::connect($_POST['login'], $_POST['password']);
+            $user->connect($_POST['login'], $_POST['password']);
             SessionController::setLogin($_POST['login']);
             header('Location: ' . URL . 'Home');
         } catch (Exception $e) {

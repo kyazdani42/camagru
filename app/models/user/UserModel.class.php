@@ -2,7 +2,7 @@
 
 class UserModel extends Model {
 
-    public static function connect( $login, $password ) {
+    public function connect( $login, $password ) {
 
         $tmpLogin = $login;
         $tmpPass = hash('whirlpool', $password);
@@ -32,13 +32,13 @@ class UserModel extends Model {
 
 		$login = SessionController::getLogin();
 		$query = "SELECT `id` FROM `user` WHERE login='" . $login . "'";
-		$id_user = $this->request($query)->fetchAll()[0]['id'];
+		$id_user = self::request($query)->fetchAll()[0]['id'];
 		$queryInfo = "DELETE FROM `infos` WHERE id_user='" . $id_user . "'";
-		$this->request($queryInfo);
+		self::request($queryInfo);
 		$photo = new PhotoModel();
 		$photo->deleteAllImg($id_user);
 		$query = "DELETE FROM `user` WHERE login='" . $login . "'";
-		$this->request($query, 1);
+		self::request($query, 1);
 
     }
 
@@ -46,11 +46,25 @@ class UserModel extends Model {
      * checks if mail must be sent to user when receiving comment on a photo
      */
 
-    public function checkMail() {
+    public function getMail() {
 
         $login = SessionController::getLogin();
         $query = "SELECT `check` FROM `user` WHERE login='" . $login . "'";
-        return ($this->request($query, 1)->fetchAll()[0]['check']);
+        return (self::request($query, 1)->fetchAll()[0]['check']);
+
+    }
+
+    public function setMail() {
+
+        $login = SessionController::getLogin();
+        if ($this->getMail() === '0') {
+            $val = '1';
+        } else {
+            $val = '0';
+        }
+        $query = "UPDATE `user` SET `check` = '" . $val . "' WHERE login='" . $login . "'";
+        self::request($query, 1);
+        return ($val);
 
     }
 
