@@ -11,7 +11,7 @@
             <input id="registerPass" type="password" name="password"/><br/>
             <label for="registerMail">Enter your email</label>
             <input id="registerMail" type="email" name="email"/><br/>
-            <input type="submit" name="submit" />
+            <input id="submitBox" type="submit" name="submit" />
         </form>
     </div>
     <div class="registerHome">

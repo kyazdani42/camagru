@@ -9,7 +9,7 @@
             <input id="loginName" type="text" name="login"/><br/>
             <label for="loginPass">password</label>
             <input id="loginPass" type="password" name="password"/><br/>
-            <input type="submit" name="submit" value="Sign in" />
+            <input id="submitBox" type="submit" name="submit" value="Sign in" />
         </form>
     </div>
     <div class="loginHome">

@@ -110,10 +110,14 @@ style login
 	height:310px;
 }
 .loginBox form, .registerBox form {
+	height: 290px;
 	padding-top:7px;
 	display:flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
+}
+.loginBox form {
+	height:220px;
 }
 .loginBox input, .registerBox input {
 	border:1px solid #cccccc;
@@ -130,6 +134,9 @@ style login
 }
 .loginBox input:focus, .registerBox input:focus {
 	border:1px solid #110466;
+	-webkit-box-shadow: 0 0 5px 2px #4977ff;
+	-moz-box-shadow:  0 0 5px 2px #4977ff;
+	box-shadow:  0 0 5px 2px #4977ff;
 }
 .loginBox label, .registerBox label {
 	text-align: left;
@@ -137,7 +144,7 @@ style login
 	margin-bottom: 3px;
 	font-weight:500;
 }
-.loginBox input:nth-last-child(1), .registerBox input:nth-last-child(1) {
+#submitBox {
 	background-color: #99e0ff;
 	color: #FFFFFF;
 	-webkit-box-shadow: none;
@@ -145,7 +152,7 @@ style login
 	box-shadow: none;
 	border:1px solid #8ccfff;
 }
-.loginBox input:nth-last-child(1):hover, .registerBox input:nth-last-child(1):hover {
+#submitBox:hover {
 	background-color: #8ccfff;
 	border: 1px solid #999fff;
 }
