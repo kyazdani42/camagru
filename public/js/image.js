@@ -1,3 +1,5 @@
+'use strict';
+
 let photo = document.querySelector("#staticPhoto");
 let elem = document.getElementsByClassName("staticImg");
 let i;
@@ -39,7 +41,7 @@ let getImg = (img, check) => {
     else
         data2 = canvas.toDataURL("image/gif");
     return (data2);
-}
+};
 
 let getData = () => {
     let img = document.querySelector("#staticPhoto");
@@ -47,7 +49,7 @@ let getData = () => {
     let data = document.querySelector("#photo").getAttribute("src").replace(/^data:image\/(png|jpg|jpeg|gif);base64,/, "");
     document.querySelector("#staticData").setAttribute("value", data2);
     return (data);
-}
+};
 
 let sendForm = document.querySelector("#cameraForm");
 sendForm.addEventListener("submit", (e) => {
