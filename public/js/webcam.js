@@ -42,7 +42,7 @@
     }
 
     startbutton.addEventListener('click', function(ev){
-        let stat = document.querySelector("#staticPhoto");
+        let stat = document.querySelector("#staticVideo");
         if (stat.getAttribute("src") !== null && stat.getAttribute("src") !== "") {
             takePicture();
             ev.preventDefault();

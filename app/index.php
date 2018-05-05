@@ -34,5 +34,6 @@ require_once 'views/View.class.php';
 require_once 'rooter/Rooter.class.php';
 
 define("URL", "http://localhost:8080/camagru/");
+date_default_timezone_set('UTC');
 
 new Rooter();

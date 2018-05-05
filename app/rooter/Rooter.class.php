@@ -16,7 +16,7 @@ class Rooter {
             die();
         }
 
-        if (class_exists($class) && $url[0]) {
+        if (class_exists($class) && $url[0] && $url[0] !== "Session") {
             $this->_controller = new $class;
         } else {
             header('location: ' . URL . 'Home');

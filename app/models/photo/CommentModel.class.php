@@ -53,4 +53,24 @@ class CommentModel extends Model {
 
     }
 
+    public function checkUserComment($login, $id_photo) {
+
+        $query = "SELECT `check` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id='" . $id_photo . "'";
+        if (self::request($query)->fetchAll()[0]['check']) {
+            $query = "SELECT `id_user` FROM `images` WHERE id='" . $id_photo . "'";
+            $id = self::request($query)->fetchAll()[0]['id_user'];
+            $query = "SELECT `id` FROM `user` WHERE id='" . $id . "' AND login='" . $login . "'";
+            return (self::request($query)->rowCount());
+        } else
+            return (1);
+
+    }
+
+    public function getMailUsr($id_photo) {
+
+        $query = "SELECT `email` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id='" . $id_photo . "'";
+        return (self::request($query, 1)->fetchAll()[0]['email']);
+
+    }
+
 }

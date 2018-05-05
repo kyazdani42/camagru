@@ -1,12 +1,22 @@
+<noscript>
+    <div><p>this page needs javascript to work</p></div>
+    <style>
+        .mainCam{ display: none; }
+        .rightNav{ display: none; }
+    </style>
+</noscript>
 <div class="mainCam">
     <div class="pictures">
-        <video id="video"></video>
+        <div id="videoBox">
+            <video id="video"></video>
+            <img id="staticVideo">
+        </div>
         <canvas id="canvas" style="display:none"></canvas>
         <div class="output">
             <img id=staticPhoto>
             <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/png;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         </div>
-        <button id="startbutton">Prendre une photo</button>
+        <button id="startbutton">Take a pic !</button>
     </div>
     <div class="forms">
         <form action="<?= URL ?>Camera/handleFile" enctype="multipart/form-data" id="form" method="POST">

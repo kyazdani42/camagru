@@ -1,6 +1,6 @@
 'use strict';
 
-let photo = document.querySelector("#staticPhoto");
+let photo = document.querySelector("#staticVideo");
 let elem = document.getElementsByClassName("staticImg");
 let i;
 
@@ -9,6 +9,16 @@ for (i = 0; i < elem.length; i++) elem[i].addEventListener("click", (e) => {
     if (e.target.getAttribute("src") !== null) {
         let data = getImg(e.target, "png");
         photo.setAttribute("src", data);
+    }
+
+});
+
+let button = document.querySelector("#startbutton");
+button.addEventListener("click", (e) => {
+
+    if (photo.getAttribute("src") !== null) {
+        let el = photo.getAttribute("src");
+        document.querySelector("#staticPhoto").setAttribute("src", el)
     }
 
 });
@@ -64,6 +74,7 @@ sendForm.addEventListener("submit", (e) => {
             alert(dataGet[1]);
         else if (dataGet[0] === "data") {
             document.querySelector("#staticPhoto").removeAttribute("src");
+            document.querySelector("#staticVideo").removeAttribute("src");
             document.querySelector("#photo").setAttribute("src", "");
             let div = document.createElement("div");
             let img = document.createElement("img");

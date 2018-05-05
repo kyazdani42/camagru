@@ -44,10 +44,11 @@ class HomeController extends Controller {
             $check = $this->_objCom->checkComment($key['id']);
             $array[] = array('com' => $key['content'], 'id' => $key['id'], "check" => $check);
         }
-		if (self::_isAjax())
-			echo json_encode($array);
-		else
-        	return ($array);
+		if (self::_isAjax()) {
+            echo json_encode($array);
+            die();
+        }
+		return ($array);
 		
     }
 
@@ -64,6 +65,9 @@ class HomeController extends Controller {
             	$this->_objCom = new CommentModel();
            		$data = $_POST['comment'];
             	$id = $this->_objCom->setComment($id_photo, $data);
+            	if (!$this->_objCom->checkUserComment(SessionController::getLogin(), $id_photo)) {
+               	    $this->_sendMail($data, date('l j F Y h:i:s'), $this->_objCom->getMailUsr($id_photo));
+                }
             	$array = array("data" => $data, "id" => $id);
 				if (self::_isAjax()) {
 					echo json_encode(array($array));
@@ -77,6 +81,14 @@ class HomeController extends Controller {
 		}
         header('location: ' . URL . 'Home');
 
+    }
+
+    protected function _sendMail($comment, $date, $mail) {
+
+        $user = SessionController::getLogin();
+        $subject = 'Someone has commented your pic !';
+        $message = "Hello ! User " . $user . " commented your pic on " . $date . " UTC. He said '" . $comment . "'";
+        mail($mail, $subject, $message);
     }
 
     public function sendLike($id_photo) {

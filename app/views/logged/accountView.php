@@ -6,12 +6,12 @@
     </form>
 
     <form action="<?= URL ?>Account/modPass" method="post">
-        <input type="text" name="newPass" value="">
+        <input type="password" name="newPass" value="">
         <input type="submit" value="Change your password">
     </form>
 
     <form action="<?= URL ?>Account/modEmail" method="post">
-        <input type="text" name="newEmail" value="">
+        <input type="email" name="newEmail" value="">
         <input type="submit" value="Change your email">
     </form>
 

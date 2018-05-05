@@ -21,4 +21,12 @@ class LoginController extends Controller {
 
     }
 
+    public function getPass($login) {
+
+        /*
+         * here, implementation of changing password via reset mail
+         */
+
+    }
+
 }
