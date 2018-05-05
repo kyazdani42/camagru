@@ -171,3 +171,6 @@ style login
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+.loginHome {
+	height:90px;
+}

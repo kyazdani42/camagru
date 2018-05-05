@@ -15,6 +15,7 @@
     <div class="loginHome">
         <span>New to camagru ? <a href="<?= URL ?>Register">Create an account.</a></span>
         <a href="<?= URL ?>Home">Back to Home page</a>
+        <a href="<?= URL ?>Reset">Reset your password.</a>
     </div>
 </div>
 </body>
