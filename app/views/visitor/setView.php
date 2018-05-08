@@ -1,7 +1,7 @@
 <body>
 <div class="setMain">
     <div class="setBox">
-        <form action="<?= URL ?>Reset/send" method="POST">
+        <form action="<?= URL ?>set/update/<?= $array['login'] ?>" method="POST">
             <label for="setPass">new password</label>
             <input id="setPass" type="password" name="setPass"/>
             <label for="confirmPass">Re-enter your password</label>

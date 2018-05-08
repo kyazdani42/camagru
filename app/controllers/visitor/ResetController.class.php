@@ -12,28 +12,21 @@ class ResetController extends Controller
 
         if (isset($_POST['email']) && !empty($_POST['email'])) {
 
-            $hash = md5(rand(0, 1000)) . preg_replace("/@.+/", "", $_POST['email']);
-            //SET HASH IN DATABASE >> CHECK IF HASH DOESNT EXIST YET
-            $msg = "click this link if you want to reset your password: " . URL . "Reset/changePass/" . $hash;
+            $model = new UserModel();
+            if (($hash = $model->setHash($_POST['email'])) === null) {
+                SessionController::setSession("error", "please validate your email");
+                header('location: ' . URL . 'Home');
+                die();
+            }
+            $msg = "click this link if you want to reset your password: " . URL . "Set/checkPass/" . $hash;
             $mail = $_POST['email'];
-
+            $subject = "Camagru - Reset password";
+            mail($mail, $subject, $msg);
             SessionController::setSession("valid", "A mail has been sent to your box");
             header('location: ' . URL . "Home");
+            die();
         }
         header('location: ' . URL . "Reset");
-    }
-
-    public function changePass($hash = null) {
-
-        if ($hash === null) {
-            header('location: ' . URL . "Home");
-        }
-        $obj = new UserModel();
-        if (($login = $obj->checkHash($hash)) !== null) {
-            header('location: ' . URL . "Set/setPass/" . $login);
-        }
-        // check if hash corresponds to an account > if yes send reset form else redirect to home
-
     }
 
 }

@@ -22,6 +22,7 @@ require_once "controllers/HomeController.class.php";
 require_once "controllers/visitor/LoginController.class.php";
 require_once "controllers/visitor/RegisterController.class.php";
 require_once "controllers/visitor/ResetController.class.php";
+require_once "controllers/visitor/SetController.class.php";
 
 require_once "controllers/user/CameraController.class.php";
 require_once "controllers/user/AccountController.class.php";

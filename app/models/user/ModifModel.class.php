@@ -37,5 +37,14 @@ class ModifModel extends Model {
             self::request($query, 1);
         }
     }
+
+    public function resetPass($newPassword, $login) {
+        if (strlen($newPassword) < 8) {
+            throw new Exception("password must contain at least 8 characters");
+        }
+        $new = hash('whirlpool', $newPassword);
+        $query = "UPDATE `user` SET password='" . $new . "' WHERE login='" . $login . "'";
+        self::request($query, 1);
+    }
 	
 }

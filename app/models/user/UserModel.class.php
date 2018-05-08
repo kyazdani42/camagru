@@ -79,4 +79,18 @@ class UserModel extends Model {
 
     }
 
+    public function setHash($mail) {
+
+        $hash = md5(rand(0, 1000)) . preg_replace("/@.+/", "", $mail);
+        while ($this->checkHash($hash) !== null) {
+            $hash = md5(rand(0, 1000)) . preg_replace("/@.+/", "", $mail);
+        }
+        $query = "SELECT `active` FROM `user` WHERE email='" . $mail . "'";
+        if (self::request($query, 1)->fetchAll()[0]['active'] === 0) {
+            return (null);
+        }
+        $query = "UPDATE `user` SET `hash`='" . $hash . "' WHERE email='" . $mail . "'";
+        self::request($query, 1);
+        return ($hash);
+    }
 }
