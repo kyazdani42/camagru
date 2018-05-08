@@ -68,4 +68,15 @@ class UserModel extends Model {
 
     }
 
+    public function checkHash($hash) {
+
+        $query = "SELECT `login` FROM `user` WHERE hash='" . $hash . "'";
+        if (($mail = self::request($query, 1))->rowCount() === 1) {
+            return ($mail->fetchAll()[0]['login']);
+        } else {
+            return (null);
+        }
+
+    }
+
 }

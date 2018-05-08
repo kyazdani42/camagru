@@ -84,7 +84,7 @@ statics
 /*
 style login
  */
-.loginMain, .registerMain {
+.loginMain, .registerMain, .resetMain {
 	margin:auto;
 	margin-top:10%;
 	width:300px;
@@ -173,4 +173,25 @@ style login
 }
 .loginHome {
 	height:90px;
+}
+
+.resetBox {
+	padding: 50px;
+	height: 120px;
+	width:240px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.resetBox input {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	margin:5px;
+	height: 25px;
+	width: 180px;
+}
+#resetMail {
+    display: block;
+	width:220px;
 }
