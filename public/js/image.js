@@ -2,39 +2,9 @@
 
 let photo = document.querySelector("#staticVideo");
 let elem = document.getElementsByClassName("staticImg");
-let i;
-
-for (i = 0; i < elem.length; i++) elem[i].addEventListener("click", (e) => {
-
-    if (e.target.getAttribute("src") !== null) {
-        let data = getImg(e.target, "png");
-        photo.setAttribute("src", data);
-    }
-
-});
-
+let sendForm = document.querySelector("#cameraForm");
 let button = document.querySelector("#startbutton");
-button.addEventListener("click", (e) => {
-
-    if (photo.getAttribute("src") !== null) {
-        let el = photo.getAttribute("src");
-        document.querySelector("#staticPhoto").setAttribute("src", el)
-    }
-
-});
-
-let ajaxform = document.querySelector("#form");
-ajaxform.addEventListener("submit", (e) => {
-    let data = new FormData(e.target);
-    ajax_post(e.target.getAttribute("action"), data, (ret) => {
-        if (ret[0] === "data")
-            document.querySelector("#photo").setAttribute("src", "data:image/png;base64," + ret[1]);
-        else if (ret[0] === "err")
-            alert(ret[1]);
-    });
-
-    e.preventDefault();
-});
+let i;
 
 let getImg = (img, check) => {
     let canvas = document.createElement("canvas");
@@ -61,7 +31,45 @@ let getData = () => {
     return (data);
 };
 
-let sendForm = document.querySelector("#cameraForm");
+for (i = 0; i < elem.length; i++) elem[i].addEventListener("click", (e) => {
+
+    if (e.target.getAttribute("src") !== null) {
+        let data = getImg(e.target, "png");
+        photo.setAttribute("src", data);
+    }
+
+});
+
+button.addEventListener("click", (e) => {
+
+    if (photo.getAttribute("src") !== null) {
+        let el = photo.getAttribute("src");
+        document.querySelector("#staticPhoto").setAttribute("src", el)
+    }
+
+});
+
+document.querySelector("#form").addEventListener("submit", (e) => {
+
+    if (photo.getAttribute("src") !== null) {
+        let data = new FormData(e.target);
+        ajax_post(e.target.getAttribute("action"), data, (ret) => {
+            if (ret[0] === "data") {
+                document.querySelector("#photo").setAttribute("src", "data:image/png;base64," + ret[1]);
+                document.querySelector("#staticPhoto").setAttribute("src", photo.getAttribute("src"));
+            }
+            else if (ret[0] === "err")
+                alert(ret[1]);
+
+        });
+    } else {
+        alert("please select a character before uploading");
+    }
+    e.preventDefault();
+});
+
+
+
 sendForm.addEventListener("submit", (e) => {
     let content = getData();
     let sendData = new FormData(e.target);
