@@ -42,7 +42,7 @@ class HomeController extends Controller {
         $array = array();
         foreach ($obj as $e => $key) {
             $check = $this->_objCom->checkComment($key['id']);
-            $array[] = array('com' => $key['content'], 'id' => $key['id'], "check" => $check);
+            $array[] = array('com' => $key['content'], 'id' => $key['id'], "check" => $check, "date" => $key['date'], "login" => $key['login']);
         }
 		if (self::_isAjax()) {
             echo json_encode($array);
@@ -68,7 +68,7 @@ class HomeController extends Controller {
             	if (!$this->_objCom->checkUserComment(SessionController::getLogin(), $id_photo)) {
                	    $this->_sendMail($data, date('l j F Y h:i:s'), $this->_objCom->getMailUsr($id_photo));
                 }
-            	$array = array("data" => $data, "id" => $id);
+            	$array = array("data" => $data, "id" => $id, "login" => SessionController::getLogin(), "date" => date("U"));
 				if (self::_isAjax()) {
 					echo json_encode(array($array));
 					die();

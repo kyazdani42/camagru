@@ -19,10 +19,30 @@
                 <div class="comBox">
                     <?php if ($key['comments'] !== null) { foreach ($key['comments'] as $e) { ?>
                     <div class="comRow">
-                        <span><?= $e['com'] ?></span>
+                        <div class="commentTime">
+                        <?php
+                        $date1 = strtotime(date("Y-m-d H:i:s"));
+                        $date2 = strtotime($e['date']);
+                        $secs = $date1 - $date2;
+                        if ($secs < 60)
+                            echo $secs . " seconds ago";
+                        else if ($secs < 3600)
+                            echo floor($secs / 60) . " minutes ago";
+                        else if ($secs < 86400)
+                            echo floor($secs / 3600) . " hours ago";
+                        else
+                            echo floor($secs / 86400) . " days ago";
+                        ?>
+                        </div>
+                        <div class="commentLogin">
+                            <?= "By " . $e['login'] ?>
+                        </div>
+                        <div class="commentContent">
+                        <?= $e['com'] ?>
                         <?php if ($e['check'] === 1): ?>
-                        <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img src="public/images/crossbox.png" style="width:15px"></a>
+                            <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img src="public/images/crossbox.png" style="width:15px"></a>
                         <?php endif; ?>
+                        </div>
                     </div>
                     <?php } } ?>
                 </div>

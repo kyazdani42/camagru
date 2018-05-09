@@ -17,7 +17,8 @@ $query3 = "CREATE TABLE `infos` (id int unsigned AUTO_INCREMENT PRIMARY KEY NOT 
 `type` ENUM('comment', 'like'),
 `content` VARCHAR(255),
 id_user tinyint(4) NOT NULL,
-id_photo tinyint(4) NOT NULL);";
+id_photo tinyint(4) NOT NULL,
+`date` DATETIME);";
 
 $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 try {

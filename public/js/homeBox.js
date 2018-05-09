@@ -36,7 +36,7 @@ if (ur !== undefined) {
                     if (confirm("Do you want to delete this comment ?") === true) {
                         ajax_get(url + "Home/delComment/" + id, function (toDel) {
                             if (toDel !== 0) {
-                                let el = document.getElementById("com" + toDel).parentNode;
+                                let el = document.getElementById("com" + toDel).parentNode.parentNode;
                                 el.parentNode.removeChild(el);
                             }
                         });
@@ -45,26 +45,38 @@ if (ur !== undefined) {
             });
         }
         e.preventDefault();
-    }
+    };
 
     let add_comment = function (check, daddy) {
 
         let lk = document.createElement("a");
         let img = document.createElement("img");
         let div = document.createElement("div");
-        let span = document.createElement("span");
+        let divContent = document.createElement("div");
+        let divLogin = document.createElement("div");
+        let divTime = document.createElement("div");
+        let now = new Date().getTime() / 1000;
 
         div.setAttribute("class", "comRow");
+        divLogin.setAttribute("class", "commentLogin");
+        divTime.setAttribute("class", "commentTime");
+        divContent.setAttribute("class", "commentContent");
         img.setAttribute("src", "public/images/crossbox.png");
         lk.setAttribute("id", "com" + check[0].id);
         lk.setAttribute("href", url + "Home/delComment/" + check[0].id);
 
-        span.innerHTML = check[0].data;
+        divContent.innerHTML = check[0].data;
+        divLogin.innerHTML = `By ` + check[0].login;
+        let time = Math.floor(now - check[0].date);
+        divTime.innerHTML = time + ` seconds ago`;
+
         img.style.width = "15px";
 
         lk.appendChild(img);
-        div.appendChild(span);
-        div.appendChild(lk);
+        divContent.appendChild(lk);
+        div.appendChild(divTime);
+        div.appendChild(divLogin);
+        div.appendChild(divContent);
         div.addEventListener("click", (e) => {
             delCom(e);
         });

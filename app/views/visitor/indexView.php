@@ -11,9 +11,29 @@
             <div class="containerComments">
                 <div class="comBox">
                     <?php if ($key['comments'] !== null) { foreach ($key['comments'] as $e) { ?>
-                    <span>
+                    <div class="comRow">
+                    <div class="commentTime">
+                        <?php
+                        $date1 = strtotime(date("Y-m-d H:i:s"));
+                        $date2 = strtotime($e['date']);
+                        $secs = $date1 - $date2;
+                        if ($secs < 60)
+                            echo $secs . " seconds ago";
+                        else if ($secs < 3600)
+                            echo floor($secs / 60) . " minutes ago";
+                        else if ($secs < 86400)
+                            echo floor($secs / 3600) . " hours ago";
+                        else
+                            echo floor($secs / 86400) . " days ago";
+                        ?>
+                    </div>
+                    <div class="commentLogin">
+                        <?= "By " . $e['login'] ?>
+                    </div>
+                    <div class="commentContent">
                         <?= $e['com'] ?>
-                    </span>
+                    </div>
+                    </div>
                     <?php } } ?>
                 </div>
             </div>

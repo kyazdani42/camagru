@@ -50,6 +50,7 @@ class PhotoModel extends Model {
         if ($array === null) {
             return (null);
         }
+        $elem = array();
         foreach ($array as $e) {
             $query = "SELECT `data`, `id` FROM `images` WHERE id='" . $e . "'";
             $data = self::request($query, 1)->fetchAll()[0]['data'];
