@@ -153,13 +153,15 @@ style login
 }
 /* header  */
 header {
+	z-index: 1;
+	background-color: #eeeeee;
 	position:fixed;
 	width:100%;
 	margin-top:0;
-	background-color: #99e0ff;
+	border-bottom: 1px solid #1930ff;
 }
 .main, .mainCam, .contentAccount {
-	padding-top:120px;
+	padding-top:130px;
 }
 .content {
 	height:50px;
@@ -171,16 +173,27 @@ header {
 	text-align:center;
 }
 .top-navbar {
-	height: 40px;
-	background-color: #77b0ff;
+	height: 50px;
 }
 .navbar {
 	width: 60%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	margin:auto;
 }
 .navbar > a {
-	color: #eeeeee;
+	width: 100px;
+	height: 40px;
+	padding-top: 10px;
+	text-align: center;
+	text-shadow:none;
+	color: #222222;
 	font-size:1.3em;
+}
+.navbar > a:hover {
+	color: #111111;
+	background-color: #99e0ff;
+}
+.navbar > a:active {
+	background-color: #99e0ff;
 }
