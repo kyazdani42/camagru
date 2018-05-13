@@ -12,10 +12,6 @@
                 <span class="countLike"><?= $key['likes'] ?> Likes</span>
             </div>
             <div class="containerComments">
-				<form action="<?= URL ?>Home/sendComment/<?= $key['id_photo'] ?>" class="formSend" id="form<?= $key['id_photo']?>" method="post">
-					<textarea name="comment" placeholder="Write a comment" maxlength="255"></textarea>
-					<input type="submit" value="send">
-                </form>
                 <div class="comBox">
                     <?php if ($key['comments'] !== null) { foreach ($key['comments'] as $e) { ?>
                     <div class="comRow">
@@ -46,6 +42,10 @@
                     </div>
                     <?php } } ?>
                 </div>
+				<form action="<?= URL ?>Home/sendComment/<?= $key['id_photo'] ?>" class="formSend" id="form<?= $key['id_photo']?>" method="post">
+					<textarea name="comment" placeholder="Write a comment" maxlength="255"></textarea>
+					<input type="submit" value="send">
+                </form>
             </div>
         </div>
     </div>

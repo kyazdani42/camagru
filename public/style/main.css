@@ -197,3 +197,24 @@ header {
 .navbar > a:active {
 	background-color: #99e0ff;
 }
+
+/* boxes home */
+.main {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 10px;
+}
+.container {
+	border: 1px solid #1930ff;
+	width: 305px;
+	background-color: #ffffff;
+}
+
+.comRow {
+	display: flex;
+	flex-direction: row;
+	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}

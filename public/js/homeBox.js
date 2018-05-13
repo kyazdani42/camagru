@@ -15,7 +15,7 @@ if (ur !== undefined) {
                 let data = new FormData(e.target);
                 let url = e.target.getAttribute("action");
                 ajax_post(url, data, function (check) {
-                    let daddy = e.target.nextElementSibling;
+                    let daddy = e.target.parentNode.firstElementChild;
                     e.target.firstElementChild.value = "";
                     if (check[0] === 'error') {
 
