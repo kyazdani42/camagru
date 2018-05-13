@@ -5,6 +5,8 @@ body {
 	font-family: "Avenir";
 	font-size:1em;
 	background-color: #eeeeee;
+	padding:0;
+	margin:0;
 }
 h1, h2 {
 	font-family:"PT Sans";
@@ -13,58 +15,13 @@ a {
 	color: #4977ff;
 	text-decoration: none;
 }
+input, textarea {
+	background-color: #ffffff;
+	color: black;
+}
 a:hover {
 	text-shadow: 0 0 1px #99e0ff;
 }
-/* Heart */
-.Boxheart {
-	align-self: center;
-}
-
-.clickHeart {
-	background-color:red;
-}
-.heart {
-	background-color:black;
-}
-.clickHeart, .heart {
-	position: relative;
-	width:10px;
-	height:10px;
-}
-.clickHeart:after, .clickHeart:before {
-	background-color: red;
-}
-.heart:after, .heart:before {
-	background-color:black;
-}
-
-.clickHeart:after, .heart:after, .clickHeart:before, .heart:before {
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	content: '';
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-}
-.clickHeart, .heart {
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-.clickHeart:before, .heart:before {
-	bottom: 0;
-	left: -5px;
-}
-.clickHeart:after, .heart:after {
-	top: -5px;
-	right: 0;
-}
-.heart:hover, .clickHeart:hover {
-	opacity:0.7;
-}
-/* /Heart/ */
 /*
 statics
  */
@@ -86,7 +43,6 @@ style login
  */
 .loginMain, .registerMain, .resetMain {
 	margin:auto;
-	margin-top:10%;
 	width:300px;
 	height:450px;
 	text-align: center;
@@ -129,7 +85,7 @@ style login
 	border-radius: 3px;
 	width:220px;
 	height:30px;
-	padding:2px;
+	padding: 3px 8px;
 	margin:auto;
 }
 .loginBox input:focus, .registerBox input:focus {
@@ -194,4 +150,37 @@ style login
 #resetMail {
     display: block;
 	width:220px;
+}
+/* header  */
+header {
+	position:fixed;
+	width:100%;
+	margin-top:0;
+	background-color: #99e0ff;
+}
+.main, .mainCam, .contentAccount {
+	padding-top:120px;
+}
+.content {
+	height:50px;
+	width:40%;
+	margin: auto;
+}
+.content h1 {
+	font-size: 2em;
+	text-align:center;
+}
+.top-navbar {
+	height: 40px;
+	background-color: #77b0ff;
+}
+.navbar {
+	width: 60%;
+	display: flex;
+	justify-content: space-around;
+	margin:auto;
+}
+.navbar > a {
+	color: #eeeeee;
+	font-size:1.3em;
 }

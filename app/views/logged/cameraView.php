@@ -42,7 +42,7 @@
 </div>
 <div class="rightNav">
     <?php if ($array !== null) {
-        foreach($array as $e) { if ($e['data'] !== null): ?>
+        foreach($array as $e) { if ($e !== null): ?>
             <div class="navBox">
                 <img src="data:image/png;base64,<?= base64_encode(file_get_contents($e)) ?>"/>
             </div>

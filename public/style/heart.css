@@ -1,0 +1,47 @@
+.Boxheart {
+	align-self: center;
+}
+
+.clickHeart {
+	background-color:red;
+}
+.heart {
+	background-color:black;
+}
+.clickHeart, .heart {
+	position: relative;
+	width:10px;
+	height:10px;
+}
+.clickHeart:after, .clickHeart:before {
+	background-color: red;
+}
+.heart:after, .heart:before {
+	background-color:black;
+}
+
+.clickHeart:after, .heart:after, .clickHeart:before, .heart:before {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	content: '';
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+.clickHeart, .heart {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.clickHeart:before, .heart:before {
+	bottom: 0;
+	left: -5px;
+}
+.clickHeart:after, .heart:after {
+	top: -5px;
+	right: 0;
+}
+.heart:hover, .clickHeart:hover {
+	opacity:0.7;
+}
