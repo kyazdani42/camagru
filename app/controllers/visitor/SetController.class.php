@@ -36,5 +36,4 @@ class SetController extends Controller {
 
    }
 
-
 }
