@@ -154,7 +154,7 @@ style login
 /* header  */
 header {
 	z-index: 1;
-	background-color: #eeeeee;
+	background-color: #ffffff;
 	position:fixed;
 	width:100%;
 	margin-top:0;
@@ -165,21 +165,23 @@ header {
 }
 .content {
 	height:50px;
-	width:40%;
+	width:auto;
 	margin: auto;
 }
 .content h1 {
-	font-size: 2em;
+	font-size: 3.2vw;
 	text-align:center;
+	margin: 0;
 }
 .top-navbar {
 	height: 50px;
+	padding-top: 10px;
 }
 .navbar {
 	width: 60%;
 	display: flex;
 	justify-content: center;
-	margin:auto;
+	margin:auto
 }
 .navbar > a {
 	width: 100px;
@@ -201,20 +203,33 @@ header {
 /* boxes home */
 .main {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-gap: 10px;
+	width: 98%;
+	margin: auto;
+	padding-left: 10px;
 }
 .container {
 	border: 1px solid #1930ff;
 	width: 305px;
 	background-color: #ffffff;
 }
-
-.comRow {
+.likeBox {
 	display: flex;
 	flex-direction: row;
-	font-size: 16px;
+}
+.likeBox, .Boxheart {
+	padding: 5px;
+}
+.countLike {
+	padding-left: 2px;
+}
+.comRow {
+	border: 1px solid black;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 15px auto;
+	grid-gap: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-
 }
