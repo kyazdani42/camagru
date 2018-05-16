@@ -2,14 +2,14 @@ li {
 	list-style-type: none;
 }
 body {
-	font-family: "Avenir";
+	font-family: "Avenir", 'monospace';
 	font-size:1em;
 	background-color: #eeeeee;
 	padding:0;
 	margin:0;
 }
 h1, h2 {
-	font-family:"PT Sans";
+	font-family:"PT Sans", "monospace";
 }
 a {
 	color: #4977ff;
@@ -22,9 +22,8 @@ input, textarea {
 a:hover {
 	text-shadow: 0 0 1px #99e0ff;
 }
-/*
-statics
- */
+
+/*statics */
 #photo, #video {
 	width:305px;
 	height:225px;
@@ -118,10 +117,9 @@ style login
 	width:280px;
 	height:70px;
 	display: flex;
-	margin:auto;
 	flex-direction: column;
 	justify-content: space-evenly;
-	margin-top: 20px;
+	margin: 20px auto auto;
 	border:1px solid #cccccc;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -130,7 +128,6 @@ style login
 .loginHome {
 	height:90px;
 }
-
 .resetBox {
 	padding: 50px;
 	height: 120px;
@@ -156,12 +153,13 @@ header {
 	z-index: 1;
 	background-color: #ffffff;
 	position:fixed;
+	top: 0;
+	left: 0;
 	width:100%;
-	margin-top:0;
 	border-bottom: 1px solid #1930ff;
 }
 .main, .mainCam, .contentAccount {
-	padding-top:130px;
+	margin-top:130px;
 }
 .content {
 	height:50px;
@@ -169,7 +167,7 @@ header {
 	margin: auto;
 }
 .content h1 {
-	font-size: 3.2vw;
+	font-size: 1.8em;
 	text-align:center;
 	margin: 0;
 }
@@ -199,15 +197,58 @@ header {
 .navbar > a:active {
 	background-color: #99e0ff;
 }
+@media only screen and (max-width: 719px) {
 
+	.navbar {
+		flex-direction: column;
+		background-color: #eeeeee;
+		width: 100px;
+		border: 1px solid black;
+	}
+	.navbar a {
+		text-decoration: underline;
+	}
+	.navbar a:not(:first-child) {
+		display: none;
+	}
+    .content h1 {
+		font-size: 1.5em;
+	}
+
+}
 /* boxes home */
 .main {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
 	grid-gap: 10px;
-	width: 98%;
-	margin: auto;
-	padding-left: 10px;
+   	grid-auto-flow: dense;
+    width: 95%;
+	margin-left: 10px;
+}
+@media screen and (min-width: 660px) {
+	.main {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+@media screen and (min-width: 960px) {
+	.main {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+@media screen and (min-width: 1270px) {
+	.main {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+@media screen and (min-width: 1580px) {
+	.main {
+		grid-template-columns: repeat(5, 1fr);
+	}
+}
+@media screen and (min-width: 1900px) {
+	.main {
+		grid-template-columns: repeat(6, 1fr);
+	}
 }
 .container {
 	border: 1px solid #1930ff;
@@ -229,7 +270,7 @@ header {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 15px auto;
-	grid-gap: 10px;
+	grid-column-gap: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
