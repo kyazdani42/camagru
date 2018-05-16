@@ -8,16 +8,20 @@ class LikeModel extends Model {
 
     public function setLike($id_photo) {
 
-        $id_user = self::request("SELECT `id` FROM `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
-        $queryCheck = "SELECT `id` FROM `infos` WHERE id_photo='" . $id_photo . "' AND id_user='" . $id_user . "' AND type='like'";
-        if (self::request($queryCheck)->rowCount() === 1) {
-            $query = "DELETE FROM `infos` WHERE id_user='" . $id_user . "' AND id_photo='" . $id_photo . "' AND type='like'";
+        $param = array(SessionController::getLogin());
+        $id_user = self::request("SELECT `id` FROM `user` WHERE login= ?", $param)->fetchAll()[0]['id'];
+        $param = array($id_photo, $id_user);
+        $queryCheck = "SELECT `id` FROM `infos` WHERE id_photo = ? AND id_user = ? AND type='like'";
+        if (self::request($queryCheck, $param)->rowCount() === 1) {
+            $param = array($id_user, $id_photo);
+            $query = "DELETE FROM `infos` WHERE id_user = ? AND id_photo = ? AND type='like'";
             $ret = 0;
         } else {
-            $query = "INSERT INTO `infos` (`id_photo`, `id_user`, `type`) VALUE ('" . $id_photo . "', '" . $id_user . "', 'like')";
+            $param = array($id_photo, $id_user);
+            $query = "INSERT INTO `infos` (`id_photo`, `id_user`, `type`) VALUE (?, ?, 'like')";
             $ret = 1;
         }
-        self::request($query, 1);
+        self::request($query, $param);
         return ($ret);
 
     }
@@ -28,9 +32,11 @@ class LikeModel extends Model {
 
     public function getLikesUser() {
 
-        $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
-        $query = "SELECT `id` from `images` WHERE id_user='" . $login . "' AND type='like'";
-        return (self::request($query, 1)->fetchAll());
+        $param = array(SessionController::getLogin());
+        $login = self::request("SELECT `id` from `user` WHERE login = ?", $param)->fetchAll()[0]['id'];
+        $param = array($login);
+        $query = "SELECT `id` from `images` WHERE id_user = ? AND type='like'";
+        return (self::request($query, $param)->fetchAll());
 
     }
 
@@ -40,8 +46,9 @@ class LikeModel extends Model {
 
     public function getLikesPhoto($photoId) {
 
-        $query = "SELECT `id` FROM `infos` WHERE id_photo='" . $photoId . "' AND type='like'";
-        return (self::request($query, 1)->rowCount());
+        $param = array($photoId);
+        $query = "SELECT `id` FROM `infos` WHERE id_photo = ? AND type='like'";
+        return (self::request($query, $param)->rowCount());
 
     }
 
@@ -52,8 +59,9 @@ class LikeModel extends Model {
     public function getFlagLike($photoId) {
 
 		$login = SessionController::getLogin();
-        $query = "SELECT infos.id FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE id_photo='" . $photoId . "' AND user.login='" . $login . "' AND `type`='like'";
-        return (self::request($query, 1)->rowCount());
+		$param = array($photoId, $login);
+        $query = "SELECT infos.id FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE id_photo = ? AND user.login = ? AND `type`='like'";
+        return (self::request($query, $param)->rowCount());
 
     }
 

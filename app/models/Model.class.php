@@ -12,7 +12,7 @@ Abstract class Model {
             $result = self::_getDb()->query($sql);
         } else {
             $result = self::_getDb()->prepare($sql);
-            $result->execute();
+            $result->execute($params);
         }
         return $result;
     }

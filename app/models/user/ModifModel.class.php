@@ -3,48 +3,51 @@
 class ModifModel extends Model {
 
 	    public function modLogin($newLogin) {
-        $sql = "SELECT login FROM `user` WHERE login = '" . $newLogin . "'";
-        if (($query = self::request($sql))->rowCount() !== 0) {
+        $sql = "SELECT login FROM `user` WHERE login = ?";
+        $param = array($newLogin);
+        if (($query = self::request($sql, $param))->rowCount() !== 0) {
             throw new Exception("login " . $newLogin . " is already taken");
         } else {
-            $query = "UPDATE `user` SET login='" . $newLogin . "' WHERE login='" . SessionController::getLogin() . "'";
-            self::request($query, 1);
+            $query = "UPDATE `user` SET login = ? WHERE login = ?";
+            $param = array($newLogin, SessionController::getLogin());
+            self::request($query, $param);
         }
     }
 
     public function modEmail($newEmail) {
 
         $new = $newEmail;
-        $sql = "SELECT email FROM `user` WHERE email = '" . $new . "'";
-        if (($query = self::request($sql))->rowCount() !== 0) {
+        $param = array($new);
+        $sql = "SELECT email FROM `user` WHERE email = ?";
+        if (($query = self::request($sql, $param))->rowCount() !== 0) {
             throw new Exception("email " . $new . " is already taken");
         } else {
-            $query = "UPDATE `user` SET email='" . $new . "' WHERE login='" . SessionController::getLogin() . "'";
-            self::request($query, 1);
+            $param = array($new, SessionController::getLogin());
+            $query = "UPDATE `user` SET email= ? WHERE login = ?";
+            self::request($query, $param);
         }
     }
 
     public function modPassword($newPassword) {
-        if (strlen($newPassword) < 8) {
-            throw new Exception("password must contain at least 8 characters");
-        }
+
         $new = hash('whirlpool', $newPassword);
-        $sql = "SELECT password FROM `user` WHERE login = '" . SessionController::getLogin() . "'";
-        if (($query = self::request($sql))->fetch()['password'] === $new) {
+        $param = array(SessionController::getLogin());
+        $sql = "SELECT password FROM `user` WHERE login = ?";
+        if (($query = self::request($sql, $param))->fetch()['password'] === $new) {
             throw new Exception("Please enter a new password");
         } else {
-            $query = "UPDATE `user` SET password='" . $new . "' WHERE login='" . SessionController::getLogin() . "'";
+            $param = array($new, SessionController::getLogin());
+            $query = "UPDATE `user` SET password= ? WHERE login = ?";
             self::request($query, 1);
         }
     }
 
     public function resetPass($newPassword, $login) {
-        if (strlen($newPassword) < 8) {
-            throw new Exception("password must contain at least 8 characters");
-        }
+
         $new = hash('whirlpool', $newPassword);
-        $query = "UPDATE `user` SET password='" . $new . "' WHERE login='" . $login . "'";
-        self::request($query, 1);
+        $param = array($new, $login);
+        $query = "UPDATE `user` SET password = ? WHERE login = ?";
+        self::request($query, $param);
     }
 	
 }

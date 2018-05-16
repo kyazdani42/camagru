@@ -7,10 +7,12 @@ class PhotoModel extends Model {
 
     public function setPhoto($url, $login) {
 
-        $sql = "SELECT id FROM `user` WHERE login='" . $login . "'";
-        $loginId = self::request($sql, 1)->fetch()['id'];
-        $query = "INSERT INTO images (`data`, `id_user`) VALUES ('" . $url . "', '" . $loginId . "')";
-        self::request($query);
+        $param = array($login);
+        $sql = "SELECT id FROM `user` WHERE login = ?";
+        $loginId = self::request($sql, $param)->fetch()['id'];
+        $param = array($url, $loginId);
+        $query = "INSERT INTO images (`data`, `id_user`) VALUES (?, ?)";
+        self::request($query, $param);
         $query = "SELECT MAX(`id`) AS `id` FROM images";
         return (self::request($query)->fetchAll()[0]['id']);
 
@@ -23,7 +25,7 @@ class PhotoModel extends Model {
     public function getAllPhotos() {
 
         $sql = "SELECT `data`, `id` FROM `images` ORDER BY `id` desc";
-        $content = self::request($sql, 1);
+        $content = self::request($sql);
         if ($content->rowCount() === 0) {
             throw new Exception("No photos in database");
         }
@@ -36,9 +38,11 @@ class PhotoModel extends Model {
      */
 
     public function getAllUsrImg() {
-        $login = self::request("SELECT `id` from `user` WHERE login='" . SessionController::getLogin() . "'", 1)->fetchAll()[0]['id'];
-        $query = "SELECT `data`, `id` FROM `images` WHERE id_user='" . $login . "' ORDER BY `id` desc";
-        return (self::request($query, 1)->fetchAll());
+        $param = array(SessionController::getLogin());
+        $login = self::request("SELECT `id` from `user` WHERE login = ?", $param)->fetchAll()[0]['id'];
+        $param = array($login);
+        $query = "SELECT `data`, `id` FROM `images` WHERE id_user = ? ORDER BY `id` desc";
+        return (self::request($query, $param)->fetchAll());
     }
 
     /*
@@ -52,8 +56,9 @@ class PhotoModel extends Model {
         }
         $elem = array();
         foreach ($array as $e) {
-            $query = "SELECT `data`, `id` FROM `images` WHERE id='" . $e . "'";
-            $data = self::request($query, 1)->fetchAll()[0]['data'];
+            $param = array($e);
+            $query = "SELECT `data`, `id` FROM `images` WHERE id= ?";
+            $data = self::request($query, $param)->fetchAll()[0]['data'];
             $elem[] = $data;
         }
         return (array_reverse($elem));
@@ -67,19 +72,21 @@ class PhotoModel extends Model {
 	public function deleteImg($id, $check = null) {
 
 	    if ($check !== null) {
+	        $param = array($id, SessionController::getLogin());
 	        $queryCheck = "SELECT data FROM `images` 
 	        INNER JOIN `user` ON images.id_user=user.id 
-	        WHERE images.id='" . $id . "' AND user.login='" . SessionController::getLogin() . "'";
-	        if (self::request($queryCheck)->rowCount() === 0) {
+	        WHERE images.id= ? AND user.login = ?";
+	        if (self::request($queryCheck, $param)->rowCount() === 0) {
 	            throw new Exception("Not yours to delete !");
             }
         }
-        $getData = "SELECT `data` FROM `images` WHERE id='" . $id . "'";
-        $img = self::request($getData)->fetchAll()[0]['data'];
-		$query = "DELETE FROM `images` WHERE id='" . $id . "'";
-		$query2 = "DELETE FROM `infos` WHERE id_photo='" . $id . "'";
-		self::request($query, 1);
-		self::request($query2, 1);
+        $param = array($id);
+        $getData = "SELECT `data` FROM `images` WHERE id = ?";
+        $img = self::request($getData, $param)->fetchAll()[0]['data'];
+		$query = "DELETE FROM `images` WHERE id = ?";
+		$query2 = "DELETE FROM `infos` WHERE id_photo = ?";
+		self::request($query, $param);
+		self::request($query2, $param);
 		unlink($img);
 		return (0);
 
@@ -91,8 +98,9 @@ class PhotoModel extends Model {
 
 	public function deleteAllImg($id_user) {
 
-        $query = "SELECT `id` FROM `images` WHERE id_user='" . $id_user . "'";
-        $data = self::request($query)->fetchAll();
+        $query = "SELECT `id` FROM `images` WHERE id_user = ?";
+        $param = array($id_user);
+        $data = self::request($query, $param)->fetchAll();
         foreach ($data as $e => $key) {
             $this->deleteImg($key[0]);
         }

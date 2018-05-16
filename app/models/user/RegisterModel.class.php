@@ -6,12 +6,14 @@ class RegisterModel extends Model {
 
         $tmpLogin = $kwargs['login'];
         $tmpEmail = $kwargs['email'];
-        $sql_user = "SELECT login FROM `user` WHERE login = '" . $tmpLogin . "'";
-        $sql_email = "SELECT email FROM `user` WHERE email = '" . $tmpEmail . "'";
+        $param_usr = array($tmpLogin);
+        $param_mail = array($tmpEmail);
+        $sql_user = "SELECT login FROM `user` WHERE login = ?";
+        $sql_email = "SELECT email FROM `user` WHERE email = ?";
 
-        if (self::request($sql_user)->rowCount() !== 0) {
+        if (self::request($sql_user, $param_usr)->rowCount() !== 0) {
             throw new Exception("login " . $tmpLogin . " is already taken");
-        } else if (self::request($sql_email)->rowCount() !== 0) {
+        } else if (self::request($sql_email, $param_mail)->rowCount() !== 0) {
             throw new Exception("e-mail " . $tmpEmail . " is already used");
         } else {
             if (strlen($kwargs['password']) < 8) {
@@ -19,8 +21,9 @@ class RegisterModel extends Model {
             } else {
                 $password = hash('whirlpool', $kwargs['password']);
                 $hash = $tmpLogin . md5( rand(0,1000) );
-                $query = "INSERT INTO `user` (login, email, password, hash) VALUES ('" . $tmpLogin . "', '" . $tmpEmail . "', '" . $password . "', '" . $hash . "')";
-                self::request($query, 1);
+                $param = array($tmpLogin, $tmpEmail, $password, $hash);
+                $query = "INSERT INTO `user` (login, email, password, hash) VALUES (?, ?, ?, ?)";
+                self::request($query, $param);
                 return ( array('hash' => $hash, 'email' => $tmpEmail) );
             }
         }
@@ -30,9 +33,10 @@ class RegisterModel extends Model {
     public function verifyAccount($hash) {
 
         $sql = "SELECT `active` FROM `user` WHERE hash = '" . $hash . "'";
+        $param = array($hash);
         if (($query = self::request($sql))->rowCount() === 1) {
-            $sql = "UPDATE `user` SET active='1' WHERE hash='" . $hash . "'";
-            self::request($sql, 1);
+            $sql = "UPDATE `user` SET active='1' WHERE hash = ?";
+            self::request($sql, $param);
         } else {
             throw new Exception("The hash doesn't match any account");
         }

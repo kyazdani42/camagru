@@ -6,8 +6,9 @@ class UserModel extends Model {
 
         $tmpLogin = $login;
         $tmpPass = hash('whirlpool', $password);
-        $sql = "SELECT password, `active` FROM `user` WHERE login = '" . $tmpLogin . "'";
-        if (($query = self::request($sql, 1))->rowCount() === 1) {
+        $sql = "SELECT password, `active` FROM `user` WHERE login = ?";
+        $params = array($tmpLogin);
+        if (($query = self::request($sql, $params))->rowCount() === 1) {
             $tab = $query->fetchAll();
             if ($tab[0]['password'] === $tmpPass) {
                 if ($tab[0]['active'] === '0') {
@@ -31,14 +32,19 @@ class UserModel extends Model {
     public function deleteAccount() {
 
 		$login = SessionController::getLogin();
-		$query = "SELECT `id` FROM `user` WHERE login='" . $login . "'";
-		$id_user = self::request($query)->fetchAll()[0]['id'];
-		$queryInfo = "DELETE FROM `infos` WHERE id_user='" . $id_user . "'";
-		self::request($queryInfo);
+		$param = array($login);
+		$query = "SELECT `id` FROM `user` WHERE login = ?";
+		$id_user = self::request($query, $param)->fetchAll()[0]['id'];
+		unset($param);
+		$param = array($id_user);
+		$query = "DELETE FROM `infos` WHERE id_user = ?";
+		self::request($query, $param);
 		$photo = new PhotoModel();
 		$photo->deleteAllImg($id_user);
-		$query = "DELETE FROM `user` WHERE login='" . $login . "'";
-		self::request($query, 1);
+		unset($param);
+		$param = array($login);
+		$query = "DELETE FROM `user` WHERE login = ?";
+		self::request($query, $param);
 
     }
 
@@ -48,9 +54,9 @@ class UserModel extends Model {
 
     public function getMail() {
 
-        $login = SessionController::getLogin();
-        $query = "SELECT `check` FROM `user` WHERE login='" . $login . "'";
-        return (self::request($query, 1)->fetchAll()[0]['check']);
+        $param = array(SessionController::getLogin());
+        $query = "SELECT `check` FROM `user` WHERE login = ?";
+        return (self::request($query, $param)->fetchAll()[0]['check']);
 
     }
 
@@ -62,16 +68,18 @@ class UserModel extends Model {
         } else {
             $val = '0';
         }
-        $query = "UPDATE `user` SET `check` = '" . $val . "' WHERE login='" . $login . "'";
-        self::request($query, 1);
+        $query = "UPDATE `user` SET `check` = ? WHERE login = ?";
+        $param = array($val, $login);
+        self::request($query, $param);
         return ($val);
 
     }
 
     public function checkHash($hash) {
 
-        $query = "SELECT `login` FROM `user` WHERE hash='" . $hash . "'";
-        if (($mail = self::request($query, 1))->rowCount() === 1) {
+        $param = array($hash);
+        $query = "SELECT `login` FROM `user` WHERE hash = ?";
+        if (($mail = self::request($query, $param))->rowCount() === 1) {
             return ($mail->fetchAll()[0]['login']);
         } else {
             return (null);
@@ -85,12 +93,14 @@ class UserModel extends Model {
         while ($this->checkHash($hash) !== null) {
             $hash = md5(rand(0, 1000)) . preg_replace("/@.+/", "", $mail);
         }
-        $query = "SELECT `active` FROM `user` WHERE email='" . $mail . "'";
-        if (self::request($query, 1)->fetchAll()[0]['active'] === 0) {
+        $param = array($mail);
+        $query = "SELECT `active` FROM `user` WHERE email = ?";
+        if (self::request($query, $param)->fetchAll()[0]['active'] === 0) {
             return (null);
         }
-        $query = "UPDATE `user` SET `hash`='" . $hash . "' WHERE email='" . $mail . "'";
-        self::request($query, 1);
+        $param = array($hash, $mail);
+        $query = "UPDATE `user` SET `hash` = ? WHERE email = ?";
+        self::request($query, $param);
         return ($hash);
     }
 }

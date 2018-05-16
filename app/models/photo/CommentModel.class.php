@@ -9,9 +9,11 @@ class CommentModel extends Model {
     public function setComment($id_photo, $data) {
 
 		$login = SessionController::getLogin();
-		$id = self::request("SELECT `id` FROM `user` WHERE login='" . $login  . "'", 1)->fetchAll()[0]['id'];
-        $query = "INSERT INTO `infos` (`content`, `id_photo`, `id_user`, `type`, `date`) VALUE ('" . $data. "', '" . $id_photo . "', '" . $id . "', 'comment', '" . date("Y-m-d H:i:s") . "')";
-        self::request($query, 1);
+		$param = array($login);
+		$id = self::request("SELECT `id` FROM `user` WHERE login= ?", $param)->fetchAll()[0]['id'];
+		$param = array($data, $id_photo, $id, date("Y-m-d H:i:s"));
+        $query = "INSERT INTO `infos` (`content`, `id_photo`, `id_user`, `type`, `date`) VALUE (?, ?, ?, 'comment', ?)";
+        self::request($query, $param);
         $query = "SELECT MAX(`id`) AS id FROM `infos`";
         return (self::request($query)->fetchAll()[0]['id']);
 
@@ -22,9 +24,9 @@ class CommentModel extends Model {
      */
     public function getCommentUser() {
 
-		$login = SessionController::getLogin();
-        $query = "SELECT `content`, `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login='" . $login . "' AND type='comment' ORDER BY id DESC";
-        return (self::request($query, 1)->fetchAll());
+		$param = array(SessionController::getLogin());
+        $query = "SELECT `content`, `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE user.login = ? AND type='comment' ORDER BY id DESC";
+        return (self::request($query, $param)->fetchAll());
 
     }
 
@@ -33,34 +35,39 @@ class CommentModel extends Model {
      */
     public function getCommentPhoto($photoId) {
 
-        $query = "SELECT `content`, infos.id, `date`, user.login FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE id_photo='" . $photoId . "' AND type='comment' ORDER BY id DESC";
-        return (self::request($query, 1)->fetchAll());
+        $param = array($photoId);
+        $query = "SELECT `content`, infos.id, `date`, user.login FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE id_photo = ? AND type='comment' ORDER BY id DESC";
+        return (self::request($query, $param)->fetchAll());
 
     }
 
     public function checkComment($id_com) {
 
         $login = SessionController::getLogin();
-        $query = "SELECT `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE infos.id='" . $id_com . "' AND user.login='" . $login . "' AND type='comment'";
-        return (self::request($query, 1)->rowCount());
+        $param = array($id_com, $login);
+        $query = "SELECT `id_photo` FROM `infos` INNER JOIN `user` ON infos.id_user=user.id WHERE infos.id = ? AND user.login = ? AND type='comment'";
+        return (self::request($query, $param)->rowCount());
 
     }
 
     public function delComment($id_com) {
 
-        $query = "DELETE FROM `infos` WHERE id='" . $id_com . "' AND type='comment'";
-        self::request($query, 1);
+        $param = array($id_com);
+        $query = "DELETE FROM `infos` WHERE id = ? AND type='comment'";
+        self::request($query, $param);
 
     }
 
     public function checkUserComment($login, $id_photo) {
 
-        $query = "SELECT `check` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id='" . $id_photo . "'";
-        if (self::request($query)->fetchAll()[0]['check']) {
+        $param = array($id_photo);
+        $query = "SELECT `check` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id = ?";
+        if (self::request($query, $param)->fetchAll()[0]['check']) {
             $query = "SELECT `id_user` FROM `images` WHERE id='" . $id_photo . "'";
-            $id = self::request($query)->fetchAll()[0]['id_user'];
-            $query = "SELECT `id` FROM `user` WHERE id='" . $id . "' AND login='" . $login . "'";
-            return (self::request($query)->rowCount());
+            $id = self::request($query, $param)->fetchAll()[0]['id_user'];
+            $param = array($id, $id_photo);
+            $query = "SELECT `id` FROM `user` WHERE id = ? AND login = ?";
+            return (self::request($query, $param)->rowCount());
         } else
             return (1);
 
@@ -68,8 +75,9 @@ class CommentModel extends Model {
 
     public function getMailUsr($id_photo) {
 
-        $query = "SELECT `email` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id='" . $id_photo . "'";
-        return (self::request($query, 1)->fetchAll()[0]['email']);
+        $param = array($id_photo);
+        $query = "SELECT `email` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id = ?";
+        return (self::request($query, $param)->fetchAll()[0]['email']);
 
     }
 
