@@ -28,7 +28,8 @@ class HomeController extends Controller {
 			$like = $this->_objLike->getLikesPhoto($i['id']);
 			$flag = $this->_objLike->getFlagLike($i['id']);
 			$comm = $this->getComments($i['id']);
-            $new[] = array('data' => $i['data'], 'likes' => $like, 'comments' => $comm, 'id_photo' => $i['id'], 'flag' => $flag);
+			$login = $this->_objPhoto->getLoginPic($i['id']);
+            $new[] = array('data' => $i['data'], 'likes' => $like, 'comments' => $comm, 'id_photo' => $i['id'], 'flag' => $flag, 'login' => $login);
 		}
         return ($new);
 

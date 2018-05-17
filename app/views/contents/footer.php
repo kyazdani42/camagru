@@ -5,5 +5,6 @@
         </div>
     </div>
 </footer>
+<script src="public/js/nav.js"></script>
 <script src="public/js/ajax.js"></script>
 </body>

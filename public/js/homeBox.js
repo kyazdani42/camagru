@@ -107,7 +107,11 @@ if (ur !== undefined) {
                         }
                         else
                             svg.firstElementChild.setAttribute("class", "heart");
-                        svg.nextElementSibling.innerHTML = cheese[1] + " Likes";
+                        if (cheese[1] <= 1) {
+                            svg.nextElementSibling.innerHTML = `${cheese[1]} Like`;
+                        } else {
+                            svg.nextElementSibling.innerHTML = `${cheese[1]} Likes`;
+                        }
                     }
                 });
             });

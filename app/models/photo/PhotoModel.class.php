@@ -107,4 +107,12 @@ class PhotoModel extends Model {
 
     }
 
+    public function getLoginPic($id_photo) {
+
+	    $query = "SELECT `login` FROM `user` INNER JOIN `images` ON user.id=images.id_user WHERE images.id = ?";
+	    $param = array($id_photo);
+	    return (self::request($query, $param)->fetchAll()[0]['login']);
+
+    }
+
 }
