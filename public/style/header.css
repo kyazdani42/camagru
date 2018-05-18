@@ -67,7 +67,7 @@ header {
         width: 30px;
         height: 30px;
         padding-top:15px;
-        padding-left:15px;
+        margin-left:15px;
     }
     .content h1 {
         margin-top: 8px;
@@ -83,15 +83,29 @@ header {
     .navImg {
         position: absolute;
         flex-direction: column;
-        background-color: #ffffff;
         margin-top:50px;
-        margin-left:5px;
-        width: 35px;
-        height: 35px;
+        margin-left:10px;
+        width: 40px;
+        height: 200px;
     }
-    .navImg img {
-        width: 30px;
-        height: 30px;
+    .navImg:nth-child(2) {
+        top: -37px;
+        left: 42px;
+    }
+    .navList {
+        display: none;
+        border: 1px solid black;
+        border-radius: 50%;
+        background-color: #ffffff;
+    }
+    .navList img {
+        width: 25px;
+        height: 25px;
+        padding-left: 7px;
+        padding-top: 5px;
+    }
+    .navList:hover {
+        opacity: 0.6;
     }
 
 }

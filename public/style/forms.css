@@ -109,8 +109,7 @@
 .contentAccount {
     width: 320px;
     height: 500px;
-    margin: auto;
-    margin-top: 180px;
+    margin: 180px auto auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

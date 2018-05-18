@@ -8,8 +8,7 @@
     grid-template-columns: 1fr;
 }
 .listElems {
-    margin:auto;
-    margin-top: 10px;
+    margin: 10px auto auto;
 }
 .list {
     display: flex;
@@ -37,8 +36,7 @@
 }
 .uploadForm {
     width: 120px;
-    margin: auto;
-    margin-top: 10px;
+    margin: 10px auto auto;
     grid-column: 2 / -1;
 }
 #startbutton:hover {
