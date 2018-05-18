@@ -1,0 +1,58 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    grid-auto-flow: dense;
+    width: 95%;
+    margin-left: 10px;
+}
+.container {
+    border: 1px solid #1930ff;
+    width: 305px;
+    background-color: #ffffff;
+}
+.likeBox {
+    display: flex;
+    flex-direction: row;
+}
+.likeBox, .Boxheart {
+    padding: 5px;
+}
+.countLike {
+    flex-grow: 2;
+    padding-left: 2px;
+}
+.comRow {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 15px auto;
+    grid-column-gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+@media screen and (min-width: 660px) {
+    .main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (min-width: 960px) {
+    .main {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1270px) {
+    .main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media screen and (min-width: 1580px) {
+    .main {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media screen and (min-width: 1900px) {
+    .main {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}

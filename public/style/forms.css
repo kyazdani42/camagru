@@ -1,0 +1,176 @@
+.loginMain, .registerMain, .resetMain {
+    margin:auto;
+    width:300px;
+    height:450px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.registerMain {
+    height:500px;
+}
+.loginBox, .registerBox {
+    background-color: #FFFFFF;
+    border:1px solid #cccccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:280px;
+    height:240px;
+    margin:auto;
+}
+.registerBox {
+    height:310px;
+}
+.loginBox form, .registerBox form {
+    height: 290px;
+    padding-top:7px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.loginBox form {
+    height:220px;
+}
+.loginBox input, .registerBox input {
+    border:1px solid #cccccc;
+    -webkit-box-shadow: 0 0 1px #cccccc;
+    -moz-box-shadow: 0 0 1px #cccccc;
+    box-shadow: 0 0 1px #cccccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width:220px;
+    height:30px;
+    padding: 3px 8px;
+    margin:auto;
+}
+.loginBox input:focus, .registerBox input:focus {
+    border:1px solid #110466;
+    -webkit-box-shadow: 0 0 5px 2px #4977ff;
+    -moz-box-shadow:  0 0 5px 2px #4977ff;
+    box-shadow:  0 0 5px 2px #4977ff;
+}
+.loginBox label, .registerBox label {
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 0;
+    margin-top:5px;
+    font-weight:500;
+}
+#submitBox {
+    background-color: #99e0ff;
+    color: #FFFFFF;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border:1px solid #8ccfff;
+    font-size:0.8em;
+}
+#submitBox:hover {
+    background-color: #8ccfff;
+    border: 1px solid #999fff;
+}
+.loginHome, .registerHome {
+    width:280px;
+    height:70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 20px auto auto;
+    border:1px solid #cccccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.loginHome {
+    height:90px;
+}
+.resetBox {
+    padding: 50px;
+    height: 120px;
+    width:240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.resetBox input {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin:5px;
+    height: 25px;
+    width: 180px;
+}
+#resetMail {
+    display: block;
+    width:220px;
+}
+.contentAccount {
+    width: 320px;
+    height: 500px;
+    margin: auto;
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.delAccount {
+    color: #eeeeee;
+    background-color: #b50000;
+    width: 120px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #222222;
+}
+.delAccount:hover {
+    opacity: 0.8;
+}
+.mailChecker {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.modifySettings {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 80px;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+}
+.modifySettings input {
+    border-radius: 5px;
+    border:1px solid #cccccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    height:30px;
+}
+.modifySettings input:first-child {
+    -webkit-box-shadow: 0 0 1px #cccccc;
+    -moz-box-shadow: 0 0 1px #cccccc;
+    box-shadow: 0 0 1px #cccccc;
+    width:220px;
+    padding: 3px 8px;
+    margin:auto;
+}
+.modifySettings input:nth-child(2) {
+    width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #8ccfff;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 0.8em;
+}
+.modifySettings input:nth-child(2):hover {
+    background-color: #b2dfff;
+}
