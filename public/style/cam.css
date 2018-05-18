@@ -1,0 +1,94 @@
+@keyframes colorChange {
+    0%      {color: #ff8716;}
+    50%     {color: #ff4800;}
+    100%    {color: #ff8716;}
+}
+.mainCam {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.listElems {
+    margin:auto;
+    margin-top: 10px;
+}
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    margin: auto;
+}
+.pictures {
+    margin:auto;
+    display:flex;
+    flex-direction: column;
+    width: 320px;
+}
+#startbutton, .uploadButton, .sendFileButton {
+    width: 120px;
+    height: 40px;
+    font-size: 1em;
+    border-radius: 5px;
+    background-color: #8ccfff;
+    border:1px solid #222222;
+    margin: auto;
+}
+.uploadButton {
+    background-color: #7cffb0;
+}
+.uploadForm {
+    width: 120px;
+    margin: auto;
+    margin-top: 10px;
+    grid-column: 2 / -1;
+}
+#startbutton:hover {
+    opacity: 0.8;
+}
+.videoBox, .output {
+    margin: auto;
+}
+.camContent {
+    display: flex;
+    flex-direction:column;
+}
+.forms {
+    width: 300px;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 50px 50px;
+}
+.imgUploader {
+    margin: auto;
+}
+.selectButton {
+    display: none;
+}
+.sendFileButton {
+    background-color: #ffc37a;
+    height: 25px;
+}
+.labelSelect {
+    animation: colorChange 3s infinite;
+}
+.labelSelect:hover {
+    opacity: 0.4;
+}
+.rightNav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 0;
+}
+@media screen and (min-width: 910px) {
+
+    .mainCam {
+        grid-template-columns: 3fr 1fr;
+    }
+
+    .rightNav {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}

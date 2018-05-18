@@ -8,16 +8,16 @@
     <div class="top-navImg">
         <img src="public/images/menu-icon.png" class="menuIcon" id="menuIcon"/>
         <ul class="navImg">
-            <li class=".navList"><a href="<?= URL ?>Home"><img src="#" /></a></li>
+            <li class=".navList"><a href="<?= URL ?>Home"><img src="public/images/home-icon.png" /></a></li>
             <?php
                 if (SessionController::getLogin() === "" || SessionController::getLogin() === null) { ?>
-                    <li class=".navList"><a href="<?= URL ?>Login"><img src="#" /></a></li>
-                    <li class=".navList"><a href="<?= URL ?>Register"><img src="#" /></a></li>
+                    <li class=".navList"><a href="<?= URL ?>Login"><img src="public/images/login-icon.png" /></a></li>
+                    <li class=".navList"><a href="<?= URL ?>Register"><img src="public/images/register-icon.png" /></a></li>
             <?php } else { ?>
-                    <li class=".navList"><a href="<?= URL ?>Gallery"><img src="#" /></a></li>
-                    <li class=".navList"><a href="<?= URL ?>Account"><img src="#" /></a></li>
-                    <li class=".navList"><a href="<?= URL ?>Camera"><img src="#" /></a></li>
-                    <li class=".navList"><a href="<?= URL ?>Logout"><img src="#" /></a></li>
+                    <li class=".navList"><a href="<?= URL ?>Gallery"><img src="public/images/gallery-icon.png" /></a></li>
+                    <li class=".navList"><a href="<?= URL ?>Account"><img src="public/images/settings-icon.png" /></a></li>
+                    <li class=".navList"><a href="<?= URL ?>Camera"><img src="public/images/cam-icon.png" /></a></li>
+                    <li class=".navList"><a href="<?= URL ?>Logout"><img src="public/images/logout-icon.png" /></a></li>
             <?php } ?>
         </ul>
     </div>

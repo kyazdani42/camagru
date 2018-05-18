@@ -6,8 +6,9 @@
     </style>
 </noscript>
 <div class="mainCam">
+<div class="camContent">
     <div class="pictures">
-        <div id="videoBox">
+        <div class="videoBox" id="videoBox">
             <video id="video"></video>
             <img id="staticVideo">
         </div>
@@ -16,28 +17,29 @@
             <img id=staticPhoto>
             <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/png;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         </div>
-        <button id="startbutton">Take a pic !</button>
-    </div>
-    <div class="forms">
-        <form action="<?= URL ?>Camera/handleFile" enctype="multipart/form-data" id="form" method="POST">
-            <input type="file" name="myData" id="file" accept="image/jpeg;image/png;image/jpg;image/gif" value="send">
+        <div class="forms">
+            <form class="imgUploader" action="<?= URL ?>Camera/handleFile" enctype="multipart/form-data" id="form" method="POST">
+            <label class="labelSelect" for="file">Select an image</label>
+            <input class="selectButton" type="file" name="myData" id="file" accept="image/jpeg;image/png;image/jpg;image/gif" value="send">
             <input type="hidden" name="MAX_FILE_SIZE" value="65535" />
-            <input type="submit" value="upload">
+            <input class="sendFileButton" type="submit" value="send file">
         </form>
-        <form action="<?= URL ?>Camera/sendPicture" method="POST" id="cameraForm">
-            <input type="text" name="staticData" id="staticData" style="display:none">
-            <input type="submit" name="myData" id="myData" value="send">
+        <button id="startbutton">Take a pic !</button>
+        <form class="uploadForm" action="<?= URL ?>Camera/sendPicture" method="POST" id="cameraForm">
+            <input type="hidden" name="staticData" id="staticData">
+            <input class="uploadButton" type="submit" name="myData" id="myData" value="upload">
         </form>
+        </div>
     </div>
-    <div class="list">
-        <li>
-            <ul class="staticImg"><img src="public/images/cartman.png" /></ul>
-            <ul class="staticImg"><img src="public/images/Kenny.png" /></ul>
-            <ul class="staticImg"><img src="public/images/kyle.png" /></ul>
-            <ul class="staticImg"><img src="public/images/Butters.png" /></ul>
-            <ul class="staticImg"><img src="public/images/stan.png" /></ul>
-            <ul class="staticImg"><img src="public/images/Timmy.png" /></ul>
-        </li>
+    <div class="listElems">
+        <ul class="list">
+            <li class="staticImg"><img src="public/images/cartman.png" /></li>
+            <li class="staticImg"><img src="public/images/Kenny.png" /></li>
+            <li class="staticImg"><img src="public/images/kyle.png" /></li>
+            <li class="staticImg"><img src="public/images/Butters.png" /></li>
+            <li class="staticImg"><img src="public/images/stan.png" /></li>
+            <li class="staticImg"><img src="public/images/Timmy.png" /></li>
+        </ul>
     </div>
 </div>
 <div class="rightNav">
@@ -48,6 +50,7 @@
             </div>
         <?php endif; } ?>
     <?php } ?>
+</div>
 </div>
 <script src="public/js/webcam.js"></script>
 <script src="public/js/image.js"></script>
