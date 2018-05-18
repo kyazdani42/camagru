@@ -52,6 +52,7 @@ if (ur !== undefined) {
         let lk = document.createElement("a");
         let img = document.createElement("img");
         let div = document.createElement("div");
+        let span = document.createElement("span");
         let divContent = document.createElement("div");
         let divLogin = document.createElement("div");
         let divTime = document.createElement("div");
@@ -61,18 +62,19 @@ if (ur !== undefined) {
         divLogin.setAttribute("class", "commentLogin");
         divTime.setAttribute("class", "commentTime");
         divContent.setAttribute("class", "commentContent");
+        span.setAttribute("class", "comContText");
         img.setAttribute("src", "public/images/crossbox.png");
+        img.setAttribute("class", "crossDel");
         lk.setAttribute("id", "com" + check[0].id);
         lk.setAttribute("href", url + "Home/delComment/" + check[0].id);
 
-        divContent.innerHTML = check[0].data;
+        span.innerHTML = check[0].data;
         divLogin.innerHTML = `By ` + check[0].login;
         let time = Math.floor(now - check[0].date);
         divTime.innerHTML = time + ` seconds ago`;
 
-        img.style.width = "15px";
-
         lk.appendChild(img);
+        divContent.appendChild(span);
         divContent.appendChild(lk);
         div.appendChild(divTime);
         div.appendChild(divLogin);

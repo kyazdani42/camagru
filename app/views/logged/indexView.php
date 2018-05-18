@@ -35,9 +35,11 @@
                             <?= "By " . $e['login'] ?>
                         </div>
                         <div class="commentContent">
-                        <?= $e['com'] ?>
+                            <span class="comContText">
+                            <?= $e['com'] ?>
+                            </span>
                         <?php if ($e['check'] === 1): ?>
-                            <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img src="public/images/crossbox.png" style="width:15px"></a>
+                            <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img class="crossDel" src="public/images/crossbox.png"></a>
                         <?php endif; ?>
                         </div>
                     </div>

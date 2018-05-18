@@ -5,7 +5,7 @@
             <img class="photos" src="data:image/jpeg;base64,<?= base64_encode(file_get_contents($key['data'])); ?>">
         </div>
         <div class="likeBox">
-            <span class="countLike"><?php echo $key['likes']; if ($key['likes'] <= 1) echo "Like"; else echo "Likes"; ?></span>
+            <span class="countLike"><?php echo $key['likes']; if ($key['likes'] <= 1) echo " Like"; else echo " Likes"; ?></span>
             <div class="userPic">Posted by <?= $key['login'] ?></div>
         </div>
         <div class="containerAttributes">
