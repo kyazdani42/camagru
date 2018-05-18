@@ -9,6 +9,7 @@
 .container {
     border: 1px solid #1930ff;
     width: 305px;
+    margin: auto;
     background-color: #ffffff;
 }
 .likeBox {
