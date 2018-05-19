@@ -74,7 +74,7 @@ sendForm.addEventListener("submit", (e) => {
     let content = getData();
     let sendData = new FormData(e.target);
     sendData.append("myData", content);
-    document.querySelector("#myData").setAttribute("value", "send");
+    document.querySelector("#myData").setAttribute("value", "upload");
 
     ajax_post(e.target.getAttribute("action"), sendData, (dataGet) => {
 
