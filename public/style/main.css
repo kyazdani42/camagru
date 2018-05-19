@@ -44,5 +44,19 @@ a:hover {
 	position: relative;
 	display: inline;
 }
-
-
+.errorPopup {
+	display: block;
+	position: fixed;
+	height: 60px;
+	width: 80%;
+	top: 30%;
+	left: 10%;
+	background-color: #f44336;
+	color: #ffffff;
+	text-align: left;
+	animation: disappear 4s;
+}
+@keyframes disappear {
+	0% {opacity: 1;}
+	100% {opacity: 0.01;}
+}
