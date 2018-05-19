@@ -20,7 +20,7 @@
     margin:auto;
     display:flex;
     flex-direction: column;
-    width: 320px;
+    width: 300px;
 }
 #startbutton, .uploadButton, .sendFileButton {
     width: 120px;
@@ -44,6 +44,17 @@
 }
 .videoBox, .output {
     margin: auto;
+    width:300px;
+    height:225px;
+    box-shadow: 0 0 20px 3px #99e0ff;
+    margin-bottom: 10px;
+    border: 1px solid #222222;
+}
+.output {
+    /*background-color: black;*/
+}
+#video {
+    width: 300px;
 }
 .camContent {
     display: flex;

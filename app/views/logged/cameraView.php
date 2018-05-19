@@ -12,9 +12,9 @@
             <video id="video"></video>
             <img id="staticVideo">
         </div>
-        <canvas id="canvas" style="display:none"></canvas>
+        <canvas style="display:none" id="canvas"></canvas>
         <div class="output">
-            <img id=staticPhoto>
+            <img id="staticPhoto">
             <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/png;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         </div>
         <div class="forms">
