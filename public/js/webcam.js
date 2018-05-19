@@ -20,7 +20,7 @@
                 video.play();
             };
         })
-        .catch((err) => { console.log("An error occured! " + err); });
+        .catch((err) => { errorFun("An error occured! " + err); });
 
     video.addEventListener('canplay', function(){
         if (!streaming) {
@@ -47,7 +47,7 @@
             takePicture();
             ev.preventDefault();
         } else {
-            alert('Please select an item before taking a pic')
+            errorFun('Please select an item before taking a pic')
         }
     }, false);
 

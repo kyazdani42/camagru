@@ -44,8 +44,8 @@ a:hover {
 	position: relative;
 	display: inline;
 }
-.errorPopup {
-	display: block;
+.errorPopup, .validPopup {
+	z-index: 3;
 	position: fixed;
 	height: 60px;
 	width: 80%;
@@ -53,10 +53,17 @@ a:hover {
 	left: 10%;
 	background-color: #f44336;
 	color: #ffffff;
-	text-align: left;
-	animation: disappear 4s;
+	animation: disappear 5s;
+}
+.validPopup {
+	background-color: #11b21c;
+}
+.errorPopup span, .validPopup span {
+	position: relative;
+	top: 19px;
+	left: 10px;
 }
 @keyframes disappear {
 	0% {opacity: 1;}
-	100% {opacity: 0.01;}
+	100% {opacity: 0.9;}
 }

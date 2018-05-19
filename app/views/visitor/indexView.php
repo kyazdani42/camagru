@@ -32,7 +32,7 @@
                         <?= "By " . $e['login'] ?>
                     </div>
                     <div class="commentContent">
-                        <?= $e['com'] ?>
+                        <?= htmlspecialchars($e['com']) ?>
                     </div>
                     </div>
                     <?php } } ?>

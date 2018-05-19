@@ -40,7 +40,7 @@ for (i = 0; i < elem.length; i++) elem[i].addEventListener("click", (e) => {
 
 });
 
-button.addEventListener("click", (e) => {
+button.addEventListener("click", () => {
 
     if (photo.getAttribute("src") !== null) {
         let el = photo.getAttribute("src");
@@ -59,11 +59,11 @@ document.querySelector("#form").addEventListener("submit", (e) => {
                 document.querySelector("#staticPhoto").setAttribute("src", photo.getAttribute("src"));
             }
             else if (ret[0] === "err")
-                alert(ret[1]);
+                errorFun(ret[1]);
 
         });
     } else {
-        alert("please select a character before uploading");
+        errorFun("please select a character before uploading");
     }
     e.preventDefault();
 });
@@ -79,7 +79,7 @@ sendForm.addEventListener("submit", (e) => {
     ajax_post(e.target.getAttribute("action"), sendData, (dataGet) => {
 
         if (dataGet[0] === "err")
-            alert(dataGet[1]);
+            errorFun(dataGet[1]);
         else if (dataGet[0] === "data") {
             document.querySelector("#staticPhoto").removeAttribute("src");
             document.querySelector("#staticVideo").removeAttribute("src");
@@ -91,9 +91,9 @@ sendForm.addEventListener("submit", (e) => {
             div.appendChild(img);
             let nav = document.getElementsByClassName("rightNav")[0];
             nav.insertBefore(div, nav.firstElementChild);
+            validFun('Your pic has been uploaded correctly');
         }
 
     });
     e.preventDefault();
 });
-

@@ -18,7 +18,7 @@ if (ur !== undefined) {
                     let daddy = e.target.parentNode.firstElementChild;
                     e.target.firstElementChild.value = "";
                     if (check[0] === 'error') {
-
+                        errorFun(check[1]);
                     } else
                         add_comment(check, daddy);
                 });

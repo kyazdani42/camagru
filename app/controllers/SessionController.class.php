@@ -18,8 +18,8 @@ class SessionController extends Controller {
         $_SESSION['log_user'] = "";
     }
 
-    public static function setSession( $type, $error ) {
-        $_SESSION[$type] = $error;
+    public static function setSession( $type, $set ) {
+        $_SESSION[$type] = $set;
     }
 
 }

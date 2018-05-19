@@ -1,18 +1,12 @@
 <?php
 if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
     <script language="javascript">
-
-        let ob = document.createElement("div");
-        let span = document.createElement("span");
-        let doc = document.getElementsByTagName("body")[0];
-        ob.className = "errorPopup";
-        span.innerHTML = "<?= $_SESSION['error'] ?>";
-        ob.appendChild(span);
-        doc.insertBefore(ob, doc.firstElementChild);
-        setTimeout(function () {
-            ob.remove();
-        }, 4000);
-
+        errorFun(`<?= $_SESSION['error'] ?>`);
     </script>
-<?php unset($_SESSION['error']); } ?>
+    <?php unset($_SESSION['error']);
+} else if (isset($_SESSION['valid']) && !empty($_SESSION['valid'])) { ?>
+    <script language="javascript">
+        validFun(`<?= $_SESSION['valid'] ?>`);
+    </script>
+    <?php unset($_SESSION['valid']); } ?>
 </html>

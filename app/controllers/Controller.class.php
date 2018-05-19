@@ -21,15 +21,15 @@ abstract class Controller {
 
 		if (isset($kwargs['ascii'])) {
 			if (preg_match("/[^0-9a-zA-Z]/", $kwargs['ascii'])) {
-				return (0);
-			} else
 				return (1);
+			} else
+				return (0);
 		}
 		else if (isset($kwargs['mail'])) {
-			if (preg_match("/[0-9a-zA-Z]+@[a-z]+\.[a-z].{1,2}/", $kargs['mail'])) {
-				return (1);
-			} else
+			if (preg_match("/[0-9a-zA-Z]+@[0-9a-z]+(\.[0-9a-z.]+|)\.[a-z]{2,3}$/", $kwargs['mail'])) {
 				return (0);
+			} else
+				return (1);
 		}
 	}
 }

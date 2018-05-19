@@ -43,7 +43,7 @@ class HomeController extends Controller {
         $array = array();
         foreach ($obj as $e => $key) {
             $check = $this->_objCom->checkComment($key['id']);
-            $array[] = array('com' => $key['content'], 'id' => $key['id'], "check" => $check, "date" => $key['date'], "login" => $key['login']);
+            $array[] = array('com' => htmlspecialchars($key['content']), 'id' => $key['id'], "check" => $check, "date" => $key['date'], "login" => $key['login']);
         }
 		if (self::_isAjax()) {
             echo json_encode($array);

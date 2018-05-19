@@ -36,7 +36,7 @@
                         </div>
                         <div class="commentContent">
                             <span class="comContText">
-                            <?= $e['com'] ?>
+                            <?= htmlspecialchars($e['com']) ?>
                             </span>
                         <?php if ($e['check'] === 1): ?>
                             <a id="com<?= $e['id']?>" href="<?= URL . "Home/delComment/" . $e['id'] ?>"><img class="crossDel" src="public/images/crossbox.png"></a>

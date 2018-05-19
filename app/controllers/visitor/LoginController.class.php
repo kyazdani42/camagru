@@ -10,6 +10,11 @@ class LoginController extends Controller {
     public function signIn() {
 		
         $user = new UserModel();
+        if (empty($_POST['login']) || empty($_POST['password'])) {
+            SessionController::setSession("error", "must fill in all inputs");
+            header("location:" . URL . "Login");
+            die();
+        }
         try {
             $user->connect($_POST['login'], $_POST['password']);
             SessionController::setLogin($_POST['login']);

@@ -15,7 +15,7 @@ nav.addEventListener('mouseover', () => {
 nav.addEventListener('mouseout', () => {
 
     nav.style.display = "none";
-    for (i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
         list[i].style.display = "none";
     }
 
@@ -24,7 +24,7 @@ nav.addEventListener('mouseout', () => {
 icon.addEventListener('mouseover', () => {
 
     nav.style.display = "flex";
-    for (i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
         list[i].style.display = "block";
     }
 

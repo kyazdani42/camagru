@@ -20,6 +20,7 @@ class SetController extends Controller {
    public function update($login = null) {
 
        if (empty($_POST['setPass']) || empty($_POST['confPass']) || $login !== $_SESSION['resetLog']) {
+           SessionController::setSession("erorr", "unauthorized access to this page, you have been redirected to Home");
            header('location: ' . URL . 'Home');
        } else if ($_POST['setPass'] !== $_POST['confPass']) {
            SessionController::setSession("error", "Passwords must be identical");

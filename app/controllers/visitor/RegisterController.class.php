@@ -9,10 +9,22 @@ class RegisterController extends Controller {
 
     public function SignUp() {
 
-		if (empty($_POST['login']) || empty($_POST['email'])) {
+		if (empty($_POST['login']) || empty($_POST['email']) || empty($_POST['password'])) {
 			SessionController::setSession('error', "Incorrect informations");
 			header('location:' . URL . "Register");
 			die ();
+		} else if ($this->_checkInput(array('ascii' => $_POST['login']))) {
+		    SessionController::setSession("error", "Login must contain only alphabetical characters and numbers");
+            header('location:' . URL . "Register");
+		    die();
+        } else if ($this->_checkInput(array('mail' => $_POST['email']))) {
+		    SessionController::setSession("error", "incorrect mail");
+            header('location:' . URL . "Register");
+		    die();
+        } else if (strlen($_POST['login']) > 14) {
+		    SessionController::setSession("error", "login is too long (14 characters max)");
+		    header('location:' . URL . "Register");
+		    die();
 		}
         $user = new RegisterModel();
         try {

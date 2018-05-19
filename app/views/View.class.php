@@ -19,6 +19,7 @@ class View {
             require $filename . "View.php";
             require 'contents/footer.php';
         }
+        require('contents/js.php');
         require "contents/checkErrors.php";
     }
 
