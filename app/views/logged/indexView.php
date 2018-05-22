@@ -74,3 +74,4 @@
     <?php } } ?>
 </div>
 <script src="public/js/homeBox.js"></script>
+<script src="public/js/modal.js"></script>
