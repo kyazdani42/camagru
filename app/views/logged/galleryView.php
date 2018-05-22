@@ -4,7 +4,7 @@
         <?php foreach($array as $e => $key) { ?>
         <div class="container">
             <img src="data:image/png;base64,<?= base64_encode(file_get_contents($key['data'])) ?>">
-            <a href="<?= URL ?>Gallery/delete/<?= $key['id'] ?>">Delete this photo</a>
+            <a class="deleteLink" href="<?= URL ?>Gallery/delete/<?= $key['id'] ?>">Delete this photo</a>
         </div>
         <?php } ?>
     </div>
