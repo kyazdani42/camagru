@@ -12,11 +12,11 @@
             <video id="video"></video>
             <img id="staticVideo">
         </div>
-        <canvas style="display:none" id="canvas"></canvas>
         <div class="output">
+            <canvas id="canvas"></canvas>
             <img id="staticPhoto">
-            <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/png;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         </div>
+        <img id="photo" src="<?php if (!empty($_SESSION['imgContent'])) { echo "data:image/png;base64," . $_SESSION['imgContent']; unset($_SESSION['imgContent']); } ?>">
         <div class="forms">
             <form class="imgUploader" action="<?= URL ?>Camera/handleFile" enctype="multipart/form-data" id="form" method="POST">
             <label class="labelSelect" for="file">Select an image</label>
