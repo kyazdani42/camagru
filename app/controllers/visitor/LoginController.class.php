@@ -18,10 +18,12 @@ class LoginController extends Controller {
         try {
             $user->connect($_POST['login'], $_POST['password']);
             SessionController::setLogin($_POST['login']);
-            header('Location: ' . URL . 'Home');
+            header('location: ' . URL . 'Home');
+            die();
         } catch (Exception $e) {
             SessionController::setSession("error", $e->getMessage());
             header('location: ' . URL . "Login");
+            die();
         }
 
     }

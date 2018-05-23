@@ -9,8 +9,7 @@
         <img src="public/images/menu-icon.png" class="menuIcon" id="menuIcon"/>
         <nav id="navImg" class="navImg">
             <a class="navList" href="<?= URL ?>Home"><img src="public/images/home-icon.png" /></a>
-            <?php
-                if (SessionController::getLogin() === "" || SessionController::getLogin() === null) { ?>
+            <?php if (SessionController::getLogin() === "" || SessionController::getLogin() === null) { ?>
                     <a class="navList" href="<?= URL ?>Login"><img src="public/images/login-icon.png" /></a>
                     <a class="navList" href="<?= URL ?>Register"><img src="public/images/register-icon.png" /></a>
             <?php } else { ?>
@@ -23,15 +22,15 @@
     </div>
     <div class="top-navbar">
         <nav class="navbar">
-            <a href="<?= URL ?>Home">Home</a>
+            <a <?php if ($_GET['url'] === "Home") { echo 'class="selected" '; } ?>href="<?= URL ?>Home">Home</a>
             <?php
                 if (SessionController::getLogin() === "" || SessionController::getLogin() === null) { ?>
             <a href="<?= URL ?>Login">Sign in</a>
             <a href="<?= URL ?>Register">Sign up</a>
             <?php } else { ?>
-            <a href="<?= URL ?>Gallery">Gallery</a>
-            <a href="<?= URL ?>Account">Account</a>
-            <a href="<?= URL ?>Camera">Camera</a>
+            <a <?php if ($_GET['url'] === "Gallery") { echo 'class="selected" '; } ?>href="<?= URL ?>Gallery">Gallery</a>
+            <a <?php if ($_GET['url'] === "Account") { echo 'class="selected" '; } ?>href="<?= URL ?>Account">Account</a>
+            <a <?php if ($_GET['url'] === "Camera") { echo 'class="selected" '; } ?>href="<?= URL ?>Camera">Camera</a>
             <a href="<?= URL ?>Logout">Logout</a>
             <?php } ?>
         </nav>

@@ -50,7 +50,9 @@ header {
     display: none;
 }
 .selected {
-    background-color: #99e0ff;
+    background-color: #b2dfff;
+    border-left: 1px outset #eeeeee;
+    border-right: 1px inset #eeeeee;
 }
 @media only screen and (max-width: 719px) {
 
