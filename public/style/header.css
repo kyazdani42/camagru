@@ -49,6 +49,9 @@ header {
 .top-navImg, .navImg, .menuIcon {
     display: none;
 }
+.selected {
+    background-color: #99e0ff;
+}
 @media only screen and (max-width: 719px) {
 
     header {
@@ -109,7 +112,7 @@ header {
     }
 
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 520px) {
     .fixedTitle {
         display:none;
     }

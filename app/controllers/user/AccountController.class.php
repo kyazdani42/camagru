@@ -15,6 +15,15 @@ class AccountController extends Controller {
         if (isset($_POST) && isset($_POST['newLogin']) && !empty($_POST['newLogin'])) {
             $db = new ModifModel();
             $log = $_POST['newLogin'];
+            if (strlen($log) > 15) {
+                SessionController::setSession("error", "Login is too long (14 chars max)");
+                header("Location: " . URL . "Account");
+                die();
+            } else if ($this->_checkInput(array("ascii" => $log))) {
+                SessionController::setSession("error", "Login must contain only alphabetical characters and numbers");
+                header("Location: " . URL . "Account");
+                die();
+            }
             try {
                 $db->modLogin($log);
                 SessionController::setLogin($log);
@@ -22,6 +31,8 @@ class AccountController extends Controller {
                 SessionController::setSession('error', $e->getMessage());
                 header('location: '. URL . 'Account');
             }
+        } else {
+            SessionController::setSession("error", "Please enter something");
         }
         header('location: ' . URL . 'Account');
 
@@ -30,6 +41,10 @@ class AccountController extends Controller {
     public function modPass() {
 
         if (isset($_POST) && isset($_POST['newPass']) && !empty($_POST['newPass'])) {
+            if (strlen($_POST['newPass']) < 8) {
+                SessionController::setSession("error", "Password must contain at least 8 characters");
+                header("location: " . URL . "Account");
+            }
             $db = new ModifModel();
             try {
                 $db->modPassword($_POST['newPass']);
@@ -37,6 +52,8 @@ class AccountController extends Controller {
                 SessionController::setSession('error', $e->getMessage());
                 header('location: '. URL . 'Account');
             }
+        } else {
+            SessionController::setSession("error", "Incorrect Parameter");
         }
         header('location: ' . URL . 'Account');
 
@@ -45,13 +62,21 @@ class AccountController extends Controller {
     public function modEmail() {
 
         if (isset($_POST) && isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
+            if ($this->_checkInput(array("mail" => $_POST['newEmail']))) {
+                SessionController::setSession("error", "Incorrect mail");
+                header('location:' . URL . "Account");
+                die();
+            }
             $db = new ModifModel();
             try {
                 $db->modEmail($_POST['newEmail']);
             } catch (Exception $e) {
                 SessionController::setSession('error', $e->getMessage());
                 header('location: '. URL . 'Account');
+                die();
             }
+        } else {
+            SessionController::setSession("error", "Incorrect Parameter");
         }
         header('location: ' . URL . 'Account');
 
