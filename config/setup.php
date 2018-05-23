@@ -28,4 +28,5 @@ try {
     $db->query($query);
     $db->query($query2);
     $db->query($query3);
+    header('location: ' . URL . "Home");
 }
