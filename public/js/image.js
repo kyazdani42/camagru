@@ -55,15 +55,18 @@ document.querySelector("#form").addEventListener("submit", (e) => {
         let data = new FormData(e.target);
         ajax_post(e.target.getAttribute("action"), data, (ret) => {
             if (ret[0] === "data") {
-                let canvas = document.querySelector("#canvas");
-                let img = new Image;
+                const canvas = document.querySelector("#canvas");
+                const img = new Image;
+                const ctx = canvas.getContext('2d');
 
-                document.querySelector("#photo").setAttribute("src", "data:image/png;base64," + ret[1]);
                 document.querySelector("#staticPhoto").setAttribute("src", photo.getAttribute("src"));
-                canvas.setAttribute('width', width);
-                canvas.setAttribute('height', height);
+                document.querySelector("#photo").setAttribute("src", "data:image/png;base64," + ret[1]);
+                canvas.setAttribute('width', 300);
+                canvas.setAttribute('height', 225);
+                img.onload = () => {
+                    ctx.drawImage(img, 0, 0, 300, 225);
+                };
                 img.src = "data:image/png;base64," + ret[1];
-                canvas.getContext('2d').drawImage(img, 0, 0, 300, 225);
             }
             else if (ret[0] === "err")
                 errorFun(ret[1]);

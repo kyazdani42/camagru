@@ -16,7 +16,7 @@
     media.getUserMedia(constraints)
         .then((stream) => {
             video.srcObject = stream;
-            video.onloadedmetadata = (e) => {
+            video.onloadedmetadata = () => {
                 video.play();
             };
         })

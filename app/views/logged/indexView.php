@@ -25,10 +25,6 @@
                     </div>
                     <div class="containerAttributes">
                         <div class="likeBox">
-                            <div id="like<?= $key['id_photo'] ?>" class='Boxheart'>
-                                <div class=<?php if ($key['flag'] === 1) { ?>"clickHeart"> <?php } else { ?>"heart"> <?php } ?></div>
-                            </div>
-                            <span class="countLike"><?php echo $key['likes']; if ($key['likes'] <= 1) echo " Like"; else echo " Likes"; ?></span>
                             <div class="userPic">Posted by <?= $key['login'] ?></div>
                         </div>
                         <div class="containerComments">

@@ -89,7 +89,7 @@ class CameraController extends Controller {
 
         if ($_FILES['myData']['error'] > 0) {
             throw new Exception("Upload failed");
-        } else if ($_FILES['myData']['size'] > 65535) {
+        } else if ($_FILES['myData']['size'] > 405000) {
             throw new Exception("File is too big");
         } else {
             $extensions = array('jpeg', 'jpg', 'gif', 'png');

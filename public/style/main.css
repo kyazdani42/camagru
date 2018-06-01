@@ -55,8 +55,7 @@ footer {
 .errorPopup, .validPopup {
 	z-index: 3;
 	position: fixed;
-	height: 80px;
-	width: 80%;
+    padding: 20px;
 	top: 30%;
 	left: 10%;
 	background-color: #f44336;
@@ -65,11 +64,6 @@ footer {
 }
 .validPopup {
 	background-color: #11b21c;
-}
-.errorPopup span, .validPopup span {
-	position: relative;
-	top: 19px;
-	left: 10px;
 }
 @keyframes disappear {
 	0% {opacity: 1;}

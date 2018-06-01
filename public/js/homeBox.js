@@ -100,9 +100,9 @@ if (ur !== undefined) {
 
     if (heart !== undefined) {
         for (i = 0; heart[i]; i++) {
-            heart[i].firstElementChild.addEventListener("click", function (e) {
+            heart[i].firstElementChild.addEventListener("click", (e) => {
                 let svg = e.target.parentNode;
-                ajax_get(url + "Home/sendLike/" + svg.getAttribute("id").split("like")[1], function (cheese) {
+                ajax_get(url + "Home/sendLike/" + svg.getAttribute("id").split("like")[1], (cheese) => {
                     if (cheese !== undefined) {
                         if (cheese[0] === 1) {
                             svg.firstElementChild.setAttribute("class", "clickHeart");
